@@ -2,15 +2,19 @@
   "name": "enstrumanim",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@10.33.0",
+  "packageManager": "npm@11.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "db:push": "pnpm --filter @enstrumanim/db db:push",
-    "db:studio": "pnpm --filter @enstrumanim/db db:studio",
-    "db:seed": "pnpm --filter @enstrumanim/db db:seed"
+    "db:push": "npm run db:push --workspace=@enstrumanim/db",
+    "db:studio": "npm run db:studio --workspace=@enstrumanim/db",
+    "db:seed": "npm run db:seed --workspace=@enstrumanim/db"
   },
   "devDependencies": {
     "turbo": "^2.3.3",
