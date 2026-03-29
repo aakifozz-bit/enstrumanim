@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  email      String   @unique
+  username   String   @unique
+  name       String?
+  avatarUrl  String?
+  role       Role     @default(USER) // USER, PRO, MODERATOR, ADMIN
+  bio        String?
+  location   String?
+  rating     Float    @default(5.0)
+  salesCount Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  listings      Listing[]
+  forumTopics   ForumTopic[]
+  forumEntries  ForumEntry[]
+  sentMessages  Message[]    @relation("Sender")
+  chatsAsUser1  Chat[]       @relation("ChatUser1")
+  chatsAsUser2  Chat[]       @relation("ChatUser2")
+}
+
+model Listing {
+  id            String    @id @default(cuid())
+  title         String
+  brand         String
+  category      String
+  condition     Condition @default(GOOD)
+  price         Int
+  originalPrice Int?
+  location      String
+  description   String    @db.Text
+  imageUrls     String[] // Array of image URLs from cloud storage
+  emoji         String    @default("🎸")
+  color         String    @default("#3CAEA3")
+  isFeatured    Boolean   @default(false)
+  
+  status        ListingStatus @default(ACTIVE)
+
+  sellerId      String
+  seller        User      @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  
+  chats         Chat[] // Chats initiated from this listing
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([category], name: "idx_category")
+  @@index([sellerId], name: "idx_seller")
+}
+
+model ForumTopic {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  tags      String[]
+  isHot     Boolean  @default(false)
+  viewCount Int      @default(0)
+
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  entries   ForumEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ForumEntry {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  upvotes   Int      @default(0)
+
+  topicId   String
+  topic     ForumTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  authorId  String
+  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Chat {
+  id        String   @id @default(cuid())
+  
+  user1Id   String
+  user1     User     @relation("ChatUser1", fields: [user1Id], references: [id], onDelete: Cascade)
+  
+  user2Id   String
+  user2     User     @relation("ChatUser2", fields: [user2Id], references: [id], onDelete: Cascade)
+
+  listingId String?
+  listing   Listing? @relation(fields: [listingId], references: [id], onDelete: SetNull)
+
+  messages  Message[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([user1Id, user2Id, listingId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  isRead    Boolean  @default(false)
+
+  chatId    String
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  senderId  String
+  sender    User     @relation("Sender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  USER
+  PRO
+  MODERATOR
+  ADMIN
+}
+
+enum Condition {
+  MINT
+  GOOD
+  FAIR
+  POOR
+}
+
+enum ListingStatus {
+  ACTIVE
+  SOLD
+  SUSPENDED
+}
