@@ -863,11 +863,12 @@ def pin_drop(L, x, y, age, size=1.0):
 
 
 @lru_cache(maxsize=256)
-def label_sprite(name, sub, side, name_size=25, sub_size=29, plate=0.5):
+def label_sprite(name, sub, side, name_size=25, sub_size=29, plate=0.5, name_color=CREAM):
     """City label: caps name (Montserrat) + optional italic sub-label (Playfair).
     Returns (img, ax, ay): img position = pin position - (ax, ay)."""
     gap = 20
-    n_im, n_pad, n_w, n_asc = text_img(tr_upper(name), "sans-semibold", name_size, CREAM, 3, 1.15)
+    n_im, n_pad, n_w, n_asc = text_img(tr_upper(name), "sans-semibold", name_size, name_color, 3,
+                                       1.15)
     parts = [(n_im, n_pad, n_w, name_size * 1.05)]
     if sub:
         s_im, s_pad, s_w, _ = text_img(sub, "serif-italic", sub_size, GOLD, 0, 1.15)
@@ -917,10 +918,10 @@ def label_sprite(name, sub, side, name_size=25, sub_size=29, plate=0.5):
     return cv, ax, ay
 
 
-def city_label(cv, x, y, age, name, sub=None, side="r", dx=0.0, dy=0.0, alpha=1.0):
+def city_label(cv, x, y, age, name, sub=None, side="r", dx=0.0, dy=0.0, alpha=1.0, **kw):
     if age <= 0 or alpha <= 0:
         return
-    im, ax, ay = label_sprite(name, sub, side)
+    im, ax, ay = label_sprite(name, sub, side, **kw)
     p = ease_out(age / 0.5)
     slide = (1 - p) * 14
     sx = {"r": -slide, "rt": -slide, "rb": -slide, "l": slide, "lt": slide, "lb": slide}.get(side, 0)
@@ -1167,8 +1168,7 @@ def cam_selanik(t):
 def draw_selanik(cv, cam, t):
     wide = 1 - smooth((t - 0.75) / 0.9)
     sea_label(cv, cam, 43.15, 34.4, "KARADENİZ", wide * 0.9, 36)
-    sea_label(cv, cam, 39.3, 24.85, "EGE DENİZİ", wide * 0.9, 30)
-    sea_label(cv, cam, 34.75, 30.2, "AKDENİZ", wide * 0.9, 34)
+    sea_label(cv, cam, 39.45, 24.85, "EGE DENİZİ", wide * 0.9, 26)
     land_label(cv, cam, 39.15, 33.6, "ANADOLU", wide * 0.85, 30, 16)
     land_label(cv, cam, 42.95, 23.9, "BALKANLAR", wide * 0.8, 24, 12)
     close = smooth((t - 3.0) / 0.8)
@@ -1466,17 +1466,22 @@ def draw_taarruz(cv, cam, t):
 
     if fa > 0.01:
         q = fp[len(fp) // 2]
-        draw_text(cv, "YUNAN CEPHESİ", "sans-semibold", 19, ALLY_LIGHT, q[0] - 18, q[1] - 10,
-                  fa * smooth((t - 0.9) / 0.5) * (1 - smooth((t - 2.6) / 0.5)), align="right",
-                  tracking=4, sub=True)
+        city_label(cv, q[0], q[1], t - 0.9, "Yunan cephesi", None, "l", -4, 0,
+                   fa * (1 - smooth((t - 2.6) / 0.5)), name_size=20, name_color=ALLY_LIGHT)
     age = t - 0.75
-    if age > 0:
+    card_a = 1 - smooth((t - 2.25) / 0.45)
+    if age > 0 and card_a > 0.01:
         x0, y0 = sx - 20, sy - 34
         ld = Layer()
-        ld.line([(x0, y0), (x0 - 46 * ease_out(age / 0.4), y0)], rgba(INK, 0.85), 2.2)
-        ld.circle(x0, y0, 3.2, fill=rgba(INK, 0.9))
+        ld.line([(x0, y0), (x0 - 46 * ease_out(age / 0.4), y0)], rgba(INK, 0.85 * card_a), 2.2)
+        ld.circle(x0, y0, 3.2, fill=rgba(INK, 0.9 * card_a))
         ld.render(cv)
-        draw_card(cv, x0 - 46, y0, age - 0.1, "Sakarya · 1921", None, 44, align="right")
+        if card_a > 0.999:
+            draw_card(cv, x0 - 46, y0, age - 0.1, "Sakarya · 1921", None, 44, align="right")
+        else:
+            im, sp, cw, ch = card_img("Sakarya · 1921", None, 44, "serif-bold")
+            comp_sub(cv, im, x0 - 46 - cw - sp, y0 - ch / 2 - sp, card_a)
+    city_label(cv, sx, sy, t - 2.45, "Sakarya", "1921", "r", 2, -14)
     for nm, la, lo, t0, sub, side, dx, dy in BT_PLACES:
         x, y = cam.at(la, lo)
         city_label(cv, x, y, t - t0 - 0.08, nm, sub, side, dx, dy)
