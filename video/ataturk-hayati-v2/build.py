@@ -287,8 +287,18 @@ def init_worker():
 
 def read_wav(path):
     with wave.open(path) as w:
-        sr, ch, n = w.getframerate(), w.getnchannels(), w.getnframes()
-        x = np.frombuffer(w.readframes(n), dtype=np.int16).astype(np.float64) / 32768
+        sr, ch, n, sw = w.getframerate(), w.getnchannels(), w.getnframes(), w.getsampwidth()
+        raw = w.readframes(n)
+    if sw == 2:
+        x = np.frombuffer(raw, dtype="<i2").astype(np.float64) / 32768
+    elif sw == 3:  # 24-bit PCM
+        b = np.frombuffer(raw, dtype=np.uint8).reshape(-1, 3).astype(np.int32)
+        v = b[:, 0] | (b[:, 1] << 8) | (b[:, 2] << 16)
+        x = np.where(v & 0x800000, v - 0x1000000, v).astype(np.float64) / 8388608
+    elif sw == 4:
+        x = np.frombuffer(raw, dtype="<i4").astype(np.float64) / 2147483648
+    else:
+        raise ValueError(f"desteklenmeyen WAV örnek genişliği: {sw * 8} bit")
     x = x.reshape(-1, ch).T
     if ch == 1:
         x = np.vstack([x, x])
@@ -374,6 +384,7 @@ def main():
     ap.add_argument("--stills-dir", default="stills")
     ap.add_argument("--preview", help="başlangıç-bitiş saniyesi, örn. 0-20")
     ap.add_argument("--crf", type=int, default=18)
+    ap.add_argument("--remux", help="var olan videonun görüntüsünü koruyup sesi yeniden üret")
     args = ap.parse_args()
 
     if args.stills:
@@ -382,6 +393,19 @@ def main():
             p = os.path.join(args.stills_dir, f"v2_{float(s):05.2f}.png")
             render(float(s)).save(p)
             print(p)
+        return
+
+    if args.remux:
+        wav = os.path.splitext(args.out)[0] + ".wav"
+        soundtrack(wav)
+        tmp = args.out + ".tmp.mp4"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", args.remux, "-i", wav,
+                        "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac",
+                        "-b:a", "192k", "-af", "loudnorm=I=-15:TP=-1.5:LRA=11", "-ar", "44100",
+                        "-shortest", "-movflags", "+faststart", tmp], check=True)
+        os.replace(tmp, args.out)
+        os.remove(wav)
+        print("Hazır:", args.out)
         return
 
     warm_up()
