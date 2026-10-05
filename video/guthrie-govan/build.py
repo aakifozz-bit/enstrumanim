@@ -948,6 +948,11 @@ def soundtrack(path):
     bp = mpath("music/bed.wav")
     if os.path.exists(bp):
         b = read_audio(bp)
+        if b.shape[1] < n - SR:  # yatak videodan kısaysa perdeyi bozmadan esnet
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-i", bp, "-af",
+                                  f"atempo={b.shape[1] / n:.5f}", "-f", "f32le", "-ac", "2",
+                                  "-ar", str(SR), "-"], capture_output=True, check=True).stdout
+            b = np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).T.astype(np.float64)
         m = min(b.shape[1], n)
         mus[:, :m] = b[:, :m]
     # anlatım altında müzik kısma
