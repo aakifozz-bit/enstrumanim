@@ -59,13 +59,13 @@ PRON = [
     (r"\bThe Aristocrats\b", "Di Aristokrats"),
     (r"\bSteven\b", "Stiven"),
     (r"\bWilson\b", "Vilson"),
-    (r"\bZimmer\b", "Zimır"),
     (r"\bErotic Cakes\b", "Erotik Keyks"),  # ham: "Erotik Çakes"
     (r"\bCakes\b", "Keyks"),
     (r"\bChelmsford\b", "Çelmsfırd"),       # ham: "Şamşard" benzeri
     (r"\bMarco\b", "Marko"),
     (r"\bMinnemann\b", "Minneman"),
-    # Bryan Beller: ham hali zaten "Brayan Beller" okunuyor.
+    # Ham hali zaten iyi okunanlar: Bryan Beller ("Brayan Beller"), Hans Zimmer ("Hans Zimır").
+    # Yeni ad eklerken ekin ünlü uyumunu bozmayın: "Zimmer'le" -> "Zimır'le" kötü olurdu.
 ]
 
 
@@ -163,12 +163,12 @@ def _rate_str(rate):
     return f"{pct:+d}%"
 
 
-async def _edge_one(text, rate, pitch, sem):
+async def _edge_one(text, voice, rate, pitch, sem):
     async with sem:
         last = None
         for attempt in range(RETRIES):
             try:
-                c = edge_tts.Communicate(text, VOICE, rate=_rate_str(rate), pitch=f"{int(pitch):+d}Hz",
+                c = edge_tts.Communicate(text, voice, rate=_rate_str(rate), pitch=f"{int(pitch):+d}Hz",
                                          proxy=PROXY)
                 buf = bytearray()
                 async for ch in c.stream():
@@ -183,23 +183,26 @@ async def _edge_one(text, rate, pitch, sem):
         raise RuntimeError(f"edge-tts başarısız ({text[:40]!r}...): {last}")
 
 
-async def _edge_all(texts, rate, pitch):
+async def _edge_all(texts, voice, rate, pitch):
     sem = asyncio.Semaphore(CONCURRENCY)
-    return await asyncio.gather(*[_edge_one(t, rate, pitch, sem) for t in texts])
+    return await asyncio.gather(*[_edge_one(t, voice, rate, pitch, sem) for t in texts])
 
 
 def synth(text, out_wav, rate=1.0, pitch=0, gap=GAP, para_gap=PARA_GAP, respell_names=True,
-          subs=None):
+          subs=None, voice=VOICE):
     """Metni seslendirip out_wav'a yazar (44.1 kHz mono 16-bit). Süreyi (s) döndürür.
 
     rate: 1.0 = sesin doğal hızı (~2.4 kelime/s), 1.1 = %10 hızlı.
     pitch: Hz cinsinden perde kayması (ör. -5).
     subs: verilirse cümle zamanlamaları (orijinal metinle) JSON olarak yazılır.
+    voice: başka bir edge sesi (ör. en-US-BrianMultilingualNeural); tr-TR dışı seslerde
+           fonetik yazım uygulanmaz (çok dilli sesler İngilizce adları kendisi doğru okur).
     """
     sents = split_sentences(text)
     if not sents:
         raise ValueError("boş metin")
-    spoken = [respell(s) if respell_names else s for s, _ in sents]
+    do_respell = respell_names and voice.startswith("tr-")
+    spoken = [respell(s) if do_respell else s for s, _ in sents]
     loop_ran = False
     try:
         asyncio.get_running_loop()
@@ -209,9 +212,9 @@ def synth(text, out_wav, rate=1.0, pitch=0, gap=GAP, para_gap=PARA_GAP, respell_
     if loop_ran:  # çağıran zaten bir event loop içindeyse ayrı thread'de çalıştır
         import concurrent.futures
         with concurrent.futures.ThreadPoolExecutor(1) as ex:
-            mp3s = ex.submit(asyncio.run, _edge_all(spoken, rate, pitch)).result()
+            mp3s = ex.submit(asyncio.run, _edge_all(spoken, voice, rate, pitch)).result()
     else:
-        mp3s = asyncio.run(_edge_all(spoken, rate, pitch))
+        mp3s = asyncio.run(_edge_all(spoken, voice, rate, pitch))
 
     sr = SR_EDGE
     parts, timings, pos = [], [], 0
@@ -244,11 +247,13 @@ def main():
     ap.add_argument("--gap", type=float, default=GAP)
     ap.add_argument("--subs", help="cümle zamanlamaları JSON")
     ap.add_argument("--raw", action="store_true", help="İngilizce adları fonetik yazıma çevirme")
+    ap.add_argument("--voice", default=VOICE)
     a = ap.parse_args()
     text = a.text
     if text.startswith("@") and os.path.exists(text[1:]):
         text = open(text[1:], encoding="utf-8").read()
-    d = synth(text, a.out, rate=a.rate, pitch=a.pitch, gap=a.gap, respell_names=not a.raw, subs=a.subs)
+    d = synth(text, a.out, rate=a.rate, pitch=a.pitch, gap=a.gap, respell_names=not a.raw, subs=a.subs,
+              voice=a.voice)
     print(f"{a.out}: {d:.2f} s")
 
 
