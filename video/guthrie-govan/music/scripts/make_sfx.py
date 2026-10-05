@@ -1,7 +1,7 @@
 """Synthesize the transition SFX (original, numpy-generated -> dedicated CC0).
 
 Writes 44.1 kHz / 24-bit stereo WAVs into ../sfx/:
-  impact_big.wav, impact_soft.wav, riser_4s.wav, riser_5s.wav, whoosh.wav,
+  impact_big.wav, impact_soft.wav, riser_4s.wav, riser_6s.wav, whoosh.wav,
   reverse_swell_2s.wav, tape_stop.wav
 Deterministic (fixed seeds), so re-running gives identical files.
 """
@@ -124,7 +124,7 @@ def main():
         "impact_soft.wav": impact(dur=3.5, sub_hz=(60.0, 34.0), decay=0.7, crack=0.25, rt60=2.0,
                                   wet_db=-11.0, seed=11),
         "riser_4s.wav": riser(4.0),
-        "riser_5s.wav": riser(5.0, seed=12),
+        "riser_6s.wav": riser(6.0, seed=12),
         "whoosh.wav": whoosh(),
         "reverse_swell_2s.wav": reverse_swell(),
         "tape_stop.wav": tape_stop(),
