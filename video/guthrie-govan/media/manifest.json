@@ -551,6 +551,44 @@
   "quality_notes": "1500x1001, sunny, sharp; Govan box approx [1000,180,1360,1001]"
  },
  {
+  "file": "people_bryan_beller_2012.jpg",
+  "category": "people",
+  "description": "Bryan Beller playing a red Mike Lull bass on The Aristocrats US tour (warm red stage light)",
+  "year_or_era": "2012-01-29",
+  "source_page_url": "https://www.flickr.com/photos/art-sarah/6818371267/",
+  "image_url": "https://live.staticflickr.com/7169/6818371267_f195dd73b3_k.jpg",
+  "author_if_known": "ArtBrom",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1868,
+  "height": 1868,
+  "subject_box": [
+   580,
+   170,
+   1400,
+   1640
+  ],
+  "quality_notes": "CC BY-SA 2.0 (ArtBrom); 1868x1868 phone photo"
+ },
+ {
+  "file": "people_bryan_beller_2023_bw.jpg",
+  "category": "people",
+  "description": "Bryan Beller (The Aristocrats bassist) grinning on stage with a white bass, black-and-white",
+  "year_or_era": "2023-11-14",
+  "source_page_url": "https://www.flickr.com/photos/samarrakaton/53999954698/",
+  "image_url": "https://live.staticflickr.com/65535/53999954698_9ea1c10b54_k.jpg",
+  "author_if_known": "Samarrakaton",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2048,
+  "height": 1367,
+  "subject_box": [
+   640,
+   450,
+   1600,
+   1367
+  ],
+  "quality_notes": "2048x1367 clean"
+ },
+ {
   "file": "people_hans_zimmer_live_2023_guitars.jpg",
   "category": "people",
   "description": "Hans Zimmer (centre, laughing, Rickenbacker bass) jamming with his band guitarists on Hans Zimmer Live 2023 tour (Govan not in this photo)",
@@ -568,6 +606,44 @@
    1068
   ],
   "quality_notes": "1600x1068, sharp, joyful; use for Zimmer-band beat"
+ },
+ {
+  "file": "people_marco_minnemann_2012_smiling.jpg",
+  "category": "people",
+  "description": "Marco Minnemann smiling at his DW drum kit, Cookie Monster T-shirt; same Vladivostok event as the Govan close-ups",
+  "year_or_era": "2012-12-17",
+  "source_page_url": "https://www.flickr.com/photos/vladconsulate/8279293165/",
+  "image_url": "https://live.staticflickr.com/8061/8279293165_905540c73b_b.jpg",
+  "author_if_known": "U.S. Consulate Vladivostok",
+  "license_if_known": "CC BY-ND 2.0",
+  "width": 1024,
+  "height": 678,
+  "subject_box": [
+   250,
+   30,
+   700,
+   678
+  ],
+  "quality_notes": "CC BY-ND 2.0 (U.S. Consulate Vladivostok); 1024x678"
+ },
+ {
+  "file": "people_marco_minnemann_2016_tres_caballeros_kit.jpg",
+  "category": "people",
+  "description": "Marco Minnemann grimacing behind his sparkle DW drum kit with \"Tres Caballeros\" bass-drum head",
+  "year_or_era": "2016-02-17",
+  "source_page_url": "https://www.flickr.com/photos/alessandrodevito/25166376195/",
+  "image_url": "https://live.staticflickr.com/1446/25166376195_d70920d764_o.jpg",
+  "author_if_known": "Alessandro De Vito",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1734,
+  "subject_box": [
+   262,
+   163,
+   2125,
+   1734
+  ],
+  "quality_notes": "very high-res original (7952x5304) downscaled; slightly noisy"
  },
  {
   "file": "people_steven_wilson_band_2013_pistoia.jpg",
@@ -1219,6 +1295,20 @@
   "quality_notes": "1024x575 (Commons has 1600x899)"
  },
  {
+  "file": "place_chelmsford_high_street_03_2005.jpg",
+  "category": "place",
+  "description": "Chelmsford High Street in 2005 (overcast, Shire Hall end)",
+  "year_or_era": "2005-11",
+  "source_page_url": "https://www.flickr.com/photos/stuart166axe/454498833/",
+  "image_url": "https://live.staticflickr.com/249/454498833_b385ded6e1_k.jpg",
+  "author_if_known": "Stuart Axe",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2048,
+  "height": 1536,
+  "subject_box": null,
+  "quality_notes": "2048x1536"
+ },
+ {
   "file": "place_hans_zimmer_live_arena_2023.jpg",
   "category": "place",
   "description": "Hans Zimmer Live 2023 arena concert - wide view over the crowd towards the lit stage",
@@ -1233,6 +1323,34 @@
   "quality_notes": "1600x1067 atmosphere shot"
  },
  {
+  "file": "place_namm_2011_guitar_wall.jpg",
+  "category": "place",
+  "description": "2011 NAMM Show, Anaheim Convention Center - a wall of electric guitars on a manufacturer stand (The Aristocrats formed after a NAMM 2011 jam)",
+  "year_or_era": "2011-01-16",
+  "source_page_url": "https://www.flickr.com/photos/ces_2011/5362783419/",
+  "image_url": "https://live.staticflickr.com/5282/5362783419_e91388343a_k.jpg",
+  "author_if_known": "avingrt",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1936,
+  "height": 1288,
+  "subject_box": null,
+  "quality_notes": "1936x1288; atmosphere"
+ },
+ {
+  "file": "place_namm_2011_idea_center.jpg",
+  "category": "place",
+  "description": "2011 NAMM Show, Anaheim Convention Center - the NAMM Idea Center stage with NAMM logos",
+  "year_or_era": "2011-01-16",
+  "source_page_url": "https://www.flickr.com/photos/ces_2011/5365950948/",
+  "image_url": "https://live.staticflickr.com/5081/5365950948_77d317b8e4_o.jpg",
+  "author_if_known": "avingrt",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1736,
+  "subject_box": null,
+  "quality_notes": "2816x1880 (downscaled); shows NAMM branding clearly"
+ },
+ {
   "file": "place_oxford_st_catherines_college_01.jpg",
   "category": "place",
   "description": "St Catherine's College, Oxford (Arne Jacobsen modernist buildings, lawn and sculpture) - the college Govan briefly attended",
@@ -1245,6 +1363,34 @@
   "height": 480,
   "subject_box": null,
   "quality_notes": "small 640x480; Commons \"Stcatz East Outside Quad.JPG\" (3888x2592) pending"
+ },
+ {
+  "file": "place_oxford_st_catherines_college_02_water_garden.jpg",
+  "category": "place",
+  "description": "St Catherine's College, Oxford - Arne Jacobsen building reflected in the lily pond, lawn",
+  "year_or_era": "2018-11-01",
+  "source_page_url": "https://www.flickr.com/photos/iqbalaalam/30730065887/",
+  "image_url": "https://live.staticflickr.com/1950/30730065887_6f8843fbfd_o.jpg",
+  "author_if_known": "Iqbal Aalam",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1733,
+  "subject_box": null,
+  "quality_notes": "5472x3648 original downscaled; postcard-quality"
+ },
+ {
+  "file": "place_oxford_st_catherines_college_03.jpg",
+  "category": "place",
+  "description": "St Catherine's College, Oxford - modernist teaching block with bike racks",
+  "year_or_era": "2026-09-12",
+  "source_page_url": "https://www.flickr.com/photos/flindersian/55543641721/",
+  "image_url": "https://live.staticflickr.com/65535/55543641721_374883a818_4k.jpg",
+  "author_if_known": "FocalPointless",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1737,
+  "subject_box": null,
+  "quality_notes": "4096x2736 downscaled"
  },
  {
   "file": "misc_aristocrats_duck_tour_europe_2026_poster.jpg",
