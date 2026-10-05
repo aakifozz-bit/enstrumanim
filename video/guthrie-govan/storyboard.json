@@ -179,6 +179,30 @@
      "cue": "plak koleksiyonunu"
     },
     {
+     "type": "grid",
+     "cue": "Elvis",
+     "heading": "AİLENİN PLAK KOLEKSİYONU",
+     "cols": 4,
+     "files": [
+      [
+       "media/cover_sleeve_beatles_please_please_me.jpg",
+       "The Beatles"
+      ],
+      [
+       "media/cover_sleeve_hendrix_are_you_experienced.jpg",
+       "Jimi Hendrix"
+      ],
+      [
+       "media/cover_sleeve_cream_disraeli_gears.jpg",
+       "Cream"
+      ],
+      [
+       "media/cover_sleeve_joe_pass_virtuoso.jpg",
+       "Joe Pass"
+      ]
+     ]
+    },
+    {
      "type": "photo",
      "file": "media/misc_superb_lyrebird.jpg",
      "mode": "kenburns",
@@ -200,12 +224,6 @@
      "text": "Kulaktan!",
      "cue": "Kulaktan",
      "dur": 1.4
-    },
-    {
-     "text": "Elvis · Beatles · Hendrix · Cream",
-     "cue": "Elvis",
-     "dur": 3.0,
-     "pos": "top"
     }
    ]
   },
@@ -328,22 +346,26 @@
      "type": "grid",
      "d": 4.0,
      "cue": "Creative Guitar",
-     "heading": "CREATIVE GUITAR",
+     "heading": "DERGİLER VE KİTAPLAR",
      "files": [
       [
+       "media/cover_magazine_guitar_techniques_208_2012.jpg",
+       "Guitar Techniques"
+      ],
+      [
+       "media/cover_magazine_guitar_techniques_211_ipad_2012.jpg",
+       "Guitar Techniques"
+      ],
+      [
        "media/cover_book_creative_guitar_1.jpg",
-       "Cilt 1"
+       "Creative Guitar 1"
       ],
       [
        "media/cover_book_creative_guitar_2.jpg",
-       "Cilt 2"
-      ],
-      [
-       "media/cover_magazine_guitar_interactive_13.jpg",
-       "Guitar Interactive"
+       "Creative Guitar 2"
       ]
      ],
-     "cols": 3
+     "cols": 4
     },
     {
      "type": "photo",
