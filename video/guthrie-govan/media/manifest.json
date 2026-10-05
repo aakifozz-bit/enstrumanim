@@ -171,6 +171,25 @@
   "quality_notes": "expressive, sharp; small \"Diego Castillon\" credit bottom-right"
  },
  {
+  "file": "gg_live_asia_2005_haarlem_acoustic.jpg",
+  "category": "gg",
+  "description": "Govan playing an acoustic guitar live with Asia in Haarlem, Netherlands (only known free photo of him with Asia)",
+  "year_or_era": "2005-07-22 (Asia era)",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Guthrie_govan.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Guthrie_govan.jpg",
+  "author_if_known": "Douglas Shearer",
+  "license_if_known": "CC BY-SA 2.5",
+  "width": 400,
+  "height": 300,
+  "subject_box": [
+   70,
+   40,
+   370,
+   300
+  ],
+  "quality_notes": "tiny 400x300 - use inside a frame/polaroid, not full-screen (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
+ },
+ {
   "file": "gg_live_charvel_2012_vladivostok.jpg",
   "category": "gg",
   "description": "Govan playing his Charvel signature (natural/walnut finish) wearing a Freak Guitar Camp T-shirt, looking at camera; Vladivostok",
@@ -418,6 +437,25 @@
   "quality_notes": "sharp face close-up, 1024 px only; great for slow push-in"
  },
  {
+  "file": "gg_portrait_live_steven_wilson_tour_2013_hires.jpg",
+  "category": "gg",
+  "description": "Dramatic backlit portrait of Govan looking into the camera through a halo of curly hair, guitar neck vertical in front of him - on tour with Steven Wilson",
+  "year_or_era": "2013-11-01 (Steven Wilson band)",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Guthrie_Govan2013.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Guthrie_Govan2013.jpg",
+  "author_if_known": "JesterWr",
+  "license_if_known": "CC BY 3.0",
+  "width": 1733,
+  "height": 2600,
+  "subject_box": [
+   451,
+   351,
+   1733,
+   2600
+  ],
+  "quality_notes": "very high-res 3456x5184 downscaled to 1733x2600; best slow push-in hero (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
+ },
+ {
   "file": "gg_teaching_bimm_masterclass_banner.jpg",
   "category": "gg",
   "description": "Govan playing an amber flame-top Suhr guitar, white T-shirt, dark background - BIMM (music college) masterclass announcement banner",
@@ -473,6 +511,25 @@
    900
   ],
   "quality_notes": "fun, gritty video-still quality 1456x1003"
+ },
+ {
+  "file": "people_aristocrats_live_2012_club_wide.jpg",
+  "category": "people",
+  "description": "The Aristocrats live in a packed club: Govan (left, grinning, arm outstretched), Marco Minnemann (drums), Bryan Beller (right, red bass); audience silhouettes in foreground",
+  "year_or_era": "2012-01-29 (first US tour)",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Guthrie_Govan_The_Aristrocrats.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Guthrie_Govan_The_Aristrocrats.jpg",
+  "author_if_known": "ArtBrom",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 2600,
+  "height": 1951,
+  "subject_box": [
+   297,
+   496,
+   2280,
+   1388
+  ],
+  "quality_notes": "2623x1968 (downscaled to 2600), warm red light, phone-camera quality (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
  },
  {
   "file": "people_aristocrats_live_2012_govan_beller.jpg",
@@ -701,6 +758,25 @@
    1367
   ],
   "quality_notes": "2048x1367 clean"
+ },
+ {
+  "file": "people_gps_band_2006.jpg",
+  "category": "people",
+  "description": "GPS band laughing in a rehearsal room: Govan (left, Cornford T-shirt), John Payne, Ryo Okumoto, Jay Schellen",
+  "year_or_era": "2006 (GPS era)",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:GPS_2006.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/GPS_2006.jpg",
+  "author_if_known": "Prog-Ress",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 600,
+  "height": 397,
+  "subject_box": [
+   10,
+   20,
+   600,
+   397
+  ],
+  "quality_notes": "small 600x397 with GPS logo bottom-left; use framed (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
  },
  {
   "file": "people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
@@ -1540,14 +1616,14 @@
   "category": "place",
   "description": "Chelmsford High Street, Essex (Govan's birthplace) - pedestrianised shopping street on a sunny day",
   "year_or_era": "2013-03-04",
-  "source_page_url": "https://www.geograph.org.uk/photo/3356603",
-  "image_url": "https://s3.geograph.org.uk/geophotos/03/35/66/3356603_25656c6c_1024x1024.jpg",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Chelmsford_High_Street_-_geograph.org.uk_-_3356603.jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Chelmsford_High_Street_-_geograph.org.uk_-_3356603.jpg",
   "author_if_known": "Paul Franks",
   "license_if_known": "CC BY-SA 2.0",
-  "width": 1024,
-  "height": 768,
+  "width": 2600,
+  "height": 1950,
   "subject_box": null,
-  "quality_notes": "1024x768 from geograph (Commons has 4608x3456 original - pending, rate-limited)"
+  "quality_notes": "full-res original 4608x3456 downscaled to 2600 (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
  },
  {
   "file": "place_chelmsford_high_street_02_shire_hall.jpg",
@@ -1650,16 +1726,16 @@
  {
   "file": "place_oxford_st_catherines_college_01.jpg",
   "category": "place",
-  "description": "St Catherine's College, Oxford (Arne Jacobsen modernist buildings, lawn and sculpture) - the college Govan briefly attended",
-  "year_or_era": "2008-12-02",
-  "source_page_url": "https://www.geograph.org.uk/photo/1289366",
-  "image_url": "https://s0.geograph.org.uk/geophotos/01/28/93/1289366_149b62da.jpg",
-  "author_if_known": "Kenneth Yarham",
-  "license_if_known": "CC BY-SA 2.0",
-  "width": 640,
-  "height": 480,
+  "description": "St Catherine's College, Oxford - Arne Jacobsen modernist building across the East quad lawn and water garden",
+  "year_or_era": "2007",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Stcatz_East_Outside_Quad.JPG",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Stcatz_East_Outside_Quad.JPG",
+  "author_if_known": "Munkfishmonger at English Wikipedia",
+  "license_if_known": "CC BY 2.5",
+  "width": 2600,
+  "height": 1733,
   "subject_box": null,
-  "quality_notes": "small 640x480; Commons \"Stcatz East Outside Quad.JPG\" (3888x2592) pending"
+  "quality_notes": "3888x2592 downscaled; replaces earlier 640px geograph version (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
  },
  {
   "file": "place_oxford_st_catherines_college_02_water_garden.jpg",
