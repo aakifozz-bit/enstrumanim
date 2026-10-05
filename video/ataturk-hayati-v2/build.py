@@ -50,16 +50,17 @@ SHOTS = [
     ("acilis", 0.0, 5.0, "photo", dict(photo="p01_portrait", mode="parallax", title=True)),
     ("selanik", 5.0, 5.0, "map", dict(scene="selanik")),
     ("subay", 10.0, 5.0, "photo", dict(photo="p02_young_officer", mode="print",
-                                       caption="Kurmay Yüzbaşı Mustafa Kemal",
                                        tag=("1905", "HARP AKADEMİSİ · KURMAY YÜZBAŞI"))),
     ("canakkale", 15.0, 6.0, "map", dict(scene="canakkale")),
     ("milli", 21.0, 7.0, "map", dict(scene="milli_mucadele")),
     ("tbmm", 28.0, 4.0, "photo", dict(photo="p05_tbmm", mode="kenburns",
                                       tag=("23 NİSAN 1920", "TÜRKİYE BÜYÜK MİLLET MECLİSİ"))),
     ("taarruz", 32.0, 6.0, "map", dict(scene="buyuk_taarruz")),
-    ("cumhuriyet", 38.0, 5.0, "photo", dict(photo="p07_cumhuriyet", mode="parallax",
+    ("cumhuriyet", 38.0, 5.0, "photo", dict(photo="p07_cumhuriyet", mode="kenburns",
+                                            kb=((0.5, 0.36, 1.0), (0.5, 0.31, 1.1)),
                                             tag=("29 EKİM 1923", "CUMHURİYET İLAN EDİLDİ"))),
     ("devrimler", 43.0, 6.0, "photo", dict(photo="p08_harf_devrimi", mode="kenburns",
+                                           fit=0.45, kb=((0.5, 0.42, 1.0), (0.53, 0.38, 1.1)),
                                            tag=("1928", "HARF DEVRİMİ"))),
     ("soyadi", 49.0, 5.0, "photo", dict(photo="p09_portrait_1930s", mode="parallax",
                                         tag=("1934", "SOYADI KANUNU · “ATATÜRK”"))),
@@ -104,10 +105,10 @@ def photo_shot(idx):
     if mode == "print":
         opts.update(caption=o.get("caption"), enter="bottom", tape="top", desk="dark")
     if mode == "kenburns":
-        opts.update(start=(0.5, 0.5, 1.0), end=(0.5, 0.46, 1.12))
-    if mode == "parallax" and box is None:
-        mode = "kenburns"
-        opts.update(start=(0.5, 0.42, 1.0), end=(0.5, 0.38, 1.12))
+        a, b = o.get("kb", ((0.5, 0.5, 1.0), (0.5, 0.46, 1.12)))
+        opts.update(start=a, end=b)
+    if "fit" in o:
+        opts["fit"] = o["fit"]
     return photofx.PhotoShot(path, dur + XFADE, mode=mode, subject_box=box, **opts)
 
 
@@ -119,6 +120,17 @@ def overlay(img, fn):
     cv = img.convert("RGBA")
     fn(cv)
     return cv.convert("RGB")
+
+
+@lru_cache(maxsize=2)
+def corner_img(w, h):
+    x = np.clip(1 - np.arange(w, dtype=np.float32) / w, 0, 1)
+    y = np.clip(1 - np.arange(h, dtype=np.float32) / h, 0, 1)
+    x, y = x * x * (3 - 2 * x), y * y * (3 - 2 * y)
+    a = (y[:, None] * x[None, :]) ** 0.9 * 190
+    im = Image.new("RGBA", (w, h), (8, 6, 6, 0))
+    im.putalpha(Image.fromarray(a.astype(np.uint8)))
+    return im
 
 
 @lru_cache(maxsize=4)
@@ -134,19 +146,19 @@ def grad_img(w, h, side):
 
 
 def title_card(cv, t):
-    v1.comp(cv, v1.with_alpha(grad_img(W, 560, "bottom"), smooth(t / 0.8)), 0, H - 560)
+    v1.comp(cv, v1.with_alpha(grad_img(W, 520, "bottom"), smooth(t / 0.8)), 0, H - 520)
     a, dy = v1.el(t, 0.5, 1.0, 1.1)
-    v1.draw_text(cv, "1881 — 1938", "sans-medium", 30, GOLD, W / 2, 640 + dy, a, "center", 12)
+    v1.draw_text(cv, "1881 — 1938", "sans-medium", 28, GOLD, W / 2, 742 + dy, a, "center", 12)
     a, dy = v1.el(t, 0.75, 1.0, 1.2)
-    v1.draw_text(cv, "Mustafa Kemal", "serif-bold", 112, CREAM, W / 2, 682 + dy, a, "center")
+    v1.draw_text(cv, "Mustafa Kemal", "serif-bold", 100, CREAM, W / 2, 776 + dy, a, "center")
     a, dy = v1.el(t, 1.0, 1.0, 1.2)
-    v1.draw_text(cv, "ATATÜRK", "sans-semibold", 64, GOLD, W / 2, 836 + dy, a, "center", 30)
+    v1.draw_text(cv, "ATATÜRK", "sans-semibold", 56, GOLD, W / 2, 918 + dy, a, "center", 28)
 
 
 def date_tag(cv, t, date, sub, alpha=1.0):
     if alpha <= 0.004:
         return
-    v1.comp(cv, v1.with_alpha(grad_img(1100, 330, "left"), alpha * smooth(t / 0.6)), 0, 0)
+    v1.comp(cv, v1.with_alpha(corner_img(1300, 480), alpha * smooth(t / 0.6)), 0, 0)
     bw = int(70 * ease_out((t - 0.1) / 0.8))
     if bw > 0:
         v1.comp(cv, v1.with_alpha(v1.rect_img(bw, 6, RED), alpha), 96, 84)
@@ -171,6 +183,8 @@ def subtitle_lines():
 
 
 def subtitles(cv, t):
+    if t < SHOTS[1][1] - 0.1:  # açılışta başlık kartı aynı cümleyi gösteriyor
+        return
     for s, e, lines in subtitle_lines():
         if s - 0.15 <= t <= e + 0.35:
             a = smooth((t - s + 0.15) / 0.2) * (1 - smooth((t - e) / 0.35))
