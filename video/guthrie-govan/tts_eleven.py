@@ -92,7 +92,7 @@ def synth(text, voice_id, model="eleven_multilingual_v2", stability=0.45, simila
         body["previous_text"] = prev
     if nxt:
         body["next_text"] = nxt
-    r = _req("POST", f"/text-to-speech/{voice_id}/with-timestamps?output_format=mp3_44100_192", body)
+    r = _req("POST", f"/text-to-speech/{voice_id}/with-timestamps?output_format=mp3_44100_128", body)
     audio = _decode_mp3(base64.b64decode(r["audio_base64"]))
     al = r.get("normalized_alignment") or r.get("alignment") or {}
     return audio, al.get("characters", []), al.get("character_start_times_seconds", []), \
