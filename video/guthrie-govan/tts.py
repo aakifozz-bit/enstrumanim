@@ -463,7 +463,7 @@ def synth_script(script_json, outdir, lufs=-16.0, pad_sec=1.0, min_rate=0.92, ma
         _write_wav(out, y, SR_OUT)
         info.update(file=os.path.basename(out), target_sec=seg["target_sec"],
                     lufs=round(measure_lufs(y, SR_OUT), 1),
-                    peak_dbfs=round(20 * np.log10(np.max(np.abs(y)) + 1e-9), 1))
+                    peak_dbfs=round(float(20 * np.log10(np.max(np.abs(y)) + 1e-9)), 1))
         print(f"{seg['id']:18s} {info['duration']:6.2f}s (hedef {target:.1f}) rate {rate:.3f} "
               f"[{info['edge_rate']}] {info['lufs']} LUFS", flush=True)
         return seg["id"], cues, info

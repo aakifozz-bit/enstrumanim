@@ -35,8 +35,8 @@ import colorfx as cf  # noqa: E402
 W, H, FPS = 1920, 1080, 30
 SR = 44100
 XF = 0.35                 # çekimler arası çapraz geçiş
-LEAD = 0.45               # bölüm başında anlatımdan önceki boşluk
-TAIL = 0.55               # anlatımdan sonra
+LEAD = 0.35               # bölüm başında anlatımdan önceki boşluk
+TAIL = 0.45               # anlatımdan sonra
 ACCENT = (255, 122, 26)   # turuncu vurgu
 ACCENT2 = (64, 200, 255)  # camgöbeği
 WHITE = (245, 245, 242)
@@ -465,8 +465,170 @@ def shot_timeline(s, t, dur):
     return cv
 
 
+def _bubble(text, right, max_w=760):
+    f = font("mont-m", 36)
+    lines = wrap(text, "mont-m", 36, max_w)
+    w = int(max(f.getlength(l) for l in lines)) + 64
+    h = 48 * len(lines) + 40
+    im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    col = (0, 132, 255) if right else (52, 54, 62)
+    ImageDraw.Draw(im).rounded_rectangle([0, 0, w - 1, h - 1], 30, fill=col + (255,))
+    for k, ln in enumerate(lines):
+        ImageDraw.Draw(im).text((32, 18 + 48 * k), ln, font=f, fill=(255, 255, 255, 255))
+    return im
+
+
+def shot_chat(s, t, dur):
+    """Mesajlaşma: baloncuklar sırayla belirir (gerçek bir uygulama arayüzü değil)."""
+    cv = bg_frame(s["bg"], t, dur, 0.22) if s.get("bg") else dark_bg().copy()
+    comp(cv, grad(W, H, "radial", 120), 0, 0)
+    msgs = s["messages"]          # [[who, text, right(bool)], ...]
+    n = len(msgs)
+    step = max(1.4, (dur - 1.0) / n)
+    y = 150
+    for k, (who, text, right) in enumerate(msgs):
+        t0 = 0.3 + k * step
+        if t < t0 - 0.9:
+            break
+        b = _bubble(text, right)
+        if t < t0:  # "yazıyor…" noktaları
+            dots = Image.new("RGBA", (150, 70), (0, 0, 0, 0))
+            dd = ImageDraw.Draw(dots)
+            dd.rounded_rectangle([0, 0, 149, 69], 30, fill=(52, 54, 62, 255) if not right
+                                 else (0, 132, 255, 255))
+            for j in range(3):
+                ph = 0.5 + 0.5 * math.sin(t * 9 - j * 0.9)
+                dd.ellipse([30 + j * 34, 26, 48 + j * 34, 44], fill=(255, 255, 255, int(110 + 140 * ph)))
+            x = W - 260 - 150 if right else 260
+            comp(cv, dots, x, y + 34)
+            break
+        p = ease_back((t - t0) / 0.35)
+        a = smooth((t - t0) / 0.2)
+        x = W - 260 - b.width if right else 260
+        draw_text(cv, who, "mont-sb", 24, MUTED, x + (b.width if right else 0), y, a,
+                  "right" if right else "left")
+        bs = b.resize((max(1, int(b.width * (0.9 + 0.1 * p))), max(1, int(b.height * (0.9 + 0.1 * p)))),
+                      Image.BICUBIC)
+        comp(cv, fade(bs, a), x + (b.width - bs.width if right else 0), y + 36)
+        y += b.height + 80
+    return cv
+
+
+def shot_stamp(s, t, dur):
+    """Başlık kartı + üzerine çarpan kırmızı damga (ör. REDDEDİLDİ)."""
+    cv = bg_frame(s["bg"], t, dur, 0.26) if s.get("bg") else dark_bg().copy()
+    comp(cv, grad(W, H, "radial", 120), 0, 0)
+    a = smooth((t - 0.1) / 0.4)
+    if s.get("kicker"):
+        draw_text(cv, s["kicker"], "mont-sb", 30, ACCENT, W / 2, 300, a, "center", tracking=6)
+    for k, ln in enumerate(wrap(s["title"], "bebas", 140, 1500)):
+        draw_text(cv, ln, "bebas", 140, WHITE, W / 2, 350 + 125 * k, a, "center", tracking=3)
+    t0 = s.get("stamp_at", 1.3)
+    if t >= t0:
+        u = clamp((t - t0) / 0.22)
+        sc = 2.2 - 1.2 * ease_out(u)
+        st_txt = s.get("stamp", "REDDEDİLDİ")
+        f = font("bebas", 170)
+        tw = int(f.getlength(st_txt)) + 90
+        im = Image.new("RGBA", (tw, 230), (0, 0, 0, 0))
+        d = ImageDraw.Draw(im)
+        d.rounded_rectangle([6, 6, tw - 7, 223], 18, outline=(225, 30, 40, 255), width=12)
+        d.text((45, 18), st_txt, font=f, fill=(225, 30, 40, 255))
+        im = im.rotate(-12, resample=Image.BICUBIC, expand=True)
+        im = im.resize((int(im.width * sc), int(im.height * sc)), Image.BICUBIC)
+        comp(cv, fade(im, 0.92 * smooth(u * 3)), W / 2 - im.width / 2, 560 - im.height / 2)
+        if u < 1:
+            comp(cv, fade(rect(W, H, (255, 255, 255)), 0.12 * (1 - u)), 0, 0)
+    return cv
+
+
+def shot_grid(s, t, dur):
+    """Albüm kapakları ızgarası: kapaklar sırayla 'pop' ederek gelir."""
+    cv = dark_bg().copy()
+    files = s["files"]
+    n = len(files)
+    cols = min(n, s.get("cols", 5))
+    rows = math.ceil(n / cols)
+    side = min(320, int((W - 260) / cols) - 40)
+    gx = (W - cols * (side + 40) + 40) / 2
+    gy = (H - rows * (side + 70) + 40) / 2 + 40
+    if s.get("heading"):
+        draw_text(cv, s["heading"], "bebas", 96, WHITE, W / 2, gy - 150, smooth(t / 0.4), "center",
+                  tracking=4)
+    for k, (f_, label) in enumerate(files):
+        t0 = 0.25 + k * min(0.35, (dur * 0.5) / n)
+        p = ease_back((t - t0) / 0.45)
+        a = smooth((t - t0) / 0.2)
+        if a <= 0:
+            continue
+        r, c = divmod(k, cols)
+        im = load_rgba(f_, 700).resize((side, side), Image.LANCZOS)
+        sc = 0.75 + 0.25 * p
+        im2 = im.resize((max(1, int(side * sc)), max(1, int(side * sc))), Image.BICUBIC)
+        sh, pad = shadowed(im2, 16, (8, 14), 0.7)
+        x = gx + c * (side + 40) + (side - im2.width) / 2
+        y = gy + r * (side + 70) + (side - im2.height) / 2
+        comp(cv, fade(sh, a), x - pad, y - pad)
+        draw_text(cv, label, "mont-sb", 24, MUTED, gx + c * (side + 40) + side / 2,
+                  gy + r * (side + 70) + side + 14, a, "center")
+    return cv
+
+
+def shot_list(s, t, dur):
+    """Başlık + maddeler sırayla gelir (teknikler vb.), sağda fotoğraf."""
+    if s.get("bg"):
+        base = Image.fromarray(color_shot(s["bg"], round(dur + XF, 2), "kenburns",
+                                          tuple(s.get("start", (0.6, 0.45, 1.05))),
+                                          tuple(s.get("end", (0.62, 0.42, 1.14))), None)
+                               .render(t)).convert("RGBA")
+    else:
+        base = dark_bg().copy()
+    comp(base, grad(1250, H, "left", 235), 0, 0)
+    a = smooth(t / 0.4)
+    draw_text(base, s.get("kicker", ""), "mont-sb", 28, ACCENT, 120, 190, a, tracking=6)
+    for k, ln in enumerate(wrap(s.get("title", ""), "bebas", 110, 900)):
+        draw_text(base, ln, "bebas", 110, WHITE, 120, 235 + 100 * k, a, tracking=2)
+    items = s["items"]
+    step = min(0.7, (dur - 1.2) / max(1, len(items)))
+    y0 = 235 + 100 * len(wrap(s.get("title", ""), "bebas", 110, 900)) + 40
+    for k, it in enumerate(items):
+        b = smooth((t - 0.6 - k * step) / 0.3)
+        p = ease_out((t - 0.6 - k * step) / 0.4)
+        x = 120 - (1 - p) * 60
+        comp(base, fade(rect(12, 12, ACCENT), b), x, y0 + 74 * k + 22)
+        draw_text(base, it, "oswald-m", 50, WHITE, x + 34, y0 + 74 * k, b)
+    return base
+
+
+def shot_endcard(s, t, dur):
+    """Kapanış: 'Şimdi dinle' kartı, kapak ve oynat düğmesi."""
+    cv = bg_frame(s["file"], t, dur, 0.3)
+    comp(cv, grad(W, H, "radial", 110), 0, 0)
+    cov = load_rgba(s["file"], 900).resize((560, 560), Image.LANCZOS)
+    p = ease_out(t / 0.8)
+    sh, pad = shadowed(cov, 26, (16, 24), 0.8)
+    comp(cv, fade(sh, p), 300 - pad, (H - 560) / 2 - pad)
+    # oynat düğmesi
+    pb = Image.new("RGBA", (180, 180), (0, 0, 0, 0))
+    d = ImageDraw.Draw(pb)
+    pulse = 1 + 0.05 * math.sin(t * 5)
+    d.ellipse([0, 0, 179, 179], fill=(235, 30, 40, 235))
+    d.polygon([(68, 48), (68, 132), (136, 90)], fill=(255, 255, 255, 255))
+    pb = pb.resize((int(180 * pulse), int(180 * pulse)), Image.BICUBIC)
+    comp(cv, fade(pb, smooth((t - 0.6) / 0.4)), 580 - pb.width / 2, H / 2 - pb.height / 2)
+    a = smooth((t - 0.4) / 0.5)
+    draw_text(cv, s.get("kicker", "ŞİMDİ DİNLE"), "mont-sb", 32, ACCENT, 1000, 360, a, tracking=8)
+    for k, ln in enumerate(wrap(s.get("title", ""), "bebas", 150, 820)):
+        draw_text(cv, ln, "bebas", 150, WHITE, 1000, 410 + 135 * k, a)
+    if s.get("sub"):
+        draw_text(cv, s["sub"], "oswald-m", 44, MUTED, 1000, 580, smooth((t - 0.8) / 0.5))
+    return cv
+
+
 SHOT_FUNCS = {"photo": shot_photo, "cover": shot_cover, "gear": shot_gear, "quote": shot_quote,
-              "title": shot_title, "stat": shot_stat, "timeline": shot_timeline}
+              "title": shot_title, "stat": shot_stat, "timeline": shot_timeline,
+              "chat": shot_chat, "stamp": shot_stamp, "grid": shot_grid, "list": shot_list,
+              "endcard": shot_endcard}
 
 
 # --------------------------------------------------------------------------
