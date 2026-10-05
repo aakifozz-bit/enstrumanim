@@ -19,7 +19,7 @@ import os
 import sys
 
 BBOX = (12.0, 28.0, 52.0, 50.0)  # lon0, lat0, lon1, lat1
-TOL = 0.0012                      # simplification tolerance in degrees
+TOL = 0.0005                      # simplification tolerance in degrees
 Q = 1e4                           # stored precision: 1e-4 degree
 
 
