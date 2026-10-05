@@ -532,25 +532,6 @@
   "quality_notes": "2623x1968 (downscaled to 2600), warm red light, phone-camera quality (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
  },
  {
-  "file": "people_aristocrats_live_2012_govan_beller.jpg",
-  "category": "people",
-  "description": "The Aristocrats live in a club: Govan (left foreground, sunburst guitar) and Bryan Beller (right, bass) (same as Commons Aristocrats 2012 set)",
-  "year_or_era": "2012-01-29",
-  "source_page_url": "https://www.flickr.com/photos/art-sarah/6818370817/",
-  "image_url": "https://live.staticflickr.com/7001/6818370817_791e1c3b99_o.jpg",
-  "author_if_known": "ArtBrom",
-  "license_if_known": "CC BY-SA 2.0",
-  "width": 1950,
-  "height": 2600,
-  "subject_box": [
-   119,
-   319,
-   1950,
-   2390
-  ],
-  "quality_notes": "CC BY-SA, ArtBrom; Govan seen from side/back, face hidden by hair"
- },
- {
   "file": "people_aristocrats_live_3panel.jpg",
   "category": "people",
   "description": "The Aristocrats live 3-panel promo: Govan (left, sunburst guitar), Minnemann (drums, centre), Beller (bass, right)",
@@ -1136,20 +1117,6 @@
   "quality_notes": "800x800 (US release), clean"
  },
  {
-  "file": "cover_hans_zimmer_live_in_prague.jpg",
-  "category": "cover",
-  "description": "Hans Zimmer: Live in Prague (concert film/album poster; filmed 7 May 2016, Govan on electric guitar in the band)",
-  "year_or_era": "2017",
-  "source_page_url": "https://www.themoviedb.org/movie/435011-hans-zimmer-live-in-prague/images/posters",
-  "image_url": "https://image.tmdb.org/t/p/original/hHs54DFWuXJqh1XmYZVDsiiVHS8.jpg",
-  "author_if_known": null,
-  "license_if_known": "copyrighted poster art",
-  "width": 1733,
-  "height": 2600,
-  "subject_box": null,
-  "quality_notes": "2:3 poster 2000x3000 (downscaled to 2600 tall); text-only, no Govan visible"
- },
- {
   "file": "cover_hans_zimmer_live_in_prague_album.jpg",
   "category": "cover",
   "description": "Hans Zimmer - Live in Prague (live album; Govan in the touring band, filmed 7 May 2016)",
@@ -1465,25 +1432,6 @@
   "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
  },
  {
-  "file": "gear_charvel_signature_08_flame_maple_back.png",
-  "category": "gear",
-  "description": "Charvel Guthrie Govan Signature Flame Maple - back view, transparent background",
-  "year_or_era": "current model (signature introduced 2014)",
-  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-flame-maple/2865434701",
-  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434701_gtr_back_001_rl.png",
-  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
-  "license_if_known": "manufacturer product image",
-  "width": 2400,
-  "height": 773,
-  "subject_box": [
-   1,
-   9,
-   2392,
-   773
-  ],
-  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
- },
- {
   "file": "gear_fractal_fm9_mk2_turbo.png",
   "category": "gear",
   "description": "Fractal Audio FM9 Mk II Turbo amp-modeller/effects floorboard - top view, transparent background (Govan's current touring rig per script research - verify)",
@@ -1501,25 +1449,6 @@
    895
   ],
   "quality_notes": "1920x898 transparent PNG"
- },
- {
-  "file": "gear_fractal_fm9_with_logo.jpg",
-  "category": "gear",
-  "description": "Fractal Audio FM9 (original 2021 model) product shot with FM9 / Fractal Audio Systems logo on white",
-  "year_or_era": "2021 model",
-  "source_page_url": "https://www.fractalaudio.com/fm9/",
-  "image_url": "https://www.fractalaudio.com/wp-content/uploads/2021/08/FM9-1024.png",
-  "author_if_known": "Fractal Audio Systems (product image)",
-  "license_if_known": "manufacturer product image",
-  "width": 1024,
-  "height": 1024,
-  "subject_box": [
-   0,
-   240,
-   1024,
-   880
-  ],
-  "quality_notes": "1024x1024 on white"
  },
  {
   "file": "gear_govan_aristocrats_pedalboard_2012.jpg",
@@ -1624,20 +1553,6 @@
   "height": 1950,
   "subject_box": null,
   "quality_notes": "full-res original 4608x3456 downscaled to 2600 (downloaded via Wayback Machine copy of the Commons original because upload.wikimedia.org was rate-limiting)"
- },
- {
-  "file": "place_chelmsford_high_street_02_shire_hall.jpg",
-  "category": "place",
-  "description": "High Street, Chelmsford looking towards the Shire Hall, winter sun",
-  "year_or_era": "2018-01-19",
-  "source_page_url": "https://www.geograph.org.uk/photo/5672572",
-  "image_url": "https://s0.geograph.org.uk/geophotos/05/67/25/5672572_ab85c205_1024x1024.jpg",
-  "author_if_known": "Christopher Hilton",
-  "license_if_known": "CC BY-SA 2.0",
-  "width": 1024,
-  "height": 575,
-  "subject_box": null,
-  "quality_notes": "1024x575 (Commons has 1600x899)"
  },
  {
   "file": "place_chelmsford_high_street_03_2005.jpg",
@@ -1752,20 +1667,6 @@
   "quality_notes": "5472x3648 original downscaled; postcard-quality"
  },
  {
-  "file": "place_oxford_st_catherines_college_03.jpg",
-  "category": "place",
-  "description": "St Catherine's College, Oxford - modernist teaching block with bike racks",
-  "year_or_era": "2026-09-12",
-  "source_page_url": "https://www.flickr.com/photos/flindersian/55543641721/",
-  "image_url": "https://live.staticflickr.com/65535/55543641721_374883a818_4k.jpg",
-  "author_if_known": "FocalPointless",
-  "license_if_known": "All rights reserved (Flickr)",
-  "width": 2600,
-  "height": 1737,
-  "subject_box": null,
-  "quality_notes": "4096x2736 downscaled"
- },
- {
   "file": "misc_aristocrats_duck_tour_europe_2026_poster.jpg",
   "category": "misc",
   "description": "The Aristocrats \"Duck Tour\" Europe 2026 poster (cartoon trio as Duck characters, tour dates)",
@@ -1797,25 +1698,6 @@
    2539
   ],
   "quality_notes": "3657x5120 downscaled to 2600 tall; very sharp, portrait orientation"
- },
- {
-  "file": "misc_steven_wilson_2013_boulder_raven_screen.jpg",
-  "category": "misc",
-  "description": "Steven Wilson concert, Boulder Theatre 2013: the Raven moon-face film on the screen over the band, audience silhouettes",
-  "year_or_era": "2013-05-06",
-  "source_page_url": "https://www.flickr.com/photos/39075416@N03/8716734177/",
-  "image_url": "https://live.staticflickr.com/7297/8716734177_8d290ff1e3_b.jpg",
-  "author_if_known": "Jester Jay Goldman",
-  "license_if_known": "CC BY-SA 2.0",
-  "width": 1024,
-  "height": 768,
-  "subject_box": [
-   500,
-   250,
-   1000,
-   600
-  ],
-  "quality_notes": "CC BY-SA 2.0 (Jester Jay Goldman); 1024x768, dark/grainy"
  },
  {
   "file": "misc_steven_wilson_raven_moon_projection_2013.jpg",
