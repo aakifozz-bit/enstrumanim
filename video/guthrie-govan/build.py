@@ -145,6 +145,11 @@ def draw_text(cv, text, face, size, color, x, y, alpha=1.0, align="left", tracki
     return tw
 
 
+def tr_upper(s):
+    """Türkçe büyük harf: i→İ, ı→I."""
+    return s.replace("i", "İ").replace("ı", "I").upper()
+
+
 def wrap(text, face, size, max_w):
     f = font(face, size)
     lines, cur = [], ""
@@ -650,7 +655,7 @@ def chapter_overlay(cv, num, title, t, pos="bottom"):
     draw_text(cv, f"BÖLÜM {num:02d}", "mont-sb", 30, ACCENT, x, y0, a, tracking=8)
     lw = int(90 * p)
     comp(cv, fade(rect(max(1, lw), 6, ACCENT), a), x, y0 + 45)
-    for k, ln in enumerate(wrap(title.upper(), "bebas", 112, 1100)):
+    for k, ln in enumerate(wrap(tr_upper(title), "bebas", 112, 1100)):
         draw_text(cv, ln, "bebas", 112, WHITE, x, y0 + 70 + 100 * k, a, tracking=3)
 
 
@@ -662,7 +667,7 @@ def kinetic_overlay(cv, text, t, dur=1.6, pos="center"):
     size = 150 if len(text) < 14 else 110 if len(text) < 22 else 84
     y = 380 if pos == "center" else 120
     comp(cv, fade(grad(1500, 520, "radial", 170), a), W / 2 - 750, y - 130)
-    draw_text(cv, text.upper(), "bebas", size, WHITE, W / 2, y, a, "center", tracking=4,
+    draw_text(cv, tr_upper(text), "bebas", size, WHITE, W / 2, y, a, "center", tracking=4,
               scale=0.86 + 0.14 * p)
     lw = int(220 * ease_out((t - 0.15) / 0.4))
     if lw > 2:
@@ -869,6 +874,17 @@ def read_audio(path):
     return np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).T.astype(np.float64)
 
 
+def movavg(x, win):
+    """Ortalanmış kayan ortalama (kümülatif toplamla, O(n))."""
+    win = max(1, int(win))
+    c = np.concatenate([[0.0], np.cumsum(x, dtype=np.float64)])
+    half = win // 2
+    idx = np.arange(len(x))
+    lo = np.clip(idx - half, 0, len(x))
+    hi = np.clip(idx - half + win, 0, len(x))
+    return (c[hi] - c[lo]) / win
+
+
 def soundtrack(path):
     segs, total = plan()
     n = int(total * SR) + 1
@@ -885,19 +901,12 @@ def soundtrack(path):
         b = read_audio(bp)
         m = min(b.shape[1], n)
         mus[:, :m] = b[:, :m]
-        if b.shape[1] < n:  # yatak kısa kalırsa son kısmı döngüle
-            rest = n - b.shape[1]
-            seg = b[:, -min(b.shape[1], 30 * SR):]
-            reps = int(math.ceil(rest / seg.shape[1]))
-            mus[:, b.shape[1]:] = np.tile(seg, reps)[:, :rest]
     # anlatım altında müzik kısma
     env = np.abs(narr).max(axis=0)
-    win = int(0.03 * SR)
-    env = np.convolve(env, np.ones(win) / win, mode="same")
+    env = movavg(env, int(0.03 * SR))
     env = (env > 0.008).astype(np.float64)
     k = int(0.3 * SR)
-    hann = np.hanning(2 * k)
-    env = np.clip(np.convolve(env, hann / hann.sum(), mode="same") * 1.6, 0, 1)
+    env = np.clip(movavg(movavg(env, k), k) * 1.6, 0, 1)
     duck = 1 - 0.68 * env
     sfx = np.zeros((2, n))
     wp = mpath("music/sfx/whoosh.wav")
@@ -980,8 +989,16 @@ def main():
     warm_up()
     if args.range:
         a, b = (float(v) for v in args.range.split("-"))
+        b = min(b, total)
         out = os.path.splitext(args.out)[0] + f"_onizleme_{int(a)}-{int(b)}.mp4"
-        encode(out, range(int(a * FPS), int(min(b, total) * FPS)), None, 24)
+        full = os.path.splitext(args.out)[0] + "_tam.wav"
+        part = os.path.splitext(args.out)[0] + "_parca.wav"
+        soundtrack(full)
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(a), "-t", str(b - a), "-i", full,
+                        part], check=True)
+        encode(out, range(int(a * FPS), int(b * FPS)), part, 23, "8M")
+        os.remove(full)
+        os.remove(part)
         print("Önizleme:", out)
         return
     wav = os.path.splitext(args.out)[0] + ".wav"

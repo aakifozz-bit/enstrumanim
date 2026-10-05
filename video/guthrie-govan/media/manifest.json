@@ -38,6 +38,25 @@
   "quality_notes": "candid, indoor office light, 960x1440; good \"human\" moment"
  },
  {
+  "file": "gg_clinic_victory_amps_stage.jpg",
+  "category": "gg",
+  "description": "Govan performing solo at a small venue/clinic with red Charvel and two Victory V30 heads on stage (image captioned \"Guthrie Govan V30 Jack\" on Victory's site)",
+  "year_or_era": "c. 2020-2021",
+  "source_page_url": "https://www.victoryamps.com/artist/guthrie-govan/",
+  "image_url": "https://victoryamps.s3.eu-west-1.amazonaws.com/wp-content/uploads/2021/10/05111543/Screenshot-2021-08-17-at-09.41.37.png",
+  "author_if_known": "Victory Amplification",
+  "license_if_known": "manufacturer web image",
+  "width": 1744,
+  "height": 1192,
+  "subject_box": [
+   870,
+   420,
+   1310,
+   1170
+  ],
+  "quality_notes": "screenshot (likely from video), soft; Govan small in frame"
+ },
+ {
   "file": "gg_hands_charvel_closeup_02_charvel_promo.jpg",
   "category": "gg",
   "description": "Close-up of Govan picking his Charvel signature (hair visible, face cropped), warm stage light (Charvel product-page photo)",
@@ -131,6 +150,25 @@
    731
   ],
   "quality_notes": "1024x731, sharp; Charvel logo visible on headstock"
+ },
+ {
+  "file": "gg_live_charvel_2014_premier_guitar.jpg",
+  "category": "gg",
+  "description": "Govan playing his Charvel signature prototype (natural finish) under blue/purple stage light; photo used for the 2014 \"Govan teams up with Charvel\" announcement",
+  "year_or_era": "c. 2013-2014",
+  "source_page_url": "https://www.premierguitar.com/gear/guthrie-govan-teams-up-with-charvel-guitars",
+  "image_url": "https://www.premierguitar.com/media-library/image.jpg?id=25753143&width=2400",
+  "author_if_known": "Charvel / Premier Guitar (press photo)",
+  "license_if_known": "press photo",
+  "width": 2400,
+  "height": 1600,
+  "subject_box": [
+   230,
+   80,
+   2200,
+   1600
+  ],
+  "quality_notes": "2400x1600 but slightly soft/upscaled; strong colour"
  },
  {
   "file": "gg_live_hands_white_charvel_bw.jpg",
@@ -247,6 +285,63 @@
   "quality_notes": "sharp face close-up, 1024 px only; great for slow push-in"
  },
  {
+  "file": "gg_teaching_bimm_masterclass_banner.jpg",
+  "category": "gg",
+  "description": "Govan playing an amber flame-top Suhr guitar, white T-shirt, dark background - BIMM (music college) masterclass announcement banner",
+  "year_or_era": "c. 2010s (Suhr era)",
+  "source_page_url": "https://www.bimm.ac.uk/news/guthrie-govan-masterclass",
+  "image_url": "https://www.bimm.ac.uk/wp-content/uploads/2020/01/1141NY-guthrie_govan_guitar_brighton-original.jpg",
+  "author_if_known": "BIMM",
+  "license_if_known": "press/web image",
+  "width": 1020,
+  "height": 500,
+  "subject_box": [
+   130,
+   0,
+   830,
+   500
+  ],
+  "quality_notes": "banner, cropped to remove grey vignette at left; 1020x500"
+ },
+ {
+  "file": "people_aristocrats_live_3panel.jpg",
+  "category": "people",
+  "description": "The Aristocrats live 3-panel promo: Govan (left, sunburst guitar), Minnemann (drums, centre), Beller (bass, right)",
+  "year_or_era": "c. 2011-2012",
+  "source_page_url": "https://the-aristocrats.com/about",
+  "image_url": "https://the-aristocrats.com/media/2011/07/Aristocrats-Live-3-Panel-Promo-Shot-For-Web.jpg",
+  "author_if_known": "The Aristocrats (official promo)",
+  "license_if_known": "band press photo",
+  "width": 1400,
+  "height": 1874,
+  "subject_box": [
+   0,
+   60,
+   1400,
+   1874
+  ],
+  "quality_notes": "portrait 1400x1874 composite of three photos; Govan panel x 0-450 (same image as the Boing live cover)"
+ },
+ {
+  "file": "people_aristocrats_portraits_named_2022.jpg",
+  "category": "people",
+  "description": "The Aristocrats logo over three head-and-shoulder portraits with name captions: Bryan Beller, Marco Minnemann, Guthrie Govan (grey-haired, recent look)",
+  "year_or_era": "2022",
+  "source_page_url": "https://the-aristocrats.com/about",
+  "image_url": "https://the-aristocrats.com/media/2022/02/band.jpg",
+  "author_if_known": "The Aristocrats (official site)",
+  "license_if_known": "band press image",
+  "width": 1175,
+  "height": 1095,
+  "subject_box": [
+   10,
+   415,
+   1165,
+   860
+  ],
+  "quality_notes": "1175x1095; Govan portrait box approx [785,415,1165,860]; bottom has faded reflection"
+ },
+ {
   "file": "people_aristocrats_studio_2011.jpg",
   "category": "people",
   "description": "The Aristocrats recording their debut album at P10 Studios, Palatine IL: Govan (left, Freak Guitar Camp tee), Marco Minnemann (centre), Bryan Beller (seated at console), engineer (right)",
@@ -264,6 +359,63 @@
    820
   ],
   "quality_notes": "1280x850; Govan at x 330-600"
+ },
+ {
+  "file": "people_aristocrats_trio_culture_clash_promo_bw.jpg",
+  "category": "people",
+  "description": "The Aristocrats black-and-white promo photo against a graffiti wall: Minnemann (left), Beller (centre), Govan (right, white shirt)",
+  "year_or_era": "2014-2015 (Culture Clash Live! era)",
+  "source_page_url": "https://the-aristocrats.com/about",
+  "image_url": "https://the-aristocrats.com/media/2011/07/Aristocrats-Culture-Clash-Live-Promo-Pic-by-Tore-Kersten.jpg",
+  "author_if_known": "Tore Kersten (official band promo)",
+  "license_if_known": "band press photo",
+  "width": 1795,
+  "height": 1181,
+  "subject_box": [
+   50,
+   280,
+   1795,
+   1181
+  ],
+  "quality_notes": "1795x1181 high-contrast B&W; Govan box approx [1180,330,1795,1181]"
+ },
+ {
+  "file": "people_aristocrats_trio_tres_caballeros_promo_2015.jpg",
+  "category": "people",
+  "description": "The Aristocrats official promo photo for Tres Caballeros: Marco Minnemann (left), Bryan Beller (centre), Guthrie Govan (right) in straw hats on a desert road",
+  "year_or_era": "2015",
+  "source_page_url": "https://the-aristocrats.com/about",
+  "image_url": "https://the-aristocrats.com/media/2011/07/The-Aristocrats-Tres-Caballeros-Promo-Pic-Lo-Res-photo-by-Mike-Mesker.jpg",
+  "author_if_known": "Mike Mesker (official band promo)",
+  "license_if_known": "band press photo",
+  "width": 1500,
+  "height": 1001,
+  "subject_box": [
+   130,
+   90,
+   1360,
+   1001
+  ],
+  "quality_notes": "1500x1001, sunny, sharp; Govan box approx [1000,180,1360,1001]"
+ },
+ {
+  "file": "people_hans_zimmer_live_2023_guitars.jpg",
+  "category": "people",
+  "description": "Hans Zimmer (centre, laughing, Rickenbacker bass) jamming with his band guitarists on Hans Zimmer Live 2023 tour (Govan not in this photo)",
+  "year_or_era": "2023",
+  "source_page_url": "https://soundtrackfest.com/en/news/hans-zimmer-live-2023-artists/",
+  "image_url": "https://soundtrackfest.com/wp-content/uploads/2023/05/HansZimmeLive2023-Artists-04-cFrankEmbacher.jpg",
+  "author_if_known": "Frank Embacher (via SoundTrackFest)",
+  "license_if_known": "press photo, copyright photographer",
+  "width": 1600,
+  "height": 1068,
+  "subject_box": [
+   250,
+   140,
+   700,
+   1068
+  ],
+  "quality_notes": "1600x1068, sharp, joyful; use for Zimmer-band beat"
  },
  {
   "file": "people_steven_wilson_band_2013_pistoia.jpg",
@@ -306,16 +458,16 @@
  {
   "file": "cover_aristocrats_2011.jpg",
   "category": "cover",
-  "description": "The Aristocrats - The Aristocrats (debut album, Boing! Music)",
+  "description": "The Aristocrats - The Aristocrats (debut album, Boing! Music; caricature of the trio)",
   "year_or_era": "2011",
-  "source_page_url": "https://music.apple.com (iTunes lookup artistId 78633821, The Aristocrats)",
-  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/06/88/6d/06886d5e-9c05-9fc2-381e-90525fb2a068/mzi.hvibpnaa.jpg/3000x3000bb.jpg",
+  "source_page_url": "https://www.deezer.com/search/The%20Aristocrats (Deezer API album search)",
+  "image_url": "https://cdn-images.dzcdn.net/images/cover/a1ba73f920e063fbfca2ac7c0150e317/1800x1800-000000-80-0-0.jpg",
   "author_if_known": null,
   "license_if_known": "copyrighted album artwork",
-  "width": 600,
-  "height": 600,
+  "width": 1200,
+  "height": 1200,
   "subject_box": null,
-  "quality_notes": "clean digital square cover"
+  "quality_notes": "clean digital cover 1200x1200 (replaces 600px iTunes version)"
  },
  {
   "file": "cover_aristocrats_boing_live.jpg",
@@ -458,6 +610,48 @@
   "quality_notes": "Cover Art Archive scan"
  },
  {
+  "file": "cover_book_creative_guitar_1.jpg",
+  "category": "cover",
+  "description": "Book cover: Guthrie Govan - Creative Guitar 1: Cutting-Edge Techniques (Sanctuary Publishing, ISBN 9781860744624)",
+  "year_or_era": "2002",
+  "source_page_url": "https://openlibrary.org/isbn/9781860744624",
+  "image_url": "https://covers.openlibrary.org/b/isbn/9781860744624-L.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted book cover",
+  "width": 363,
+  "height": 475,
+  "subject_box": null,
+  "quality_notes": "small 363x475; use as inset only"
+ },
+ {
+  "file": "cover_book_creative_guitar_1_reissue.jpg",
+  "category": "cover",
+  "description": "Book cover: Creative Guitar 1: Cutting-Edge Techniques - later blue-design edition (matches Creative Guitar 2 design)",
+  "year_or_era": "2000s reissue",
+  "source_page_url": "https://www.amazon.com/dp/1860744621",
+  "image_url": "https://images-na.ssl-images-amazon.com/images/P/1860744621.01._SCLZZZZZZZ_.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted book cover",
+  "width": 381,
+  "height": 500,
+  "subject_box": null,
+  "quality_notes": "small 381x500; pairs visually with cover_book_creative_guitar_2"
+ },
+ {
+  "file": "cover_book_creative_guitar_2.jpg",
+  "category": "cover",
+  "description": "Book cover: Guthrie Govan - Creative Guitar 2: Advanced Techniques (Sanctuary/SMT, ISBN 9781860744679)",
+  "year_or_era": "2002",
+  "source_page_url": "https://openlibrary.org/isbn/9781860744679",
+  "image_url": "https://covers.openlibrary.org/b/isbn/9781860744679-L.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted book cover",
+  "width": 363,
+  "height": 500,
+  "subject_box": null,
+  "quality_notes": "small 363x500; use as inset only"
+ },
+ {
   "file": "cover_erotic_cakes.jpg",
   "category": "cover",
   "description": "Guthrie Govan - Erotic Cakes (debut solo album, Cornford Records)",
@@ -484,6 +678,62 @@
   "height": 600,
   "subject_box": null,
   "quality_notes": "Cover Art Archive scan"
+ },
+ {
+  "file": "cover_hans_zimmer_live_in_prague.jpg",
+  "category": "cover",
+  "description": "Hans Zimmer: Live in Prague (concert film/album poster; filmed 7 May 2016, Govan on electric guitar in the band)",
+  "year_or_era": "2017",
+  "source_page_url": "https://www.themoviedb.org/movie/435011-hans-zimmer-live-in-prague/images/posters",
+  "image_url": "https://image.tmdb.org/t/p/original/hHs54DFWuXJqh1XmYZVDsiiVHS8.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted poster art",
+  "width": 1733,
+  "height": 2600,
+  "subject_box": null,
+  "quality_notes": "2:3 poster 2000x3000 (downscaled to 2600 tall); text-only, no Govan visible"
+ },
+ {
+  "file": "cover_hans_zimmer_live_in_prague_album.jpg",
+  "category": "cover",
+  "description": "Hans Zimmer - Live in Prague (live album; Govan in the touring band, filmed 7 May 2016)",
+  "year_or_era": "2017",
+  "source_page_url": "https://music.apple.com (iTunes search: Hans Zimmer Live in Prague)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/67/bd/50/67bd500c-26a3-f25f-e9e8-e42673919fba/00670211033847.rgb.jpg/3000x3000bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 2600,
+  "height": 2600,
+  "subject_box": null,
+  "quality_notes": "square 3000 px (downscaled to 2600); poster version also saved"
+ },
+ {
+  "file": "cover_karnivool_in_verses.jpg",
+  "category": "cover",
+  "description": "Karnivool - In Verses (2026 album; listed in the script/wishlist as a recent Govan guest appearance - verify credit if it matters)",
+  "year_or_era": "2026",
+  "source_page_url": "https://music.apple.com (iTunes search: Karnivool In Verses, released 2026-02-06)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/65/30/27/6530277d-27e6-362f-cb07-f7caa19994fd/199538678284.jpg/3000x3000bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 2600,
+  "height": 2600,
+  "subject_box": null,
+  "quality_notes": "clean 3000 px digital cover (downscaled to 2600)"
+ },
+ {
+  "file": "cover_magazine_guitar_interactive_13.jpg",
+  "category": "cover",
+  "description": "Magazine cover: Guitar Interactive issue 13 - Guthrie Govan cover story \"Reaching new heights!\" (exclusive interview)",
+  "year_or_era": "2012 (issue 13; Marshall-at-50 feature dates it to 2012)",
+  "source_page_url": "https://guitarinteractivemagazine.com/back-issues/issue-13-guthrie-govan/",
+  "image_url": "https://guitarinteractivemagazine.com/wp-content/uploads/2020/07/ig13_cover_small.jpg",
+  "author_if_known": "Guitar Interactive magazine",
+  "license_if_known": "copyrighted magazine cover",
+  "width": 620,
+  "height": 870,
+  "subject_box": null,
+  "quality_notes": "620x870, readable; Govan with Suhr-style sunburst guitar"
  },
  {
   "file": "cover_steven_wilson_drive_home.jpg",
@@ -526,6 +776,20 @@
   "height": 2600,
   "subject_box": null,
   "quality_notes": "clean digital square cover"
+ },
+ {
+  "file": "cover_young_punx_your_music_is_killing_me.jpg",
+  "category": "cover",
+  "description": "The Young Punx - Your Music Is Killing Me (Govan played guitar with The Young Punx)",
+  "year_or_era": "2009",
+  "source_page_url": "https://www.deezer.com/search/Young%20Punx (Deezer API album search)",
+  "image_url": "https://cdn-images.dzcdn.net/images/cover/57442696de3bde52eca9a3440987f05f/1400x1400-000000-80-0-0.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 1200,
+  "height": 1200,
+  "subject_box": null,
+  "quality_notes": "1200x1200 clean"
  },
  {
   "file": "gear_charvel_signature_01_caramelized_ash_front.png",
@@ -678,6 +942,110 @@
    773
   ],
   "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_fractal_fm9_mk2_turbo.png",
+  "category": "gear",
+  "description": "Fractal Audio FM9 Mk II Turbo amp-modeller/effects floorboard - top view, transparent background (Govan's current touring rig per script research - verify)",
+  "year_or_era": "2024 model",
+  "source_page_url": "https://www.fractalaudio.com/fm9/",
+  "image_url": "https://www.fractalaudio.com/wp-content/uploads/2024/02/FM9-Mk2-Turbo-top-1920-tight.png",
+  "author_if_known": "Fractal Audio Systems (product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 1920,
+  "height": 898,
+  "subject_box": [
+   4,
+   4,
+   1917,
+   895
+  ],
+  "quality_notes": "1920x898 transparent PNG"
+ },
+ {
+  "file": "gear_fractal_fm9_with_logo.jpg",
+  "category": "gear",
+  "description": "Fractal Audio FM9 (original 2021 model) product shot with FM9 / Fractal Audio Systems logo on white",
+  "year_or_era": "2021 model",
+  "source_page_url": "https://www.fractalaudio.com/fm9/",
+  "image_url": "https://www.fractalaudio.com/wp-content/uploads/2021/08/FM9-1024.png",
+  "author_if_known": "Fractal Audio Systems (product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 1024,
+  "height": 1024,
+  "subject_box": [
+   0,
+   240,
+   1024,
+   880
+  ],
+  "quality_notes": "1024x1024 on white"
+ },
+ {
+  "file": "gear_victory_v212_cabinet.png",
+  "category": "gear",
+  "description": "Victory 2x12 vertical speaker cabinet (shown on Victory's Guthrie Govan artist page alongside the V30)",
+  "year_or_era": "2020s",
+  "source_page_url": "https://www.victoryamps.com/artist/guthrie-govan/",
+  "image_url": "https://victoryamps.s3.eu-west-1.amazonaws.com/wp-content/uploads/2021/09/28132244/Vic_Jack212_new-e1730121764145.png",
+  "author_if_known": "Victory Amplification (product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 1200,
+  "height": 1427,
+  "subject_box": [
+   142,
+   53,
+   1108,
+   1396
+  ],
+  "quality_notes": "1200x1427 transparent PNG"
+ },
+ {
+  "file": "gear_victory_v30_the_jack_mkii.png",
+  "category": "gear",
+  "description": "Victory V30 \"The Jack\" MkII amp head (Govan's Victory amp, originally developed as his \"flying amp\" for fly-in gigs) - cut-out with soft shadow",
+  "year_or_era": "2020s",
+  "source_page_url": "https://www.victoryamps.com/artist/guthrie-govan/",
+  "image_url": "https://victoryamps.s3.eu-west-1.amazonaws.com/wp-content/uploads/2021/09/26151912/V30mkII_34_CUT-with-shadow-1.png",
+  "author_if_known": "Victory Amplification (product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 1200,
+  "height": 800,
+  "subject_box": [
+   34,
+   18,
+   1166,
+   777
+  ],
+  "quality_notes": "1200x800 transparent PNG"
+ },
+ {
+  "file": "place_hans_zimmer_live_arena_2023.jpg",
+  "category": "place",
+  "description": "Hans Zimmer Live 2023 arena concert - wide view over the crowd towards the lit stage",
+  "year_or_era": "2023",
+  "source_page_url": "https://soundtrackfest.com/en/news/hans-zimmer-live-2023-artists/",
+  "image_url": "https://soundtrackfest.com/wp-content/uploads/2023/05/HansZimmeLive2023-Artists-09-cFrankEmbacher.jpg",
+  "author_if_known": "Frank Embacher (via SoundTrackFest)",
+  "license_if_known": "press photo, copyright photographer",
+  "width": 1600,
+  "height": 1067,
+  "subject_box": null,
+  "quality_notes": "1600x1067 atmosphere shot"
+ },
+ {
+  "file": "misc_aristocrats_duck_tour_europe_2026_poster.jpg",
+  "category": "misc",
+  "description": "The Aristocrats \"Duck Tour\" Europe 2026 poster (cartoon trio as Duck characters, tour dates)",
+  "year_or_era": "2026",
+  "source_page_url": "https://the-aristocrats.com/",
+  "image_url": "https://the-aristocrats.com/media/2025/05/THE-ARISTOCRATS-EUROPE-POSTER-NR-1@small.png",
+  "author_if_known": "The Aristocrats",
+  "license_if_known": "band promo artwork",
+  "width": 1350,
+  "height": 1800,
+  "subject_box": null,
+  "quality_notes": "1350x1800 poster"
  },
  {
   "file": "misc_steven_wilson_raven_moon_projection_2013.jpg",

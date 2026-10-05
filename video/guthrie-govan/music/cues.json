@@ -1,0 +1,274 @@
+{
+  "file": "bed.wav",
+  "duration_s": 300.0,
+  "sample_rate": 44100,
+  "channels": 2,
+  "integrated_lufs": -18.0,
+  "true_peak_dbtp": -1.28,
+  "chapter_plan": [
+    {
+      "start": 0,
+      "end": 20,
+      "chapter": "hook"
+    },
+    {
+      "start": 20,
+      "end": 75,
+      "chapter": "childhood / early years"
+    },
+    {
+      "start": 75,
+      "end": 150,
+      "chapter": "career rise"
+    },
+    {
+      "start": 150,
+      "end": 205,
+      "chapter": "The Aristocrats / Steven Wilson / Hans Zimmer"
+    },
+    {
+      "start": 205,
+      "end": 270,
+      "chapter": "style & philosophy"
+    },
+    {
+      "start": 270,
+      "end": 300,
+      "chapter": "outro"
+    }
+  ],
+  "segments": [
+    {
+      "segment": "A",
+      "start": 0.0,
+      "end": 20.665,
+      "track_file": "tracks/Kevin MacLeod - Exhilarate.mp3",
+      "track_title": "Exhilarate",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300028",
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Exhilarate.mp3",
+      "attribution": "\"Exhilarate\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "src_in": 0.74,
+      "src_out": 20.955,
+      "mood": "hook - punchy guitar rock, opens on the first hit",
+      "notes": "bars 0-14 from the first hit; tape-stop 19.76-20.66s"
+    },
+    {
+      "segment": "B",
+      "start": 20.43,
+      "end": 76.164,
+      "track_file": "tracks/Kevin MacLeod - Cold Funk.mp3",
+      "track_title": "Cold Funk",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100499",
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Cold%20Funk.mp3",
+      "attribution": "\"Cold Funk\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "src_in": 5.867,
+      "src_out": 61.601,
+      "mood": "childhood - light, groovy clean-guitar funk",
+      "notes": "bars 2-28; low-pass sweep in the last bar under the riser"
+    },
+    {
+      "segment": "C",
+      "start": 76.164,
+      "end": 150.831,
+      "track_file": "tracks/Kevin MacLeod - Motherlode.mp3",
+      "track_title": "Motherlode",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500033",
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Motherlode.mp3",
+      "attribution": "\"Motherlode\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "src_in": 0.024,
+      "src_out": 74.691,
+      "mood": "career rise - big guitar-driven rock with majestic horns",
+      "notes": "bars 0-28 (sections at 21.33 s multiples)"
+    },
+    {
+      "segment": "D",
+      "start": 150.831,
+      "end": 182.479,
+      "track_file": "tracks/Kevin MacLeod - RetroFuture Clean.mp3",
+      "track_title": "RetroFuture Clean",
+      "artist": "Kevin MacLeod",
+      "license": "CC BY 4.0",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200040",
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/RetroFuture%20Clean.mp3",
+      "attribution": "\"RetroFuture Clean\" Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/",
+      "src_in": 63.319,
+      "src_out": 94.967,
+      "mood": "The Aristocrats / Steven Wilson - bouncy rock-funk fusion",
+      "notes": "bars 24-36; low-pass sweep in the last bar"
+    },
+    {
+      "segment": "E",
+      "start": 180.479,
+      "end": 207.479,
+      "track_file": "tracks/Scott Buckley - Aphelion.mp3",
+      "track_title": "Aphelion",
+      "artist": "Scott Buckley",
+      "license": "CC BY 4.0",
+      "source_url": "https://www.scottbuckley.com.au/library/aphelion/",
+      "download_url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2026/04/Aphelion.mp3",
+      "attribution": "'Aphelion' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "src_in": 106.5,
+      "src_out": 133.5,
+      "mood": "Hans Zimmer - epic cinematic hybrid orchestra (Interstellar-like build)",
+      "notes": "2 s of build under the riser, arrival at 182.48s, fades 201.48-207.48s"
+    },
+    {
+      "segment": "F",
+      "start": 202.479,
+      "end": 272.3,
+      "track_file": "tracks/Scott Buckley - Blood.mp3",
+      "track_title": "Blood",
+      "artist": "Scott Buckley",
+      "license": "CC BY 4.0",
+      "source_url": "https://www.scottbuckley.com.au/library/blood/",
+      "download_url": "https://www.scottbuckley.com.au/wp-content/audio/sb_blood.mp3",
+      "attribution": "'Blood' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "src_in": 166.9,
+      "src_out": 236.721,
+      "mood": "style & philosophy - calm, emotional ambient guitar/piano; swells gently",
+      "notes": "crossfades out of Aphelion; ends under the outro riser"
+    },
+    {
+      "segment": "G",
+      "start": 271.5,
+      "end": 300.0,
+      "track_file": "tracks/Scott Buckley - Born Of The Sky.mp3",
+      "track_title": "Born Of The Sky",
+      "artist": "Scott Buckley",
+      "license": "CC BY 4.0",
+      "source_url": "https://www.scottbuckley.com.au/library/born-of-the-sky/",
+      "download_url": "https://www.scottbuckley.com.au/library/wp-content/uploads/2025/08/BornOfTheSky.mp3",
+      "attribution": "'Born Of The Sky' by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+      "src_in": 140.008,
+      "src_out": 168.508,
+      "mood": "outro - epic orchestra + drums/guitar swell, final chord, clean fade to silence at 300.0",
+      "notes": "final climax chord at 296.00s, fade 297.0-300.0s"
+    }
+  ],
+  "sfx": [
+    {
+      "type": "impact",
+      "file": "sfx/impact_big.wav",
+      "start": 0.0,
+      "end": 4.5,
+      "note": "opening hit, layered on Exhilarate's first downbeat",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "tape stop",
+      "file": null,
+      "start": 19.765,
+      "end": 20.665,
+      "note": "tape-stop DSP applied to Exhilarate itself (no sample); a standalone synthesized version is in sfx/tape_stop.wav (not used in the bed)",
+      "license": "n/a (processing of the CC BY track)"
+    },
+    {
+      "type": "riser",
+      "file": "sfx/riser_6s.wav (last 4.29 s)",
+      "start": 71.879,
+      "end": 76.164,
+      "note": "last 2 bars of Cold Funk into Motherlode",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "impact",
+      "file": "sfx/impact_soft.wav",
+      "start": 76.164,
+      "end": 79.664,
+      "note": "on Motherlode's first downbeat",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "whoosh",
+      "file": "sfx/whoosh.wav",
+      "start": 149.839,
+      "end": 151.439,
+      "note": "Motherlode -> RetroFuture Clean, peak on the downbeat",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "riser",
+      "file": "sfx/riser_6s.wav (last 5.27 s)",
+      "start": 177.205,
+      "end": 182.479,
+      "note": "last 2 bars of RetroFuture Clean into the Aphelion arrival",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "reverse swell",
+      "file": "sfx/reverse_swell_2s.wav",
+      "start": 180.479,
+      "end": 182.479,
+      "note": "reverse-cymbal into the arrival",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "impact",
+      "file": "sfx/impact_big.wav",
+      "start": 182.479,
+      "end": 186.979,
+      "note": "cinematic boom on the Aphelion arrival",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "riser",
+      "file": "sfx/riser_4s.wav",
+      "start": 268.0,
+      "end": 272.0,
+      "note": "Blood -> Born Of The Sky",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "impact",
+      "file": "sfx/impact_soft.wav",
+      "start": 272.0,
+      "end": 275.5,
+      "note": "outro entry",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    },
+    {
+      "type": "impact",
+      "file": "sfx/impact_big.wav",
+      "start": 296.004,
+      "end": 300.0,
+      "note": "final hit, reinforced; rings out under the fade",
+      "license": "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"
+    }
+  ],
+  "transitions": [
+    {
+      "at": 19.765,
+      "kind": "tape stop -> Cold Funk intro"
+    },
+    {
+      "at": 76.164,
+      "kind": "2-bar riser + soft impact, cut on downbeat"
+    },
+    {
+      "at": 150.831,
+      "kind": "whoosh, cut on downbeat (Motherlode bar 28 -> RetroFuture bar 24)"
+    },
+    {
+      "at": 182.479,
+      "kind": "2-bar riser + reverse swell + big impact into the Aphelion arrival"
+    },
+    {
+      "at": 201.479,
+      "kind": "6 s equal-power fade Aphelion -> Blood"
+    },
+    {
+      "at": 272.0,
+      "kind": "4 s riser + soft impact into the Born Of The Sky climax (both in E major)"
+    },
+    {
+      "at": 296.004,
+      "kind": "final climax chord + big impact, cos fade to digital silence at 300.0"
+    }
+  ]
+}

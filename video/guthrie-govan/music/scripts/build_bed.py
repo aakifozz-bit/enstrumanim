@@ -58,15 +58,17 @@ for k, v in TRACKS.items():
     v["license"] = KM_LIC if v["artist"] == "Kevin MacLeod" else "CC BY 4.0"
     v["credit"] = (KM_CREDIT if v["artist"] == "Kevin MacLeod" else SB_CREDIT).format(t=v["title"])
 
-# tempo grids: bar(k) = first + k * bar_len   (seconds in the decoded source)
+# tempo grids: bar(k) = first + k * bar_len   (seconds in the decoded source).  Kevin MacLeod
+# in-points are additionally snapped to the real transient with refine_onset(); the orchestral
+# grids include the ~30 ms spectral-flux detection lag.
 GRID = {
     "exhilarate": dict(bpm=170.0, beats=4, first=0.711),   # first hit = bar 0
     "coldfunk": dict(bpm=112.0, beats=4, first=1.601),     # 2-beat pickup at 0.53; groove at bar 4
     "motherlode": dict(bpm=90.0, beats=4, first=0.0),      # 8-bar sections every 21.33 s
     "retrofuture": dict(bpm=91.0, beats=4, first=-0.004),  # 4-bar phrases every 10.55 s
-    "aphelion": dict(bpm=119.99, beats=4, first=0.46),      # orchestral arrival at 108.47 s
+    "aphelion": dict(bpm=119.99, beats=4, first=0.49),      # orchestral arrival at 108.47 s
     "blood": dict(bpm=None),                               # ambient, no grid used
-    "bots": dict(bpm=119.98, beats=4, first=0.455),         # climax 108.47 -> final chord 164.48
+    "bots": dict(bpm=119.98, beats=4, first=0.485),         # climax 108.47 -> final chord 164.48
 }
 
 
@@ -97,10 +99,10 @@ B["B_out_bar"] = 28                  # 6 x 4-bar phrases after the groove starts
 B["C_out_bar"] = 28                  # Motherlode bars 0..28
 B["D_in_bar"] = 24                   # RetroFuture Clean bars 24..36 (new section at 63.29 s)
 B["D_out_bar"] = 36
-B["E_arrival_src"] = 108.47          # Aphelion: big orchestral arrival
+B["E_arrival_src"] = 108.50          # Aphelion: big orchestral arrival (transient ~30 ms after grid)
 B["E_pre"] = 2.0                     # seconds of Aphelion build faded in under the riser
-B["E_len"] = 24.0                    # arrival + 12 bars
-B["E_fade"] = 4.0
+B["E_len"] = 25.0                    # arrival + 12.5 bars
+B["E_fade"] = 6.0                    # long fade = a "breath" after the climax
 B["F_src_in"] = 166.9                # Blood: soft guitar entry (note at 167.0 s)
 B["G_bar_in"] = 70                   # Born Of The Sky bar 70 (= 140.47 s, 16 bars into the climax)
 B["G_final_bar"] = 82                # bar 82 = 164.48 s, last big chord of the climax
@@ -145,6 +147,17 @@ def gain_to(sig, target, core=None):
     ref = sig if core is None else sig[int(core[0] * SR):int(core[1] * SR)]
     L = integrated_loudness(ref)
     return sig * db(target - L), target - L, L
+
+
+def level_ride(sig, ratio=0.5, max_up=8.0, max_down=6.0, smooth=4.0):
+    """Slow gain riding: shrink deviations from the median short-term loudness by `ratio`."""
+    t, S = block_loudness(sig, win=3.0, hop=0.1)
+    S = np.maximum(S, -45.0)
+    g = np.clip((np.median(S) - S) * (1 - ratio), -max_down, max_up)
+    k = max(1, int(smooth / 0.1))
+    g = np.convolve(np.pad(g, (k, k), mode="edge"), np.ones(k) / k, "same")[k:-k]
+    g_s = np.interp(np.arange(len(sig)) / SR, t + 1.5, g)
+    return sig * db(g_s)[:, None]
 
 
 def sweep_lowpass(sig, start, dur, f_from=18000.0, f_to=400.0, gain_db_end=-6.0):
@@ -208,8 +221,10 @@ def main():
     endA = stop_bed + T
     cue("A", "exhilarate", 0.0, endA, on, on + stop_bed + T / 2, "hook - punchy guitar rock, opens on the first hit",
         f"bars 0-14 from the first hit; tape-stop {stop_bed:.2f}-{endA:.2f}s")
-    bed.sfx.append(dict(type="effect", name="tape stop (applied to Exhilarate)", start=round(stop_bed, 3),
-                        end=round(endA, 3), file=None, license="n/a (DSP on the CC BY track)"))
+    bed.sfx.append(dict(type="tape stop", file=None, start=round(stop_bed, 3), end=round(endA, 3),
+                        note="tape-stop DSP applied to Exhilarate itself (no sample); a standalone "
+                             "synthesized version is in sfx/tape_stop.wav (not used in the bed)",
+                        license="n/a (processing of the CC BY track)"))
 
     # ---------------- B: childhood - Cold Funk
     x = src["coldfunk"]
@@ -303,11 +318,12 @@ def main():
 
     # ---------------- F: style & philosophy - Blood (ambient guitar / piano)
     x = src["blood"]
-    tF0 = tE1 - B["E_fade"] + 0.5
+    tF0 = tE1 - B["E_fade"] + 1.0
     tF1 = B["G_bed_in"] + 0.3
     f_in = B["F_src_in"]
     segF = x[int(f_in * SR):int((f_in + (tF1 - tF0)) * SR)]
     f_len = len(segF) / SR
+    segF = level_ride(segF, ratio=0.5)          # halve Blood's internal 13 LU swing, keep its shape
     segF = env_apply(segF, [(0, 0.1, "eqp_in"), (f_len - 1.8, 1.8, "eqp_out")])
     segF, gF, LF = gain_to(segF, SEG_LUFS["F"], core=(3.0, f_len - 2.0))
     bed.add(segF, tF0)
@@ -361,6 +377,7 @@ def main():
         g = np.convolve(g, np.ones(k) / k, "same")
         g = np.minimum(g, maximum_filter1d(g, 1))
         y = y * g[:, None]
+    y[: int(0.002 * SR)] *= np.linspace(0, 1, int(0.002 * SR))[:, None]
     y[-1] = 0.0
     write_wav(os.path.join(HERE, "bed.wav"), y)
     Lf = integrated_loudness(y)
@@ -375,14 +392,14 @@ def main():
                       dict(start=150, end=205, chapter="The Aristocrats / Steven Wilson / Hans Zimmer"),
                       dict(start=205, end=270, chapter="style & philosophy"), dict(start=270, end=300, chapter="outro")],
         segments=bed.cues,
-        sfx=[dict(**s, license=s.get("license", "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)"))
+        sfx=[{**s, "license": s.get("license", "CC0 1.0 (synthesized for this project, scripts/make_sfx.py)")}
              for s in bed.sfx],
         transitions=[
             dict(at=round(stop_bed, 3), kind="tape stop -> Cold Funk intro"),
             dict(at=round(tC0, 3), kind="2-bar riser + soft impact, cut on downbeat"),
             dict(at=round(tD0, 3), kind="whoosh, cut on downbeat (Motherlode bar 28 -> RetroFuture bar 24)"),
             dict(at=round(tE_arr, 3), kind="2-bar riser + reverse swell + big impact into the Aphelion arrival"),
-            dict(at=round(tE1 - B["E_fade"], 3), kind="4 s equal-power crossfade Aphelion -> Blood"),
+            dict(at=round(tE1 - B["E_fade"], 3), kind=f"{B['E_fade']:.0f} s equal-power fade Aphelion -> Blood"),
             dict(at=round(tG_in, 3), kind="4 s riser + soft impact into the Born Of The Sky climax (both in E major)"),
             dict(at=round(t_final, 3), kind="final climax chord + big impact, cos fade to digital silence at 300.0"),
         ],

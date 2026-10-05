@@ -2,3 +2,6 @@ __pycache__/
 stills/
 *.wav.tmp
 /guthrie-govan.wav
+/guthrie-govan_tam.wav
+/guthrie-govan_parca.wav
+*_onizleme_*.mp4

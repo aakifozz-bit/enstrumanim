@@ -1,6 +1,6 @@
 {
  "voice": "tr-TR-AhmetNeural",
- "total_sec": 290.73,
+ "total_sec": 291.19,
  "segments": {
   "s01_hook": {
    "duration": 15.99,
@@ -12,7 +12,7 @@
    "file": "seg_s01_hook.wav",
    "target_sec": 17,
    "lufs": -16.0,
-   "peak_dbfs": -1.6
+   "peak_dbfs": -2.0
   },
   "s02_cocukluk": {
    "duration": 24.14,
@@ -39,8 +39,8 @@
    "peak_dbfs": -2.1
   },
   "s04_oxford": {
-   "duration": 21.53,
-   "speech": 20.91,
+   "duration": 21.61,
+   "speech": 20.99,
    "gaps": 0.64,
    "rate": 1.12,
    "edge_rate": "+18%",
@@ -48,11 +48,11 @@
    "file": "seg_s04_oxford.wav",
    "target_sec": 22,
    "lufs": -16.0,
-   "peak_dbfs": -2.4
+   "peak_dbfs": -2.6
   },
   "s05_goty": {
-   "duration": 15.4,
-   "speech": 14.94,
+   "duration": 15.46,
+   "speech": 15.0,
    "gaps": 0.48,
    "rate": 1.12,
    "edge_rate": "+18%",
@@ -60,7 +60,7 @@
    "file": "seg_s05_goty.wav",
    "target_sec": 15,
    "lufs": -16.0,
-   "peak_dbfs": -2.5
+   "peak_dbfs": -2.2
   },
   "s06_ogretmen": {
    "duration": 18.14,
@@ -75,28 +75,28 @@
    "peak_dbfs": -1.4
   },
   "s07_asia": {
-   "duration": 15.98,
-   "speech": 15.52,
+   "duration": 16.11,
+   "speech": 15.65,
    "gaps": 0.48,
-   "rate": 1.065,
-   "edge_rate": "+12%",
+   "rate": 1.061,
+   "edge_rate": "+11%",
    "sentences": 4,
    "file": "seg_s07_asia.wav",
    "target_sec": 17,
    "lufs": -16.0,
-   "peak_dbfs": -2.5
+   "peak_dbfs": -2.1
   },
   "s08_erotic": {
-   "duration": 19.01,
-   "speech": 18.23,
+   "duration": 19.06,
+   "speech": 18.28,
    "gaps": 0.8,
-   "rate": 1.095,
+   "rate": 1.098,
    "edge_rate": "+15%",
    "sentences": 6,
    "file": "seg_s08_erotic.wav",
    "target_sec": 20,
    "lufs": -16.0,
-   "peak_dbfs": -1.7
+   "peak_dbfs": -1.8
   },
   "s09_aristocrats": {
    "duration": 27.04,
@@ -108,13 +108,13 @@
    "file": "seg_s09_aristocrats.wav",
    "target_sec": 28,
    "lufs": -16.0,
-   "peak_dbfs": -2.0
+   "peak_dbfs": -2.2
   },
   "s10_wilson": {
-   "duration": 25.08,
-   "speech": 23.98,
+   "duration": 25.11,
+   "speech": 24.01,
    "gaps": 1.12,
-   "rate": 1.031,
+   "rate": 1.033,
    "edge_rate": "+8%",
    "sentences": 8,
    "file": "seg_s10_wilson.wav",
@@ -123,8 +123,8 @@
    "peak_dbfs": -2.4
   },
   "s11_zimmer": {
-   "duration": 25.37,
-   "speech": 24.11,
+   "duration": 25.43,
+   "speech": 24.17,
    "gaps": 1.28,
    "rate": 1.12,
    "edge_rate": "+18%",
@@ -132,19 +132,19 @@
    "file": "seg_s11_zimmer.wav",
    "target_sec": 25,
    "lufs": -16.0,
-   "peak_dbfs": -2.5
+   "peak_dbfs": -2.4
   },
   "s12_stil": {
-   "duration": 25.99,
-   "speech": 25.53,
+   "duration": 26.04,
+   "speech": 25.58,
    "gaps": 0.48,
-   "rate": 0.962,
+   "rate": 0.964,
    "edge_rate": "+1%",
    "sentences": 4,
    "file": "seg_s12_stil.wav",
    "target_sec": 27,
    "lufs": -16.0,
-   "peak_dbfs": -2.0
+   "peak_dbfs": -1.9
   },
   "s13_ekipman": {
    "duration": 10.95,
