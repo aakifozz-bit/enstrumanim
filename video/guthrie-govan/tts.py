@@ -42,6 +42,7 @@ SR_EDGE = 24000  # edge-tts: audio-24khz-48kbitrate-mono-mp3
 GAP = 0.25        # cümleler arası sessizlik (s)
 PARA_GAP = 0.60   # paragraflar arası sessizlik (s)
 EDGE_PAD = 0.03   # kırpmada konuşma başına/sonuna bırakılan pay (s)
+BASE_RATE = 1.05  # rate=1.0 -> edge "+5%": test paragrafında ~2.45 kelime/s (hedef 2.3-2.6)
 CONCURRENCY = 4
 RETRIES = 5
 
@@ -159,7 +160,7 @@ def _write_wav(path, x, sr):
 
 # --- edge-tts -----------------------------------------------------------------
 def _rate_str(rate):
-    pct = int(round((rate - 1.0) * 100))
+    pct = int(round((rate * BASE_RATE - 1.0) * 100))
     return f"{pct:+d}%"
 
 
@@ -192,7 +193,7 @@ def synth(text, out_wav, rate=1.0, pitch=0, gap=GAP, para_gap=PARA_GAP, respell_
           subs=None, voice=VOICE):
     """Metni seslendirip out_wav'a yazar (44.1 kHz mono 16-bit). Süreyi (s) döndürür.
 
-    rate: 1.0 = sesin doğal hızı (~2.4 kelime/s), 1.1 = %10 hızlı.
+    rate: 1.0 = belgesel hızı (~2.45 kelime/s; sesin kendi hızının %5 üstü), 1.1 = %10 daha hızlı.
     pitch: Hz cinsinden perde kayması (ör. -5).
     subs: verilirse cümle zamanlamaları (orijinal metinle) JSON olarak yazılır.
     voice: başka bir edge sesi (ör. en-US-BrianMultilingualNeural); tr-TR dışı seslerde
