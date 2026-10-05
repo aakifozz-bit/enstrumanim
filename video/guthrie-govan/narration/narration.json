@@ -1,0 +1,15 @@
+{
+ "voice": "tr-TR-AhmetNeural",
+ "total_sec": 290.74,
+ "segments": {
+  "s01_hook": {
+   "duration": 15.99,
+   "speech": 15.53,
+   "gaps": 0.48,
+   "rate": 1.0,
+   "edge_rate": "+5%",
+   "sentences": 4,
+   "file": "seg_s01_hook.wav",
+   "target_sec": 17,
+   "lufs": -16.0,
+   "peak_dbfs": 
