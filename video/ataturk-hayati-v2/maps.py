@@ -55,8 +55,8 @@ GOLD = (214, 178, 106)
 CREAM = (244, 236, 222)
 INK = (14, 20, 26)
 SEPIA = (78, 56, 36)
-ALLY = (84, 112, 142)          # Allied / Greek forces (blue-grey)
-ALLY_LIGHT = (176, 196, 216)
+ALLY = (104, 138, 180)         # Allied / Greek forces (steel blue)
+ALLY_LIGHT = (196, 212, 230)
 
 # base-map palette (float RGB)
 SEA_A = np.array([27, 62, 72], np.float32)       # ink blue-teal
@@ -385,7 +385,9 @@ def render_base(style, u0, v0, S, w, h):
         gm = np.sqrt(gx * gx + gy * gy) + 1e-5
         return np.clip(1.0 - np.abs(b - c) / (gm * width), 0, 1)
 
-    wl = 0.30 * isoline(wl1, 0.13, 0.75 * g) + 0.17 * isoline(wl2, 0.11, 0.75 * g)
+    wide = blur(land_im, 20.0 * g)
+    wl = (0.30 * isoline(wl1, 0.13, 0.75 * g) * np.clip((0.42 - wl2) / 0.12, 0, 1)
+          + 0.17 * isoline(wl2, 0.11, 0.75 * g) * np.clip((0.40 - wide) / 0.12, 0, 1))
     sea += (WATERLINE - sea) * (wl * (1 - L))[..., None]
     sea += grain[..., None] * 1.3
 
@@ -919,13 +921,14 @@ def city_label(cv, x, y, age, name, sub=None, side="r", dx=0.0, dy=0.0, alpha=1.
 
 
 @lru_cache(maxsize=16)
-def card_img(title, caption=None, title_size=58):
+def card_img(title, caption=None, title_size=58, face="serif-bold"):
     """Dark label card with gold hairline and red accent bar."""
-    t_im, t_pad, t_w, t_asc = text_img(title, "serif-bold", title_size, CREAM, 0, 0.6)
+    t_im, t_pad, t_w, t_asc = text_img(title, face, title_size, CREAM, 0, 0.6)
     padx, pady = 34, 22
     cap = None
     if caption:
-        cap = text_img(caption, "sans", 27, (226, 214, 192), 1, 0.4)
+        cap = (text_img(caption, "sans", 27, (226, 214, 192), 1, 0.4) if face == "serif-bold"
+               else text_img(caption, "sans-medium", 20, GOLD, 4, 0.4))
     cw = int(max(t_w, cap[2] if cap else 0) + 2 * padx + 14)
     th = int(title_size * 1.22)
     ch = int(pady * 2 + th + (44 if cap else 0))
@@ -944,11 +947,16 @@ def card_img(title, caption=None, title_size=58):
     return out, shadow_pad, cw, ch
 
 
-def draw_card(cv, x, y, age, title, caption=None, title_size=58):
-    """(x, y): left edge / vertical center of the card body."""
+def draw_card(cv, x, y, age, title, caption=None, title_size=58, face="serif-bold",
+              align="left"):
+    """(x, y): left edge (or center / right edge) and vertical center of the card body."""
     if age <= 0:
         return
-    im, sp, cw, ch = card_img(title, caption, title_size)
+    im, sp, cw, ch = card_img(title, caption, title_size, face)
+    if align == "center":
+        x -= cw / 2
+    elif align == "right":
+        x -= cw
     p = ease_out(age / 0.55)
     wv = int(im.width * clamp(0.15 + 0.85 * p))
     if wv < im.width:
@@ -972,31 +980,18 @@ def title_block(cv, t, t0, kicker, title):
     draw_text(cv, title, "serif-bold", 76, CREAM, x - 4 + (1 - a2) * -26, y + 54, a2)
 
 
-def caption(cv, t, t0, text, x, y, size=54, face="serif-italic", color=CREAM, align="center",
-            sub=None):
-    """Quote / caption with a soft dark backdrop. (x, y) = anchor at the text top."""
-    p = t - t0
-    if p <= 0:
-        return
-    a = ease_out(p / 0.7)
-    im, pad, tw, asc = text_img(text, face, size, color, 0, 1.0)
-    bw = int(tw + 90)
-    bh = int(size * 1.45 + (46 if sub else 0) + 20)
-    bx = x - tw / 2 - 45 if align == "center" else (x - tw - 45 if align == "right" else x - 45)
-    box, bp = soft_box(bw, bh, 24, 26, 0.62)
-    comp(cv, with_alpha(box, a), bx - bp, y - 14 - bp)
-    dy = (1 - a) * 22
-    draw_text(cv, text, face, size, color, x, y + dy, a, align=align)
-    if sub:
-        a2 = ease_out((p - 0.35) / 0.6)
-        draw_text(cv, sub, "sans-medium", 22, GOLD, x if align == "center" else
-                  (x - 2 if align == "right" else x + 2), y + size * 1.4 + dy, a2,
-                  align=align, tracking=4)
+def caption(cv, t, t0, text, x, y, size=54, sub=None, align="center"):
+    """Quote / caption card. (x, y): anchor (center/left/right edge) and vertical center."""
+    draw_card(cv, x, y, t - t0, text, sub, size, "serif-italic", align)
 
 
-def sea_label(cv, cam, lat, lon, text, alpha, size=34, angle=0.0, tracking=9):
+def sea_label(cv, cam, lat, lon, text, alpha, size=34, angle=0.0, tracking=9, along=None):
+    """Italic water label; `along` = ((lat, lon), (lat, lon)) orients it along a channel."""
     if alpha <= 0.004:
         return
+    if along is not None:
+        d = G(*along[1]) - G(*along[0])
+        angle = round(-math.degrees(math.atan2(d[1], d[0])), 1)
     x, y = cam.at(lat, lon)
     im = rotated_text(text, "serif-italic", size, (200, 222, 222), tracking, angle, 200)
     comp_sub(cv, im, x - im.width / 2, y - im.height / 2, alpha)
@@ -1077,10 +1072,10 @@ def warship(L, x, y, ang, sc=1.0, alpha=1.0):
         return
     hull = [(19, 0), (12, -4.4), (-12, -4.6), (-17, -3.2), (-18, 0), (-17, 3.2), (-12, 4.6),
             (12, 4.4)]
-    L.poly(rot(hull, ang, x, y, sc), fill=rgba((66, 80, 96), alpha),
-           outline=rgba((14, 20, 28), alpha), width=1.3, shadow=True)
+    L.poly(rot(hull, ang, x, y, sc), fill=rgba((150, 164, 180), alpha),
+           outline=rgba((14, 20, 28), alpha), width=1.4, shadow=True)
     L.poly(rot([(7, -2.3), (-7, -2.6), (-7, 2.6), (7, 2.3)], ang, x, y, sc),
-           fill=rgba((168, 180, 192), alpha))
+           fill=rgba((214, 222, 230), alpha))
     for px in (12.5, -12.0):
         q = rot([(px, 0)], ang, x, y, sc)[0]
         L.circle(q[0], q[1], 2.3 * sc, fill=rgba((34, 42, 52), alpha))
@@ -1185,15 +1180,19 @@ def draw_selanik(cv, cam, t):
 # ---------------------------------------------------------------------------
 
 CAN_DUR = 6.0
-CAN_KEYS = [(0.0, 39.98, 25.98, 5.8), (2.6, 40.235, 26.37, 1.66), (6.0, 40.245, 26.375, 1.6)]
-FLEET_PATH = catmull(GP([(39.80, 25.62), (39.90, 25.90), (39.985, 26.10), (40.03, 26.19),
-                         (40.075, 26.265), (40.105, 26.31)]), 30)
+CAN_KEYS = [(0.0, 39.98, 25.98, 5.8), (2.6, 40.18, 26.33, 1.66), (6.0, 40.185, 26.335, 1.6)]
+# Allied column: Aegean -> strait mouth -> up the channel, stopping before the mine line
+FLEET_PATH = catmull(GP([(39.80, 25.55), (39.90, 25.85), (39.99, 26.10), (40.035, 26.215),
+                         (40.060, 26.265), (40.080, 26.298)]), 30)
 FLEET_CL = cumlen(FLEET_PATH)
-FLEET_STOP = 0.86           # fraction of the path where the lead ship stops
-DEF_LINE = GP([(40.152, 26.27), (40.127, 26.305), (40.105, 26.345), (40.088, 26.37)])
-LAND_ARI = catmull(GP([(40.17, 25.98), (40.215, 26.15), (40.238, 26.255)]), 30)
-LAND_SUVLA = catmull(GP([(40.37, 26.02), (40.335, 26.14), (40.305, 26.225)]), 30)
-RIDGE = catmull(GP([(40.205, 26.300), (40.236, 26.316), (40.265, 26.335), (40.300, 26.352)]), 30)
+FLEET_STOP = 1.0            # fraction of the path where the lead ship stops
+# Turkish defence (forts + mine line) across the channel below the Narrows (Kepez / Erenköy)
+DEF_LINE = GP([(40.128, 26.312), (40.110, 26.344), (40.092, 26.378)])
+MINES = [(40.106, 26.313), (40.100, 26.326), (40.094, 26.339), (40.088, 26.352)]
+LAND_ARI = catmull(GP([(40.17, 25.98), (40.215, 26.15), (40.238, 26.258)]), 30)
+LAND_SUVLA = catmull(GP([(40.37, 26.02), (40.335, 26.14), (40.305, 26.215)]), 30)
+RIDGE = catmull(GP([(40.200, 26.296), (40.228, 26.302), (40.256, 26.306), (40.282, 26.296),
+                    (40.306, 26.268)]), 30)
 
 
 def cam_canakkale(t):
@@ -1202,19 +1201,20 @@ def cam_canakkale(t):
 
 def draw_canakkale(cv, cam, t):
     sea_label(cv, cam, 39.70, 25.30, "EGE DENİZİ", (1 - smooth((t - 1.0) / 0.8)) * 0.85, 30)
-    sea_label(cv, cam, 40.33, 26.57, "ÇANAKKALE BOĞAZI", smooth((t - 2.2) / 0.8) * 0.8, 21,
-              angle=38.0, tracking=5)
-    sea_label(cv, cam, 40.52, 26.42, "SAROS KÖRFEZİ", smooth((t - 2.4) / 0.8) * 0.55, 21,
+    sea_label(cv, cam, 40.345, 26.632, "ÇANAKKALE BOĞAZI", smooth((t - 2.2) / 0.8) * 0.85, 21,
+              tracking=5, along=((40.26, 26.508), (40.34, 26.627)))
+    sea_label(cv, cam, 40.47, 26.40, "SAROS KÖRFEZİ", smooth((t - 2.4) / 0.8) * 0.7, 22,
               tracking=6)
 
     low, mid, top = Layer(), Layer(), Layer()
     # Allied approach arrow (translucent) under the ships
-    big_arrow(low, cam, FLEET_PATH, FLEET_CL, 0.82 * ease_in_out((t - 0.35) / 1.9),
-              w0=8, w1=26, head_w=56, head_l=44, color=ALLY, alpha=0.55, outline=(30, 44, 60))
+    big_arrow(low, cam, FLEET_PATH, FLEET_CL, 0.80 * ease_in_out((t - 0.3) / 2.0),
+              w0=8, w1=26, head_w=56, head_l=44, color=ALLY, alpha=0.62, outline=ALLY_LIGHT)
 
     # ships: column moving in, decelerating to a stop in front of the defence line
-    lead = FLEET_CL[-1] * FLEET_STOP * ease_out((t - 0.55) / 2.6)
-    spacing = 0.034
+    lead = FLEET_CL[-1] * FLEET_STOP * (1 - (1 - clamp((t - 0.7) / 2.4)) ** 2.2)
+    spacing = 0.055
+    ship_sc = 1.5 * clamp((cam.s / (W / 1.66)) ** 0.6, 0.45, 1.0)
     for i in range(5):
         Ls = lead - i * spacing
         if Ls <= 0:
@@ -1229,7 +1229,7 @@ def draw_canakkale(cv, cam, t):
         tail = cam.xy(upto(FLEET_PATH, FLEET_CL, Ls)[-12:])
         if len(tail) >= 2:
             low.line(tail, (226, 236, 236, int(60 * a * (1 - sink))), 2.4, caps=False)
-        warship(mid, x, y + sink * 3, ang, 1.15 * (1 - 0.25 * sink), a * (1 - sink))
+        warship(mid, x, y + sink * 3, ang, ship_sc * (1 - 0.25 * sink), a * (1 - sink))
     # defence line (mines + batteries) across the strait
     pd = smooth((t - 1.55) / 0.8)
     if pd > 0:
@@ -1239,15 +1239,15 @@ def draw_canakkale(cv, cam, t):
         mid.line(sp, rgba(RED_DARK, 0.7), 10.5, shadow=True)
         mid.line(sp, rgba(RED), 7.0)
         # mine row just south of the line
-        for k in range(6):
-            u = (k + 0.5) / 6
-            if u > pd:
+        for k, (la, lo) in enumerate(MINES):
+            if (k + 0.5) / len(MINES) > pd:
                 break
-            q, ang = point_at(dl, dcl, dcl[-1] * u)
-            mx, my = cam.xy(q)
-            nx, ny = math.sin(ang), -math.cos(ang)
-            mx, my = mx - nx * 16, my - ny * 16
-            top.circle(mx, my, 3.6, fill=rgba((30, 24, 22)), outline=rgba(GOLD, 0.9), width=1.2)
+            mx, my = cam.at(la, lo)
+            for j in range(4):
+                a = j * math.pi / 4
+                top.line([(mx - 6 * math.cos(a), my - 6 * math.sin(a)),
+                          (mx + 6 * math.cos(a), my + 6 * math.sin(a))], rgba((24, 20, 18)), 1.4)
+            top.circle(mx, my, 4.2, fill=rgba((30, 24, 22)), outline=rgba(GOLD, 0.95), width=1.3)
     # explosions at the stopped ships
     for i, t0 in ((0, 3.05), (2, 3.35), (1, 3.7)):
         Ls = FLEET_CL[-1] * FLEET_STOP - i * spacing
@@ -1256,35 +1256,36 @@ def draw_canakkale(cv, cam, t):
         burst(top, x + 4, y - 3, t - t0, 1.0)
     # landings (25 April / 6 August 1915)
     big_arrow(low, cam, LAND_ARI, cumlen(LAND_ARI), ease_in_out((t - 3.2) / 0.9),
-              w0=6, w1=18, head_w=38, head_l=30, color=ALLY, alpha=0.8, outline=(30, 44, 60))
+              w0=6, w1=18, head_w=38, head_l=30, color=ALLY, alpha=0.85, outline=ALLY_LIGHT)
     big_arrow(low, cam, LAND_SUVLA, cumlen(LAND_SUVLA), ease_in_out((t - 3.55) / 0.9),
-              w0=6, w1=18, head_w=38, head_l=30, color=ALLY, alpha=0.8, outline=(30, 44, 60))
+              w0=6, w1=18, head_w=38, head_l=30, color=ALLY, alpha=0.85, outline=ALLY_LIGHT)
     pr = smooth((t - 4.0) / 0.7)
     if pr > 0:
         rcl = cumlen(RIDGE)
         front_line(mid, cam.xy(upto(RIDGE, rcl, rcl[-1] * pr)), 1.0, color=RED,
-                   teeth_side=-1.0, width=5.0)
+                   teeth_side=-1.0, width=4.5)
 
-    pins = [("Arıburnu", 40.24, 26.28, 3.7, "l", 0, -30),
+    pins = [("Arıburnu", 40.24, 26.275, 3.7, "l", -4, -30),
             ("Conkbayırı", 40.235, 26.32, 4.15, "r", 6, 26),
-            ("Anafartalar", 40.29, 26.37, 4.5, "r", 6, -6)]
+            ("Anafartalar", 40.29, 26.37, 4.5, "t", 0, -4)]
     for name, la, lo, t0, *_ in pins:
         x, y = cam.at(la, lo)
         pin_dot(top, x, y, t - t0, 0.9)
     low.render(cv)
     mid.render(cv)
     top.render(cv)
-    if 0.8 < t < 3.9:
-        q, _ = point_at(FLEET_PATH, FLEET_CL, max(lead - 2.5 * spacing, 0.02))
+    if 0.9 < t < 3.9:
+        q, _ = point_at(FLEET_PATH, FLEET_CL, max(lead - 3.5 * spacing, 0.02))
         x, y = cam.xy(q)
-        draw_text(cv, "İTİLAF DONANMASI", "sans-semibold", 20, ALLY_LIGHT, x - 24, y + 26,
-                  smooth((t - 0.9) / 0.5) * (1 - smooth((t - 3.3) / 0.5)), tracking=4, sub=True)
+        draw_text(cv, "İTİLAF DONANMASI", "sans-semibold", 20, ALLY_LIGHT, x - 30, y + 14,
+                  smooth((t - 1.0) / 0.5) * (1 - smooth((t - 3.3) / 0.5)), align="right",
+                  tracking=4, sub=True)
     for name, la, lo, t0, side, dx, dy in pins:
         x, y = cam.at(la, lo)
         city_label(cv, x, y, t - t0 - 0.1, name, None, side, dx, dy)
 
     title_block(cv, t, 0.3, "Gelibolu Yarımadası", "Çanakkale · 1915")
-    caption(cv, t, 4.75, "“Çanakkale geçilmez!”", 1500, 812, size=58)
+    caption(cv, t, 4.75, "“Çanakkale geçilmez!”", 1790, 790, size=56, align="right")
 
 
 # ---------------------------------------------------------------------------
@@ -1459,8 +1460,8 @@ def draw_taarruz(cv, cam, t):
         x, y = cam.at(la, lo)
         city_label(cv, x, y, t - t0 - 0.08, nm, sub, side, dx, dy)
     title_block(cv, t, 0.15, "1921 – 1922", "Büyük Taarruz")
-    caption(cv, t, 4.15, "“Ordular! İlk hedefiniz Akdeniz’dir. İleri!”", 1010, 786, size=50,
-            sub="MUSTAFA KEMAL PAŞA · 1 EYLÜL 1922")
+    caption(cv, t, 4.15, "“Ordular! İlk hedefiniz Akdeniz’dir. İleri!”", 960, 820, size=46,
+            sub="MUSTAFA KEMAL PAŞA · 1 EYLÜL 1922", align="center")
 
 
 # ---------------------------------------------------------------------------

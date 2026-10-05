@@ -46,6 +46,7 @@ import sys
 import tempfile
 import time
 import warnings
+import zlib
 from functools import lru_cache
 
 import cv2
@@ -472,10 +473,16 @@ def _grabcut(rgb, lum, nbox, prior=None, fg_boxes=(), bg_boxes=(), iters=5):
         cx0, cx1 = int(lerp(rx0, rx1, 0.40)), int(lerp(rx0, rx1, 0.60))
         cy0, cy1 = int(lerp(ry0, ry1, 0.30)), int(lerp(ry0, ry1, 0.55))
         mask[cy0:cy1, cx0:cx1] = cv2.GC_FGD
-    for boxes, label in ((fg_boxes, cv2.GC_FGD), (bg_boxes, cv2.GC_BGD)):
-        for b in boxes or ():
-            bx0, by0, bx1, by1 = _rect(_box_px(b, w, h), sw, sh)
-            mask[by0:by1, bx0:bx1] = label
+    # hint boxes: background boxes are certain; subject boxes are "probably
+    # subject" with a certain core, so the cut still snaps to the real outline
+    for b in bg_boxes or ():
+        bx0, by0, bx1, by1 = _rect(_box_px(b, w, h), sw, sh)
+        mask[by0:by1, bx0:bx1] = cv2.GC_BGD
+    for b in fg_boxes or ():
+        bx0, by0, bx1, by1 = _rect(_box_px(b, w, h), sw, sh)
+        mask[by0:by1, bx0:bx1] = cv2.GC_PR_FGD
+        ix, iy = (bx1 - bx0) // 4, (by1 - by0) // 4
+        mask[by0 + iy:by1 - iy, bx0 + ix:bx1 - ix] = cv2.GC_FGD
     if (mask == cv2.GC_FGD).sum() + (mask == cv2.GC_PR_FGD).sum() == 0:
         return np.zeros((sh, sw), np.uint8)
     bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
@@ -962,20 +969,22 @@ def _desk(style, seed, k):
     """Dark mottled paper/leather desk, lit by a soft lamp; float32 (H*k, W*k)."""
     w, h = int(math.ceil(W * k)), int(math.ceil(H * k))
     rng = np.random.default_rng(seed)
-    mott = _fbm(h, w, rng, base=3, octaves=7, persistence=0.6)
-    fibre = _gauss(rng.standard_normal((h, w)).astype(np.float32), 0.7)
-    fibre = cv2.blur(fibre, (9, 1)) * 2.0          # faint horizontal fibres
-    fine = _gauss(rng.standard_normal((h, w)).astype(np.float32), 0.8)
-    blotch = np.clip(_fbm(h, w, rng, base=6, octaves=4) - 1.2, 0, None)
+    mott = _fbm(h, w, rng, base=3, octaves=7, persistence=0.55)
+    fibre = _gauss(rng.standard_normal((h, w)).astype(np.float32), 0.8)
+    fibre = cv2.blur(fibre, (15, 1))
+    fibre /= fibre.std() + 1e-6                     # faint horizontal paper fibres
+    fine = _gauss(rng.standard_normal((h, w)).astype(np.float32), 0.9)
+    fine /= fine.std() + 1e-6
+    blotch = np.clip(_fbm(h, w, rng, base=5, octaves=5) - 1.4, 0, None)
     if style == "light":
-        base, amp = 0.42, 0.10
+        base, amp = 0.45, 0.06
     else:
-        base, amp = 0.17, 0.20
-    d = base * (1 + amp * mott + 0.035 * fibre + 0.03 * fine - 0.18 * blotch)
+        base, amp = 0.21, 0.09
+    d = base * (1 + amp * mott + 0.035 * fibre + 0.03 * fine - 0.10 * blotch)
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
-    lx, ly = 0.40 * w, 0.30 * h
-    lamp = np.exp(-(((xx - lx) / (0.62 * w)) ** 2 + ((yy - ly) / (0.80 * h)) ** 2))
-    d *= 0.55 + 0.65 * lamp
+    lx, ly = 0.46 * w, 0.36 * h                     # soft desk-lamp pool
+    lamp = np.exp(-(((xx - lx) / (0.55 * w)) ** 2 + ((yy - ly) / (0.75 * h)) ** 2))
+    d *= 0.45 + 0.75 * lamp
     return np.clip(d, 0, 1).astype(np.float32)
 
 
@@ -990,7 +999,7 @@ _DEFAULTS = {
                      fg_shadow=0.0),
     "kenburns": dict(start=(0.5, 0.5, 1.0), end=None),
     "print": dict(caption=None, rot=(-7.0, -2.2), enter="bottom", enter_dur=1.2,
-                  push=(1.0, 1.06), size=0.70, offset=(0.0, -0.025), border=0.045,
+                  push=(1.0, 1.06), size=0.60, offset=(0.0, 0.0), border=0.045,
                   tape="top", edge="straight", desk="dark", desk_seed=3,
                   caption_delay=0.25, caption_dur=1.3, ease="sine"),
 }
@@ -1020,8 +1029,8 @@ class PhotoShot:
       start=(cx, cy, zoom) end=(cx, cy, zoom)  normalised centre + zoom
     print:
       caption=None, rot=(-7, -2.2) deg, enter="bottom"|"top"|"left"|"right"|"drop"|None,
-      enter_dur=1.2, push=(1.0, 1.06), size=0.70 (print photo height / frame),
-      offset=(0, -0.025), border=0.045, tape="top"|"corners"|None,
+      enter_dur=1.2, push=(1.0, 1.06), size=0.60 (print photo height / frame),
+      offset=(0, 0), border=0.045, tape="top"|"corners"|None,
       edge="straight"|"deckle", desk="dark"|"light", caption_delay, caption_dur
     """
 
@@ -1040,6 +1049,10 @@ class PhotoShot:
                               fg_boxes=fg_boxes, bg_boxes=bg_boxes)
         self.o = o
         self.look = o["look"] or Look()
+        # look time: global t0 plus a per-shot offset so two shots never share the
+        # same grain/dust/scratch sequence
+        self._toff = o["t0"] + (zlib.crc32(f"{os.path.basename(path)}|{mode}".encode())
+                                % 9973) / FPS
         self._L = None
 
     def __getstate__(self):          # never pickle the big layers
@@ -1058,7 +1071,7 @@ class PhotoShot:
 
     # -- public ---------------------------------------------------------------
     def render(self, t):
-        return self.look.apply(self.render_lum(t), self.o["t0"] + t)
+        return self.look.apply(self.render_lum(t), self._toff + t)
 
     def render_lum(self, t):
         """Pre-look float32 luminance frame (1080x1920), for custom compositing."""
@@ -1066,7 +1079,7 @@ class PhotoShot:
             self._L = getattr(self, "_build_" + self.mode)()
         t = clamp(t, 0.0, self.duration)
         u = _ease(self.o["ease"])(t / self.duration if self.duration > 0 else 1.0)
-        wx, wy = self.look.weave_offset(self.o["t0"] + t)
+        wx, wy = self.look.weave_offset(self._toff + t)
         return getattr(self, "_frame_" + self.mode)(t, u, wx, wy)
 
     # -- canvas for parallax / kenburns --------------------------------------
@@ -1311,8 +1324,8 @@ class PhotoShot:
             s = _gauss(alpha, sig * k)
             M = np.float32([[1, 0, dx * k], [0, 1, dy * k]])
             return cv2.warpAffine(s, M, (CW, CH), borderMode=cv2.BORDER_CONSTANT)
-        rest = 0.55 * shadow(9, 6, 10) + 0.45 * shadow(2.2, 1.5, 2.5)
-        lift = shadow(30, 22, 38)
+        rest = 0.62 * shadow(13, 9, 15) + 0.38 * shadow(2.5, 1.5, 2.5)
+        lift = shadow(32, 26, 44)
         L = dict(stack=np.dstack([lum, alpha_t, rest, lift]).astype(np.float32),
                  qc=(pad + PW / 2, pad + PH / 2), k=k, ink=None,
                  desk=_desk(o["desk"], o["desk_seed"], k))
@@ -1369,8 +1382,11 @@ class PhotoShot:
             reg = (slice(max(0, y0), y1), slice(max(0, x0), x1))
             ta[reg] = np.maximum(ta[reg], sub)
         tex = _fbm(CH, CW, rng, base=10, octaves=4)
-        tl[:] = 0.86 + 0.03 * tex
-        ta *= np.clip(0.5 + 0.06 * tex, 0.3, 0.7)
+        tl[:] = 0.80 + 0.025 * tex
+        # torn ends and edges are a touch more opaque/darker (crinkled adhesive)
+        edge = np.clip(ta * (1 - ta) * 4, 0, 1)
+        tl -= 0.06 * edge
+        ta *= np.clip(0.72 + 0.05 * tex, 0.55, 0.85)
         return tl, ta
 
     def _frame_print(self, t, u, wx, wy):
@@ -1396,7 +1412,7 @@ class PhotoShot:
             Px -= dist * W * 0.85
         elif enter == "right":
             Px += dist * W * 0.85
-        scale = 1 + 0.035 * lift + (0.25 * (1 - pos) if enter == "drop" else 0.0)
+        scale = 1 + 0.035 * lift + (0.16 * (1 - pos) if enter == "drop" else 0.0)
         p0, p1 = o["push"]
         z = lerp(p0, p1, u)
         Cx, Cy = W / 2 + o["offset"][0] * W, H / 2 + o["offset"][1] * H
@@ -1422,11 +1438,11 @@ class PhotoShot:
                              borderMode=cv2.BORDER_CONSTANT)
         lum, al, rest, lft = cv2.split(lay)
         if enter == "drop":
-            fade = smooth(ue / 0.35)
+            fade = smooth(ue / 0.22)
             al *= fade
             rest *= fade
             lft *= fade
-        sh = rest * (0.78 * (1 - lift)) + lft * (0.55 * lift)
+        sh = rest * (0.85 * (1 - lift)) + lft * (0.6 * lift)
         desk *= 1 - sh
         lum -= desk
         lum *= al
