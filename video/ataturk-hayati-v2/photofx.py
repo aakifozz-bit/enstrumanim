@@ -246,6 +246,18 @@ class Prep:
         bh = y1 - y0
         return ((x0 + x1) / 2 / w, (y0 + min(bh * 0.28, 0.45 * (x1 - x0) + 0.0)) / h)
 
+    def base(self):
+        """Normalised point where the subject meets the ground / frame bottom: the
+        parallax scale anchor, so the subject grows without sliding on the ground."""
+        w, h = self.size
+        if self.box is None:
+            return 0.5, 1.0
+        x0, y0, x1, y1 = self.box
+        rows = self.alpha[max(0, y1 - max(3, (y1 - y0) // 12)):y1]
+        cols = np.nonzero(rows.max(0) > 0.5)[0]
+        cx = (cols.min() + cols.max() + 1) / 2 if len(cols) else (x0 + x1) / 2
+        return cx / w, y1 / h
+
 
 def _load_rgb(path):
     im = ImageOps.exif_transpose(Image.open(path))
@@ -306,33 +318,170 @@ def _box_px(box, w, h):
     return x0 / w, y0 / h, x1 / w, y1 / h       # normalised
 
 
-def _grabcut(rgb, lum, nbox, iters=6):
-    """Binary subject mask at a reduced resolution (long side GC_LONG)."""
-    h, w = lum.shape
-    k = min(1.0, GC_LONG / max(w, h))
-    sw, sh = max(8, int(round(w * k))), max(8, int(round(h * k)))
+# -- optional person prior: MediaPipe selfie-segmentation model (Apache-2.0) ----
+# The 250 KB TFLite file ships inside the mediapipe 0.10.14 wheel on PyPI.  It
+# is run with OpenCV's own DNN module (no mediapipe/tensorflow install needed).
+
+PERSON_WHEEL = "mediapipe==0.10.14"
+PERSON_MEMBER = "mediapipe/modules/selfie_segmentation/selfie_segmentation.tflite"
+PERSON_FILE = "selfie_segmentation.tflite"
+
+
+def fetch_person_model(cache_dir=None):
+    """Download the mediapipe wheel from PyPI once and extract the person model."""
+    import glob
+    import shutil
+    import zipfile
+    dest = os.path.join(_cache_dir(cache_dir), PERSON_FILE)
+    lock = open(dest + ".lock", "w")
+    try:
+        try:
+            import fcntl
+            fcntl.flock(lock, fcntl.LOCK_EX)      # several Pool workers may race here
+        except ImportError:
+            pass
+        if os.path.exists(dest):
+            return dest
+        tmp = tempfile.mkdtemp(prefix="photofx-whl-")
+        try:
+            subprocess.run([sys.executable, "-m", "pip", "download", "--no-deps",
+                            "--only-binary=:all:", "--python-version", "3.11",
+                            "--platform", "manylinux2014_x86_64", "-d", tmp, PERSON_WHEEL],
+                           check=True, capture_output=True, timeout=900)
+            whl = glob.glob(os.path.join(tmp, "*.whl"))[0]
+            with zipfile.ZipFile(whl) as z:
+                data = z.read(PERSON_MEMBER)
+            with open(dest + ".part", "wb") as f:
+                f.write(data)
+            os.replace(dest + ".part", dest)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+        return dest
+    finally:
+        lock.close()
+
+
+def person_model_path(fetch=True, cache_dir=None):
+    """Locate the person model: $PHOTOFX_PERSON_MODEL, cache, installed mediapipe,
+    else (fetch=True and $PHOTOFX_NO_FETCH unset) download it.  None if unavailable."""
+    env = os.environ.get("PHOTOFX_PERSON_MODEL")
+    if env and os.path.exists(env):
+        return env
+    p = os.path.join(_cache_dir(cache_dir), PERSON_FILE)
+    if os.path.exists(p):
+        return p
+    try:
+        import importlib.util
+        spec = importlib.util.find_spec("mediapipe")
+        for loc in (spec.submodule_search_locations or []) if spec else []:
+            q = os.path.join(loc, "modules", "selfie_segmentation", PERSON_FILE)
+            if os.path.exists(q):
+                return q
+    except Exception:
+        pass
+    if not fetch or os.environ.get("PHOTOFX_NO_FETCH"):
+        return None
+    try:
+        return fetch_person_model(cache_dir)
+    except Exception as e:      # offline etc. -> plain grabCut
+        warnings.warn(f"photofx: person model unavailable ({type(e).__name__}); "
+                      "falling back to box-initialised grabCut")
+        return None
+
+
+@lru_cache(maxsize=2)
+def _person_net(path):
+    try:
+        return cv2.dnn.readNetFromTFLite(path)
+    except Exception as e:
+        warnings.warn(f"photofx: cannot load person model {path}: {e}")
+        return None
+
+
+def person_prob(rgb, model=None):
+    """Soft person probability (float32 HxW) for an RGB uint8 image, or None."""
+    path = model or person_model_path()
+    net = _person_net(path) if path else None
+    if net is None:
+        return None
+    h, w = rgb.shape[:2]
+    s = max(h, w)
+    py, px = (s - h) // 2, (s - w) // 2
+    sq = cv2.copyMakeBorder(rgb, py, s - h - py, px, s - w - px, cv2.BORDER_REPLICATE)
+    x = cv2.resize(sq, (256, 256), interpolation=cv2.INTER_AREA).astype(np.float32) / 255
+    outs = []
+    for img in (x, x[:, ::-1]):               # flip test-time augmentation
+        net.setInput(np.ascontiguousarray(img.transpose(2, 0, 1)[None]))
+        o = net.forward()[0, 0]
+        outs.append(o if img is x else o[:, ::-1])
+    m = cv2.resize((outs[0] + outs[1]) / 2, (s, s), interpolation=cv2.INTER_CUBIC)
+    return np.clip(m[py:py + h, px:px + w], 0, 1).astype(np.float32)
+
+
+def _gc_features(rgb, lum, sw, sh):
     if _is_gray(rgb):
         l = cv2.resize(lum, (sw, sh), interpolation=cv2.INTER_AREA)
         b = _gauss(l, 2.0)
         sd = np.sqrt(np.maximum(_gauss(l * l, 2.0) - b * b, 0))
         sd = np.clip(sd / (np.percentile(sd, 99) + 1e-6), 0, 1)
-        feat = (np.dstack([l, b, sd]) * 255 + 0.5).astype(np.uint8)   # luminance + texture
+        return (np.dstack([l, b, sd]) * 255 + 0.5).astype(np.uint8)   # luminance + texture
+    return cv2.resize(rgb, (sw, sh), interpolation=cv2.INTER_AREA)[..., ::-1].copy()
+
+
+def _rect(nb, sw, sh):
+    x0, y0, x1, y1 = nb
+    return (int(x0 * sw), int(y0 * sh), int(math.ceil(x1 * sw)), int(math.ceil(y1 * sh)))
+
+
+def _grabcut(rgb, lum, nbox, prior=None, fg_boxes=(), bg_boxes=(), iters=5):
+    """Binary subject mask at a reduced resolution (long side GC_LONG).
+
+    prior: optional soft person map (any size); nbox: normalised box or None."""
+    h, w = lum.shape
+    k = min(1.0, GC_LONG / max(w, h))
+    sw, sh = max(8, int(round(w * k))), max(8, int(round(h * k)))
+    feat = _gc_features(rgb, lum, sw, sh)
+    P = None
+    if prior is not None:
+        P = cv2.resize(prior, (sw, sh), interpolation=cv2.INTER_AREA)
+        if nbox is not None:
+            rx0, ry0, rx1, ry1 = _rect(nbox, sw, sh)
+            keep = np.zeros_like(P)
+            keep[ry0:ry1, rx0:rx1] = 1
+            P = P * keep
+        if (P > 0.5).mean() < 0.01:
+            P = None                              # no person -> box mode
+    if P is not None:
+        d = max(sw, sh)
+        core = cv2.erode((P > 0.85).astype(np.uint8), _disk(0.02 * d))
+        near = cv2.dilate((P > 0.3).astype(np.uint8), _disk(0.07 * d))
+        mask = np.full((sh, sw), cv2.GC_BGD, np.uint8)
+        mask[near > 0] = cv2.GC_PR_BGD
+        mask[P > 0.5] = cv2.GC_PR_FGD
+        mask[core > 0] = cv2.GC_FGD
+        if nbox is not None:
+            rx0, ry0, rx1, ry1 = _rect(nbox, sw, sh)
+            outside = np.ones((sh, sw), bool)
+            outside[ry0:ry1, rx0:rx1] = False
+            mask[outside] = cv2.GC_BGD
     else:
-        feat = cv2.resize(rgb, (sw, sh), interpolation=cv2.INTER_AREA)[..., ::-1].copy()
-    x0, y0, x1, y1 = nbox
-    rx0, ry0 = int(x0 * sw), int(y0 * sh)
-    rx1, ry1 = int(math.ceil(x1 * sw)), int(math.ceil(y1 * sh))
-    mask = np.full((sh, sw), cv2.GC_BGD, np.uint8)
-    mask[ry0:ry1, rx0:rx1] = cv2.GC_PR_FGD
-    # the central core of the box is very likely subject
-    cx0, cx1 = int(lerp(rx0, rx1, 0.40)), int(lerp(rx0, rx1, 0.60))
-    cy0, cy1 = int(lerp(ry0, ry1, 0.30)), int(lerp(ry0, ry1, 0.55))
-    mask[cy0:cy1, cx0:cx1] = cv2.GC_FGD
+        rx0, ry0, rx1, ry1 = _rect(nbox if nbox is not None else DEFAULT_BOX, sw, sh)
+        mask = np.full((sh, sw), cv2.GC_BGD, np.uint8)
+        mask[ry0:ry1, rx0:rx1] = cv2.GC_PR_FGD
+        # the central core of the box is very likely subject
+        cx0, cx1 = int(lerp(rx0, rx1, 0.40)), int(lerp(rx0, rx1, 0.60))
+        cy0, cy1 = int(lerp(ry0, ry1, 0.30)), int(lerp(ry0, ry1, 0.55))
+        mask[cy0:cy1, cx0:cx1] = cv2.GC_FGD
+    for boxes, label in ((fg_boxes, cv2.GC_FGD), (bg_boxes, cv2.GC_BGD)):
+        for b in boxes or ():
+            bx0, by0, bx1, by1 = _rect(_box_px(b, w, h), sw, sh)
+            mask[by0:by1, bx0:bx1] = label
+    if (mask == cv2.GC_FGD).sum() + (mask == cv2.GC_PR_FGD).sum() == 0:
+        return np.zeros((sh, sw), np.uint8)
     bgd, fgd = np.zeros((1, 65), np.float64), np.zeros((1, 65), np.float64)
     cv2.setRNGSeed(1)
     cv2.grabCut(feat, mask, None, bgd, fgd, iters, cv2.GC_INIT_WITH_MASK)
-    m = ((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD)).astype(np.uint8)
-    return m, (rx0, ry0, rx1, ry1)
+    return ((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD)).astype(np.uint8)
 
 
 def _clean_mask(m):
@@ -437,30 +586,41 @@ def _file_hash(path):
     return h.hexdigest()
 
 
-def prepare(path, mask_path=None, subject_box=None, matte=True, cache_dir=None):
+def _boxes(bs):
+    return tuple(tuple(float(v) for v in b) for b in bs) if bs else ()
+
+
+def prepare(path, mask_path=None, subject_box=None, matte=True, person="auto",
+            fg_boxes=None, bg_boxes=None, cache_dir=None):
     """Load, grade, upscale and (optionally) matte a photo.  Returns a ``Prep``.
 
     path         image file (any Pillow format; colour is converted to mono)
-    mask_path    optional subject mask image (white = subject); used as-is
-                 (resized, lightly snapped to edges and feathered)
-    subject_box  (x0, y0, x1, y1) box around the subject for grabCut, either as
-                 fractions of the image (all values <= 1) or original pixels.
-                 Default: a central portrait box DEFAULT_BOX.
+    mask_path    optional subject mask image (white = subject, any size); used
+                 as the matte (snapped to image edges where it is a hard mask)
+    subject_box  (x0, y0, x1, y1) box around the subject, as fractions of the
+                 image (all values <= 1) or original pixels.  With the person
+                 prior it limits which people count as subject; without it, it
+                 initialises grabCut (default DEFAULT_BOX, a central portrait box)
+    person       "auto": seed grabCut with the person-segmentation prior when the
+                 model is available and finds a person; False: box only
+    fg_boxes / bg_boxes  tight boxes forced to subject / background (fixes)
     matte        False skips matte/plate (enough for kenburns/print)
 
     Results are cached per process and on disk (keyed by file contents).
     """
     box = None if subject_box is None else tuple(float(v) for v in subject_box)
+    model = person_model_path(cache_dir=cache_dir) if (matte and person and not mask_path) \
+        else None
     return _prepare(os.path.abspath(path), _file_hash(path),
                     os.path.abspath(mask_path) if mask_path else None,
                     _file_hash(mask_path) if mask_path else None,
-                    box, bool(matte), cache_dir)
+                    box, bool(matte), model, _boxes(fg_boxes), _boxes(bg_boxes), cache_dir)
 
 
 @lru_cache(maxsize=8)
-def _prepare(path, fhash, mask_path, mhash, box, matte, cache_dir):
-    key = hashlib.sha1(repr((PREP_VERSION, fhash, mhash, box, matte, MIN_COVER, MAX_LONG,
-                             W, H)).encode()).hexdigest()[:20]
+def _prepare(path, fhash, mask_path, mhash, box, matte, model, fgb, bgb, cache_dir):
+    key = hashlib.sha1(repr((PREP_VERSION, fhash, mhash, box, matte, bool(model), fgb, bgb,
+                             MIN_COVER, MAX_LONG, W, H)).encode()).hexdigest()[:20]
     stem = os.path.splitext(os.path.basename(path))[0]
     cpath = os.path.join(_cache_dir(cache_dir), f"{stem}-{key}.npz")
     if os.path.exists(cpath):
@@ -470,7 +630,7 @@ def _prepare(path, fhash, mask_path, mhash, box, matte, cache_dir):
             return Prep(get("lum"), get("alpha"), get("fg"), get("plate"))
         except Exception:
             pass
-    prep = _compute_prep(path, mask_path, box, matte)
+    prep = _compute_prep(path, mask_path, box, matte, model, fgb, bgb)
     tmp = f"{cpath}.{os.getpid()}.tmp.npz"
     arrays = {n: getattr(prep, n).astype(np.float16)
               for n in ("lum", "alpha", "fg", "plate") if getattr(prep, n) is not None}
@@ -479,7 +639,7 @@ def _prepare(path, fhash, mask_path, mhash, box, matte, cache_dir):
     return prep
 
 
-def _compute_prep(path, mask_path, box, matte):
+def _compute_prep(path, mask_path, box, matte, model=None, fgb=(), bgb=()):
     rgb = _load_rgb(path)
     oh, ow = rgb.shape[:2]
     lum0 = (rgb.astype(np.float32) @ np.float32([0.299, 0.587, 0.114])) / 255.0
@@ -508,9 +668,14 @@ def _compute_prep(path, mask_path, box, matte):
         # a soft hand-made matte is trusted where it is clearly decided
         a = np.where((m > 0.98) | (m < 0.02), m, a).astype(np.float32)
     else:
-        nbox = _box_px(box, ow, oh)
-        small, _ = _grabcut(rgb, lum0 if s > 1.0 else
-                            cv2.resize(lum, (ow, oh), interpolation=cv2.INTER_AREA), nbox)
+        nbox = _box_px(box, ow, oh) if box is not None else None
+        lum_o = lum0 if s > 1.0 else cv2.resize(lum, (ow, oh), interpolation=cv2.INTER_AREA)
+        prior = None
+        if model:
+            src = rgb if not _is_gray(rgb) else \
+                np.repeat((lum_o * 255 + 0.5).astype(np.uint8)[..., None], 3, 2)
+            prior = person_prob(src, model)
+        small = _grabcut(rgb, lum_o, nbox, prior, fgb, bgb)
         small = _clean_mask(small)
         frac = small.mean()
         if frac < 0.01:
@@ -821,7 +986,8 @@ def _desk(style, seed, k):
 _DEFAULTS = {
     "common": dict(look=None, t0=0.0, fit="cover", ease="gentle"),
     "parallax": dict(zoom=(1.03, 1.10), fg_zoom=0.05, pan=(0.012, -0.004), fg_pan=1.8,
-                     focus=None, dof=2.2, dof_end=None, bg_haze=0.07, fg_shadow=0.0),
+                     focus=None, anchor=None, dof=2.2, dof_end=None, bg_haze=0.07,
+                     fg_shadow=0.0),
     "kenburns": dict(start=(0.5, 0.5, 1.0), end=None),
     "print": dict(caption=None, rot=(-7.0, -2.2), enter="bottom", enter_dur=1.2,
                   push=(1.0, 1.06), size=0.70, offset=(0.0, -0.025), border=0.045,
@@ -844,7 +1010,9 @@ class PhotoShot:
       fg_zoom=0.05        extra relative growth of the subject over the shot
       pan=(0.012,-0.004)  camera drift (fraction of frame) over the shot
       fg_pan=1.8          subject drifts this many times the background
-      focus=None          (fx, fy) normalised aim point; default = subject head
+      focus=None          (fx, fy) normalised camera aim point; default = subject head
+      anchor=None         (fx, fy) point the subject grows about; default = where
+                          the subject meets the ground/frame bottom (no sliding)
       dof=2.2             background blur (px at 1080p); dof_end for a rack focus
       bg_haze=0.07        background contrast reduction (aerial perspective)
       fg_shadow=0.0       soft contact shadow of the subject on the background
@@ -858,7 +1026,7 @@ class PhotoShot:
     """
 
     def __init__(self, path, duration, mode="parallax", mask_path=None, subject_box=None,
-                 **opts):
+                 person="auto", fg_boxes=None, bg_boxes=None, **opts):
         if mode not in ("parallax", "kenburns", "print"):
             raise ValueError(f"unknown mode {mode!r}")
         o = dict(_DEFAULTS["common"])
@@ -868,7 +1036,8 @@ class PhotoShot:
             raise TypeError(f"unknown option(s) for {mode}: {', '.join(sorted(bad))}")
         o.update(opts)
         self.path, self.duration, self.mode = path, float(duration), mode
-        self.mask_path, self.subject_box = mask_path, subject_box
+        self.prep_args = dict(mask_path=mask_path, subject_box=subject_box, person=person,
+                              fg_boxes=fg_boxes, bg_boxes=bg_boxes)
         self.o = o
         self.look = o["look"] or Look()
         self._L = None
@@ -883,8 +1052,9 @@ class PhotoShot:
         return int(round(self.duration * FPS))
 
     def prep(self):
-        return prepare(self.path, self.mask_path, self.subject_box,
-                       matte=self.mode == "parallax")
+        if self.mode == "parallax":
+            return prepare(self.path, matte=True, **self.prep_args)
+        return prepare(self.path, matte=False)
 
     # -- public ---------------------------------------------------------------
     def render(self, t):
@@ -983,6 +1153,8 @@ class PhotoShot:
         L["fga"] = np.dstack([layers["fg"], layers["alpha"]]).astype(np.float32)
         fx, fy = o["focus"] if o["focus"] else prep.anchor()
         L["F"] = (geo["ox"] + fx * geo["pw"], geo["oy"] + fy * geo["ph"])
+        ax, ay = o["anchor"] if o["anchor"] else prep.base()
+        L["A"] = (geo["ox"] + ax * geo["pw"], geo["oy"] + ay * geo["ph"])
         return L
 
     def _frame_parallax(self, t, u, wx, wy):
@@ -1001,12 +1173,15 @@ class PhotoShot:
         if "bg1" in L:
             bg1 = cv2.warpAffine(L["bg1"], Mb, (W, H), flags=flags, borderMode=cv2.BORDER_REFLECT)
             bg += smooth(u) * (bg1 - bg)
+        # subject: same map as the background, plus extra growth about its base
+        # anchor A and extra lateral drift (it is nearer to the camera)
+        Ax, Ay = L["A"]
         rel = 1 + o["fg_zoom"] * u
         sf = sb * rel
         shx = -(o["fg_pan"] - 1) * sb * (cx - c0[0])
         shy = -(o["fg_pan"] - 1) * sb * (cy - c0[1])
-        tx = sb * (Fx - cx) + W / 2 - sf * Fx + shx + wx
-        ty = sb * (Fy - cy) + H / 2 - sf * Fy + shy + wy
+        tx = sb * (Ax - cx) + W / 2 - sf * Ax + shx + wx
+        ty = sb * (Ay - cy) + H / 2 - sf * Ay + shy + wy
         Mf = np.float32([[sf, 0, tx], [0, sf, ty]])
         fga = cv2.warpAffine(L["fga"], Mf, (W, H), flags=flags, borderMode=cv2.BORDER_REPLICATE)
         fg, a = fga[..., 0], fga[..., 1]
@@ -1354,14 +1529,20 @@ def _demo_sources(src):
     return paths
 
 
+# astronaut: fully automatic.  camera: the silver camcorder against a bright sky is
+# ambiguous for any luminance-only matte, so two hint boxes show the fix workflow.
+DEMO_PREP = {"camera": dict(fg_boxes=[(0.505, 0.27, 0.635, 0.36)],
+                            bg_boxes=[(0.66, 0.30, 0.80, 0.47)]),
+             "astronaut": dict()}
+
+
 def _demo_shots(paths):
-    cam_box = (0.0, 0.08, 0.62, 1.0)
     return {
-        "parallax_camera": PhotoShot(paths["camera"], 6.0, "parallax", subject_box=cam_box,
-                                     pan=(0.016, -0.004)),
+        "parallax_camera": PhotoShot(paths["camera"], 6.0, "parallax", pan=(0.016, -0.004),
+                                     **DEMO_PREP["camera"]),
         "parallax_astronaut": PhotoShot(paths["astronaut"], 6.0, "parallax",
-                                        subject_box=(0.10, 0.18, 0.86, 1.0),
-                                        zoom=(1.02, 1.09), pan=(-0.012, 0.0)),
+                                        zoom=(1.02, 1.09), pan=(-0.012, 0.0),
+                                        **DEMO_PREP["astronaut"]),
         "kenburns_camera": PhotoShot(paths["camera"], 6.0, "kenburns",
                                      start=(0.55, 0.55, 1.0), end=(0.38, 0.32, 1.25)),
         "kenburns_contain": PhotoShot(paths["astronaut"], 6.0, "kenburns", fit=0.35,
@@ -1424,9 +1605,9 @@ def demo(out, seconds=6.0, jobs=None, video=True):
     os.makedirs(out, exist_ok=True)
     paths = _demo_sources(os.path.join(out, "src"))
     init_worker()
-    for n, box in (("camera", (0.0, 0.08, 0.62, 1.0)), ("astronaut", (0.10, 0.18, 0.86, 1.0))):
+    for n, kw in DEMO_PREP.items():
         t0 = time.time()
-        p = prepare(paths[n], subject_box=box)
+        p = prepare(paths[n], **kw)
         print(f"prepare({n}): {time.time() - t0:.2f}s  -> {p.size}")
         print("  ", _debug_prep(p, out, n))
     _SHOTS = _demo_shots(paths)
