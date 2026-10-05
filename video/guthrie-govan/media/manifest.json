@@ -1761,6 +1761,58 @@
   "quality_notes": "photographer watermark cropped off; 1600 px"
  },
  {
+  "file": "misc_stock_cheap_classical_guitar.jpg",
+  "category": "misc",
+  "description": "Stock: an old Yamaha G230 nylon-string classical guitar (c.1979) lying on a bed (stand-in for his father's cheap nylon-string guitar)",
+  "year_or_era": "c.1979 guitar",
+  "source_page_url": "https://www.flickr.com/photos/mymartind35/8355215845/",
+  "image_url": "https://live.staticflickr.com/8098/8355215845_964d42cd60_o.jpg",
+  "author_if_known": "Mike Duncan",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2080,
+  "height": 1544,
+  "subject_box": [
+   0,
+   0,
+   2080,
+   1544
+  ],
+  "quality_notes": "2080x1544, homely snapshot"
+ },
+ {
+  "file": "misc_stock_desert_dunes_namibia.jpg",
+  "category": "misc",
+  "description": "Stock: red sand dunes in Namibia at low sun (for the Dune beat - no film stills)",
+  "year_or_era": "2026",
+  "source_page_url": "https://www.flickr.com/photos/56046376@N06/55313373509/",
+  "image_url": "https://live.staticflickr.com/65535/55313373509_8ebc4e89b3_o.jpg",
+  "author_if_known": "Alex Fong",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1462,
+  "subject_box": null,
+  "quality_notes": "7465x4199 original downscaled to 2600; very clean"
+ },
+ {
+  "file": "misc_stock_vintage_turntable_vinyl.jpg",
+  "category": "misc",
+  "description": "Stock: vintage wooden turntable playing a vinyl LP with red label (for \"learning records by ear\")",
+  "year_or_era": "2019",
+  "source_page_url": "https://www.flickr.com/photos/phuongphoto/49240317908/",
+  "image_url": "https://live.staticflickr.com/65535/49240317908_89312b4376_k.jpg",
+  "author_if_known": "Phuong  Nguyen",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2048,
+  "height": 1466,
+  "subject_box": [
+   0,
+   0,
+   2048,
+   1466
+  ],
+  "quality_notes": "2048x1466, warm retro look"
+ },
+ {
   "file": "misc_superb_lyrebird.jpg",
   "category": "misc",
   "description": "Superb lyrebird (Menura novaehollandiae) foraging, showing its lyre-shaped tail - Royal National Park, Australia (for the \"mimic/learns by ear\" metaphor)",
