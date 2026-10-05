@@ -19,7 +19,7 @@ import subprocess
 import sys
 import wave
 from functools import lru_cache
-from multiprocessing import Pool
+import multiprocessing
 
 import numpy as np
 from PIL import Image, ImageDraw
@@ -355,7 +355,9 @@ def encode(out, frames, wav, crf):
                 "-ar", "44100", "-shortest"]
     cmd += ["-movflags", "+faststart", out]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
-    with Pool(os.cpu_count() or 2, initializer=init_worker) as pool:
+    # fork, OpenCV'nin iş parçacıkları açıkken kilitlenir; temiz süreçlerle başla
+    ctx = multiprocessing.get_context("spawn")
+    with ctx.Pool(os.cpu_count() or 2, initializer=init_worker) as pool:
         for k, fr in enumerate(pool.imap(render_frame, frames, chunksize=4)):
             proc.stdin.write(fr)
             if k % 150 == 0:

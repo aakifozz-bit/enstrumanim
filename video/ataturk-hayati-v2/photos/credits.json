@@ -166,7 +166,7 @@
     "author": "Unknown author",
     "date": "1928 (Commons: between 1928 and 1938)",
     "license": "Public domain (PD-US, PD-anon-70-EU)",
-    "description_short": "Omschrijving: Schrifthervormingen. De Turkse leider Ataturk (Atatürk, Mustafa Kemal Pascha, 1881-1938) voerde in 1928 de hervorming door van het schrift in Turkije. Het Arabische schrift werd door het",
+    "description_short": "Alphabet reform: Ataturk explaining the new Turkish (Latin) letters at a blackboard, 1928 (Spaarnestad/Nationaal Archief press print).",
     "subject_box": [
       555,
       305,
@@ -186,7 +186,7 @@
     "author": "Agence de presse Meurisse. Agence photographique (commanditaire)",
     "date": "1930",
     "license": "Public domain (PD-1996, PD-France)",
-    "description_short": "Référence bibliographique : Meurisse, 80563 A Appartient à l’ensemble documentaire : Pho20Meu Image de presse Couverture : 19 novembre 1930 Langue : français Éditeur : diff. par l'Agence Meurisse (Par",
+    "description_short": "Portrait of Mustafa Kemal in suit and tie, press photo by Agence Meurisse (BnF Gallica, Meurisse 80563 A), November 1930.",
     "subject_box": [
       20,
       150,
@@ -197,6 +197,46 @@
     "size": [
       1465,
       1999
+    ]
+  },
+  {
+    "file": "p10_dolmabahce.jpg",
+    "commons_title": "File:Dolmabahçepaleis aan de Bosporus in Istanbul Palais de Dolma Bactché (titel op object), RP-F-F00998-AL.jpg",
+    "page_url": "https://commons.wikimedia.org/wiki/File:Dolmabah%C3%A7epaleis_aan_de_Bosporus_in_Istanbul_Palais_de_Dolma_Bactch%C3%A9_(titel_op_object),_RP-F-F00998-AL.jpg",
+    "author": "Unknown photographer (Rijksmuseum collection, RP-F-F00998-AL)",
+    "date": "ca. 1880 - ca. 1890",
+    "license": "CC0 1.0 (public domain dedication)",
+    "description_short": "Dolmabahce Palace seen from the Bosphorus, albumen print ca. 1880-1890 (Rijksmuseum RP-F-F00998-AL).",
+    "subject_box": [
+      20,
+      375,
+      1975,
+      800
+    ],
+    "notes": "No person: subject_box bounds the palace facade (for parallax foreground). Faded ca.1880-90 albumen print of Dolmabahce from the Bosphorus; boat mid-left, ship rigging rope diagonal lower-right; captions '193' bottom-left and 'Palais de Dolma Baetche' bottom-right - crop ~y 200-1330 for 16:9.",
+    "size": [
+      2000,
+      1542
+    ]
+  },
+  {
+    "file": "p10_dolmabahce_alt1.jpg",
+    "commons_title": "File:Album Constantinople 5.jpg",
+    "page_url": "https://commons.wikimedia.org/wiki/File:Album_Constantinople_5.jpg",
+    "author": "Sebah, Jean Pascal (1872-1947)",
+    "date": "before 1923",
+    "license": "Public domain (PD-old-70-1923, PD-old-70-expired, PD-old-X-expired)",
+    "description_short": "Dolmabahce Palace facade and gardens, photo by Jean Pascal Sebah, before 1923.",
+    "subject_box": [
+      0,
+      440,
+      1525,
+      1180
+    ],
+    "notes": "No person: subject_box bounds the palace building. Sharp, dignified Sebah land view of the facade with garden and gate pillar right; warm sepia; captions bottom-left and 'P. Sebah' bottom-right - crop bottom ~y>1370.",
+    "size": [
+      2000,
+      1501
     ]
   }
 ]

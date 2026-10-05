@@ -37,6 +37,14 @@
   - loudness matched per clip, then one gain for the whole track to reach -16 LUFS
   - true-peak limiter at -1.5 dBFS
 
+## ASR check (faster-whisper large-v3-turbo, on the final processed clips)
+Character error rate is 0.4% (3 edits in 740 characters). Three small issues remain:
+- Line 2: "öğretmeni" was heard as "öğretmeyi".
+- Line 3: "kurmay" was heard as "kurmayı", because the word links into "yüzbaşı".
+- Line 5: "Amasya" was heard as "Ama Asya", which points to a slight break inside the word.
+
+All other lines matched exactly.
+
 ## Wording changes (for timing)
 Lines 2 and 8 did not fit their windows at a natural pace, so their wording was shortened slightly. `text_displayed` follows the spoken wording so that subtitles match the audio.
 - Line 2. The original was "…Matematik öğretmeni ona “Kemal” adını verdi." It now reads "“Kemal” adını matematik öğretmeni verdi." Only "ona" was dropped, and the meaning is the same.
