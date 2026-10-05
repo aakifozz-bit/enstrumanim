@@ -1,6 +1,6 @@
 {
  "voice": "tr-TR-AhmetNeural",
- "total_sec": 290.74,
+ "total_sec": 290.73,
  "segments": {
   "s01_hook": {
    "duration": 15.99,
@@ -36,7 +36,7 @@
    "file": "seg_s03_kulak.wav",
    "target_sec": 20,
    "lufs": -16.0,
-   "peak_dbfs": -2.0
+   "peak_dbfs": -2.1
   },
   "s04_oxford": {
    "duration": 21.53,
@@ -48,7 +48,7 @@
    "file": "seg_s04_oxford.wav",
    "target_sec": 22,
    "lufs": -16.0,
-   "peak_dbfs": -2.3
+   "peak_dbfs": -2.4
   },
   "s05_goty": {
    "duration": 15.4,
@@ -75,16 +75,16 @@
    "peak_dbfs": -1.4
   },
   "s07_asia": {
-   "duration": 16.03,
-   "speech": 15.57,
+   "duration": 15.98,
+   "speech": 15.52,
    "gaps": 0.48,
-   "rate": 1.059,
-   "edge_rate": "+11%",
+   "rate": 1.065,
+   "edge_rate": "+12%",
    "sentences": 4,
    "file": "seg_s07_asia.wav",
    "target_sec": 17,
    "lufs": -16.0,
-   "peak_dbfs": -2.1
+   "peak_dbfs": -2.5
   },
   "s08_erotic": {
    "duration": 19.01,
@@ -99,16 +99,16 @@
    "peak_dbfs": -1.7
   },
   "s09_aristocrats": {
-   "duration": 27.0,
-   "speech": 26.06,
+   "duration": 27.04,
+   "speech": 26.1,
    "gaps": 0.96,
-   "rate": 1.058,
+   "rate": 1.06,
    "edge_rate": "+11%",
    "sentences": 7,
    "file": "seg_s09_aristocrats.wav",
    "target_sec": 28,
    "lufs": -16.0,
-   "peak_dbfs": -2.1
+   "peak_dbfs": -2.0
   },
   "s10_wilson": {
    "duration": 25.08,
@@ -132,7 +132,7 @@
    "file": "seg_s11_zimmer.wav",
    "target_sec": 25,
    "lufs": -16.0,
-   "peak_dbfs": -2.7
+   "peak_dbfs": -2.5
   },
   "s12_stil": {
    "duration": 25.99,

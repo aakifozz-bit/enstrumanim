@@ -444,7 +444,7 @@ def shot_timeline(s, t, dur):
     """Yatay zaman çizelgesi: yıllar sırayla belirir."""
     cv = bg_frame(s["bg"], t, dur, 0.25) if s.get("bg") else dark_bg().copy()
     items = s["items"]
-    x0, x1, y = 200, W - 200, 560
+    x0, x1, y = 330, W - 330, 560
     p = ease_out(t / 1.2)
     comp(cv, rect(int((x1 - x0) * p), 4, MUTED), x0, y)
     n = len(items)
@@ -453,12 +453,15 @@ def shot_timeline(s, t, dur):
         a = smooth((t - 0.3 - k * (min(2.5, dur * 0.6) / n)) / 0.4)
         comp(cv, fade(rect(18, 18, ACCENT), a), x - 9, y - 7)
         up = k % 2 == 0
-        draw_text(cv, yr, "bebas", 76, ACCENT if up else WHITE, x, y - 130 if up else y + 40,
-                  a, "center")
-        for j, ln in enumerate(wrap(label, "mont-m", 28, 300)):
-            draw_text(cv, ln, "mont-m", 28, WHITE, x, (y - 50 if up else y + 125) + 36 * j
-                      - (36 * (len(wrap(label, "mont-m", 28, 300)) - 1) if up else 0), a,
-                      "center")
+        lab = wrap(label, "mont-m", 30, 340)
+        if up:
+            ly = y - 40 - 38 * len(lab)
+            draw_text(cv, yr, "bebas", 76, ACCENT, x, ly - 92, a, "center")
+        else:
+            ly = y + 125
+            draw_text(cv, yr, "bebas", 76, WHITE, x, y + 36, a, "center")
+        for j, ln in enumerate(lab):
+            draw_text(cv, ln, "mont-m", 30, WHITE, x, ly + 38 * j, a, "center")
     if s.get("heading"):
         draw_text(cv, s["heading"], "bebas", 90, WHITE, W / 2, 150, smooth(t / 0.5), "center",
                   tracking=4)
@@ -482,12 +485,13 @@ def shot_chat(s, t, dur):
     """Mesajlaşma: baloncuklar sırayla belirir (gerçek bir uygulama arayüzü değil)."""
     cv = bg_frame(s["bg"], t, dur, 0.22) if s.get("bg") else dark_bg().copy()
     comp(cv, grad(W, H, "radial", 120), 0, 0)
-    msgs = s["messages"]          # [[who, text, right(bool)], ...]
+    msgs = s["messages"]          # [[who, text, right(bool), (isteğe bağlı) zaman], ...]
     n = len(msgs)
     step = max(1.4, (dur - 1.0) / n)
-    y = 150
-    for k, (who, text, right) in enumerate(msgs):
-        t0 = 0.3 + k * step
+    y = 120
+    for k, m in enumerate(msgs):
+        who, text, right = m[:3]
+        t0 = m[3] if len(m) > 3 else 0.3 + k * step
         if t < t0 - 0.9:
             break
         b = _bubble(text, right)
@@ -510,7 +514,7 @@ def shot_chat(s, t, dur):
         bs = b.resize((max(1, int(b.width * (0.9 + 0.1 * p))), max(1, int(b.height * (0.9 + 0.1 * p)))),
                       Image.BICUBIC)
         comp(cv, fade(bs, a), x + (b.width - bs.width if right else 0), y + 36)
-        y += b.height + 80
+        y += b.height + 64
     return cv
 
 
@@ -635,18 +639,19 @@ SHOT_FUNCS = {"photo": shot_photo, "cover": shot_cover, "gear": shot_gear, "quot
 # Üst katmanlar: bölüm başlığı, kinetik yazı, alt yazı
 # --------------------------------------------------------------------------
 
-def chapter_overlay(cv, num, title, t):
+def chapter_overlay(cv, num, title, t, pos="bottom"):
     if t < 0 or t > 3.4:
         return
     a = smooth(t / 0.35) * (1 - smooth((t - 2.9) / 0.5))
-    comp(cv, fade(grad(1200, 420, "left", 200), a), 0, H - 520)
+    y0 = H - 430 if pos == "bottom" else 70
+    comp(cv, fade(grad(1200, 420, "left", 200), a), 0, y0 - 90)
     p = ease_out(t / 0.6)
     x = 110 - (1 - p) * 60
-    draw_text(cv, f"BÖLÜM {num:02d}", "mont-sb", 30, ACCENT, x, H - 430, a, tracking=8)
+    draw_text(cv, f"BÖLÜM {num:02d}", "mont-sb", 30, ACCENT, x, y0, a, tracking=8)
     lw = int(90 * p)
-    comp(cv, fade(rect(max(1, lw), 6, ACCENT), a), x, H - 385)
+    comp(cv, fade(rect(max(1, lw), 6, ACCENT), a), x, y0 + 45)
     for k, ln in enumerate(wrap(title.upper(), "bebas", 112, 1100)):
-        draw_text(cv, ln, "bebas", 112, WHITE, x, H - 360 + 100 * k, a, tracking=3)
+        draw_text(cv, ln, "bebas", 112, WHITE, x, y0 + 70 + 100 * k, a, tracking=3)
 
 
 def kinetic_overlay(cv, text, t, dur=1.6, pos="center"):
@@ -655,7 +660,7 @@ def kinetic_overlay(cv, text, t, dur=1.6, pos="center"):
     a = smooth(t / 0.18) * (1 - smooth((t - dur + 0.3) / 0.3))
     p = ease_back(t / 0.45)
     size = 150 if len(text) < 14 else 110 if len(text) < 22 else 84
-    y = 380 if pos == "center" else 160
+    y = 380 if pos == "center" else 120
     comp(cv, fade(grad(1500, 520, "radial", 170), a), W / 2 - 750, y - 130)
     draw_text(cv, text.upper(), "bebas", size, WHITE, W / 2, y, a, "center", tracking=4,
               scale=0.86 + 0.14 * p)
@@ -691,6 +696,56 @@ def wav_duration(p):
 
 
 @lru_cache(maxsize=1)
+def manifest_boxes():
+    p = mpath("media/manifest.json")
+    if not os.path.exists(p):
+        return {}
+    with open(p, encoding="utf-8") as f:
+        return {"media/" + e["file"]: e.get("subject_box") for e in json.load(f)}
+
+
+def resolve(cands):
+    """Aday listesinden ilk var olan dosya; 'glob:' önekiyle desen de olur."""
+    import glob as _g
+    if isinstance(cands, str):
+        cands = [cands]
+    for c in cands:
+        if c.startswith("glob:"):
+            hits = sorted(_g.glob(mpath(c[5:])))
+            if hits:
+                return os.path.relpath(hits[0], HERE)
+        elif os.path.exists(mpath(c)):
+            return c
+    return None
+
+
+def resolve_shot(s):
+    s = dict(s)
+    if isinstance(s.get("file"), list) and s.get("caption"):
+        if resolve(s["file"][:1]) is None:  # yedek görsel geldiyse künye yanlış olur
+            s.pop("caption")
+    for key in ("file", "bg"):
+        if key in s:
+            r = resolve(s[key])
+            if r is None:
+                if key == "file" and s.get("fallback"):
+                    fb = dict(s["fallback"], d=s.get("d"))
+                    return resolve_shot(fb)
+                if key == "file":
+                    return None
+                s.pop(key)
+            else:
+                s[key] = r
+    if s.get("type") == "grid":
+        s["files"] = [(r, lab) for f_, lab in s["files"] if (r := resolve(f_))]
+    if s.get("type") == "photo" and s.get("mode") == "parallax" and not s.get("box"):
+        s["box"] = manifest_boxes().get(s["file"])
+        if not s["box"]:
+            s["mode"] = "kenburns"
+    return s
+
+
+@lru_cache(maxsize=1)
 def plan():
     """storyboard + anlatım süreleri -> mutlak zamanlı plan."""
     with open(os.environ.get("GG_STORYBOARD") or mpath("storyboard.json"), encoding="utf-8") as f:
@@ -706,21 +761,36 @@ def plan():
         np_ = mpath(f"narration/seg_{seg['id']}.wav")
         nd = wav_duration(np_) if os.path.exists(np_) else seg.get("target_sec", 15) - 1.0
         dur = max(seg.get("min_sec", 0), LEAD + nd + TAIL)
-        weights = [s.get("w", 1.0) for s in seg["shots"]]
-        tot = sum(weights)
+        raw = [resolve_shot(x) for x in seg["shots"]]
+        # eksik çekimin süresini bir öncekine ekle
+        shots_in = []
+        for x, orig in zip(raw, seg["shots"]):
+            if x is None:
+                if shots_in and orig.get("d"):
+                    shots_in[-1]["d"] = (shots_in[-1].get("d") or 0) + orig["d"]
+                continue
+            shots_in.append(x)
+        fixed = sum(x.get("d") or 0 for x in shots_in[:-1])
+        free = [x for x in shots_in if not x.get("d")]
+        if all(x.get("d") for x in shots_in[:-1]):
+            shots_in[-1]["d"] = max(1.5, dur - fixed)
+        else:
+            rest = max(1.5 * len(free), dur - sum(x.get("d") or 0 for x in shots_in))
+            for x in free:
+                x["d"] = rest / len(free)
+        scale = dur / sum(x["d"] for x in shots_in)
         shots, st = [], t
-        for s, wgt in zip(seg["shots"], weights):
-            d = dur * wgt / tot
-            shots.append(dict(s, t0=st, dur=d))
+        for x in shots_in:
+            d = x["d"] * scale
+            shots.append(dict(x, t0=st, dur=d))
             st += d
-        kin = []
-        for kk in seg.get("kinetic", []):
-            kin.append(dict(kk, t0=t + kk.get("at", 1.0)))
-        sub = []
-        for e in subs.get(seg["id"], []):
-            sub.append((t + LEAD + e["start"], t + LEAD + e["end"], e["text"]))
+        kin = [dict(kk, t0=t + kk.get("at", 1.0)) for kk in seg.get("kinetic", [])]
+        sub = [(t + LEAD + e["start"], t + LEAD + e["end"], e["text"]) for e in subs.get(seg["id"], [])]
+        first = shots[0]["type"] if shots else "photo"
+        chap_pos = None if seg.get("no_chapter") or k == 0 else \
+            ("bottom" if first in ("photo", "title", "list") else "top")
         segs.append(dict(seg, t0=t, dur=dur, narr=np_ if os.path.exists(np_) else None,
-                         narr_dur=nd, shots=shots, kin=kin, subs=sub, num=k))
+                         narr_dur=nd, shots=shots, kin=kin, subs=sub, num=k, chap_pos=chap_pos))
         t += dur
     return segs, t
 
@@ -759,14 +829,15 @@ def render(t):
         img = Image.blend(prev, img, smooth(u))
     cv = img if img.mode == "RGBA" else img.convert("RGBA")
     segs, total = plan()
+    no_subs = s["type"] in ("quote", "chat")
     for sg in segs:
         lt = t - sg["t0"]
-        if sg.get("chapter") and sg["num"] > 0 and 0 <= lt <= 3.4:
-            chapter_overlay(cv, sg["num"], sg["chapter"], lt)
+        if sg.get("chapter") and sg["chap_pos"] and 0 <= lt <= 3.4:
+            chapter_overlay(cv, sg["num"], sg["chapter"], lt, sg["chap_pos"])
         for kk in sg["kin"]:
             kinetic_overlay(cv, kk["text"], t - kk["t0"], kk.get("dur", 1.6), kk.get("pos", "center"))
         for s0, s1, txt in sg["subs"]:
-            if s0 - 0.2 <= t <= s1 + 0.3:
+            if not no_subs and s0 - 0.2 <= t <= s1 + 0.3:
                 subtitle_overlay(cv, txt, t - s0, s1 - s0)
     # bölüm geçişlerinde kısa beyaz parlama
     for sg in segs[1:]:

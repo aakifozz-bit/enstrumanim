@@ -62,7 +62,9 @@ PROXY = (os.environ.get("WSS_PROXY") or os.environ.get("HTTPS_PROXY")
 # kontrol edildi; ham hali iyi olanlar (Facebook, McDonald's, Oxford, Charvel, Chuck Berry,
 # Joe Pass, Hendrix, Elvis, Bryan Beller, Hans Zimmer, legato, country, shred, hybrid
 # picking, Seth...) listede yok. Yeni ad eklerken ekin ünlü uyumunu bozmayın
-# ("Zimmer'le" -> "Zimır'le" kötü olurdu). Eşleşme tam kelime/öbek, büyük-küçük harf duyarlı.
+# ("Zimmer'le" -> "Zimır'le" kötü olurdu) ve Türkçe kelimeye benzeyen yazımlardan kaçının
+# ("Aura'da" -> "Ora'da" = "orada", "Bass Bash" -> "Beys Beş" = "beş"; ikisi de ham bırakıldı).
+# Eşleşme tam kelime/öbek, büyük-küçük harf duyarlı.
 PRON = {
     "Guthrie": "Gatri",                 # ham: "Gutiri"
     "Govan": "Gavın",                   # /ˈɡʌvən/
@@ -88,7 +90,6 @@ PRON = {
     "BIMM": "Bim",
     "Creative Guitar": "Kriyeytiv Gitar",
     "Asia": "Eyşa",
-    "Aura": "Ora",
     "John Payne": "Con Peyn",
     "Jay Schellen": "Cey Şelen",
     "GPS": "Ci Pi Es",
@@ -101,7 +102,6 @@ PRON = {
     "The Simpsons": "Dı Simpsıns",
     "Homer": "Homır",
     "NAMM": "Nem",
-    "Bass Bash": "Beys Beş",
     "Greg Howe": "Greg Hau",
     "Duck": "Dak",
     "Porcupine Tree": "Porkyupayn Tri",
@@ -384,7 +384,11 @@ def render(text, rate=1.0, pitch=0, gap=GAP, para_gap=PARA_GAP, respell_names=Tr
             else:  # olmaması gerekir; orantılı tahmin
                 st = sent_t0 + (sent_t1 - sent_t0) * c0 / len(orig)
                 en = sent_t0 + (sent_t1 - sent_t0) * c1 / len(orig)
-            cues.append({"start": st, "end": en, "text": orig[c0:c1]})
+            # edge'in ilk kelime ofseti baştaki sessizliği de kapsar -> cümle sınırlarına kırp
+            st, en = max(st, sent_t0), min(en, sent_t1)
+            if cues and st < cues[-1]["end"]:
+                st = cues[-1]["end"]
+            cues.append({"start": st, "end": max(en, st + 0.2), "text": orig[c0:c1]})
         parts.append(a)
         speech += len(a) / sr
         pos += len(a)

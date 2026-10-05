@@ -38,6 +38,63 @@
   "quality_notes": "candid, indoor office light, 960x1440; good \"human\" moment"
  },
  {
+  "file": "gg_hands_charvel_closeup_02_charvel_promo.jpg",
+  "category": "gg",
+  "description": "Close-up of Govan picking his Charvel signature (hair visible, face cropped), warm stage light (Charvel product-page photo)",
+  "year_or_era": "c. 2017-2020",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Original/10001/highlight_char_2865434700_overview.jpg",
+  "author_if_known": "Charvel (promo)",
+  "license_if_known": "manufacturer promo image",
+  "width": 1000,
+  "height": 700,
+  "subject_box": [
+   0,
+   0,
+   1000,
+   700
+  ],
+  "quality_notes": "1000x700; picking hand + body; no face"
+ },
+ {
+  "file": "gg_hands_charvel_closeup_charvel_promo.jpg",
+  "category": "gg",
+  "description": "Close-up of Govan's hands playing his Charvel signature on stage (Charvel product-page banner photo)",
+  "year_or_era": "c. 2017-2020",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Original/10001/highlight_char_2865434700_footer.jpg",
+  "author_if_known": "Charvel (promo)",
+  "license_if_known": "manufacturer promo image",
+  "width": 1500,
+  "height": 561,
+  "subject_box": [
+   180,
+   40,
+   1500,
+   561
+  ],
+  "quality_notes": "1500x561 banner; face cropped out; good for technique segment"
+ },
+ {
+  "file": "gg_live_2018_purple.jpg",
+  "category": "gg",
+  "description": "Govan playing a Charvel (caramelized ash) with head down, Art of the Shadow Doppelganger T-shirt, purple stage light",
+  "year_or_era": "2018-10-28",
+  "source_page_url": "https://commons.wikimedia.org/wiki/File:Guthrie_Govan_Oasis_2018_(cropped).jpg",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Guthrie_Govan_Oasis_2018_%28cropped%29.jpg",
+  "author_if_known": "Rishishankar2019",
+  "license_if_known": "CC BY-SA 4.0",
+  "width": 800,
+  "height": 1066,
+  "subject_box": [
+   90,
+   30,
+   660,
+   1066
+  ],
+  "quality_notes": "800x1066, heavy purple cast; consider grading/desaturating"
+ },
+ {
   "file": "gg_live_aristocrats_mexicali_2015.jpg",
   "category": "gg",
   "description": "Govan with eyes closed, head tilted back, playing a flame-maple Charvel; The Aristocrats in Mexicali",
@@ -469,6 +526,158 @@
   "height": 2600,
   "subject_box": null,
   "quality_notes": "clean digital square cover"
+ },
+ {
+  "file": "gear_charvel_signature_01_caramelized_ash_front.png",
+  "category": "gear",
+  "description": "Charvel USA Guthrie Govan Signature HSH, Caramelized Ash (model 2865434700) - full front, horizontal, transparent background",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434700_gtr_frt_001_rr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 765,
+  "subject_box": [
+   9,
+   1,
+   2400,
+   757
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_02_caramelized_ash_angle.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature HSH Caramelized Ash - front three-quarter angle, transparent background",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434700_gtr_frtangleleft_001_rr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 736,
+  "subject_box": [
+   9,
+   1,
+   2400,
+   728
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_03_caramelized_ash_back.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature HSH Caramelized Ash - back view (contoured heel, no neck plate), transparent background",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434700_gtr_back_001_rl.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 772,
+  "subject_box": [
+   1,
+   9,
+   2392,
+   772
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_04_caramelized_ash_body_detail.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature Caramelized Ash - body close-up: HSH pickups, locking tremolo, controls",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434700_gtr_frtbdydtl_001_nr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 1602,
+  "subject_box": [
+   1,
+   1,
+   2393,
+   1595
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_05_caramelized_ash_headstock.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature - headstock with Charvel logo, caramelized flame-maple neck",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-caramelized-ash/2865434700",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434700_gtr_hdstckfrt_001_nr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 1473,
+  "subject_box": [
+   1,
+   1,
+   2391,
+   1464
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_06_flame_maple_front.png",
+  "category": "gear",
+  "description": "Charvel USA Guthrie Govan Signature HSH Flame Maple (model 2865434701) - full front, transparent background",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-flame-maple/2865434701",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434701_gtr_frt_001_rr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 764,
+  "subject_box": [
+   8,
+   1,
+   2400,
+   756
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_07_flame_maple_body_detail.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature Flame Maple - body close-up of flame-maple top, HSH pickups, tremolo",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-flame-maple/2865434701",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434701_gtr_frtbdydtl_001_nr.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 1602,
+  "subject_box": [
+   1,
+   1,
+   2393,
+   1595
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
+ },
+ {
+  "file": "gear_charvel_signature_08_flame_maple_back.png",
+  "category": "gear",
+  "description": "Charvel Guthrie Govan Signature Flame Maple - back view, transparent background",
+  "year_or_era": "current model (signature introduced 2014)",
+  "source_page_url": "https://www.charvel.com/gear/series/artist/guthrie-govan-usa-signature-hsh-flame-maple/2865434701",
+  "image_url": "https://www.fmicassets.com/Damroot/Zoom/10001/2865434701_gtr_back_001_rl.png",
+  "author_if_known": "Charvel / Fender Musical Instruments (press/product image)",
+  "license_if_known": "manufacturer product image",
+  "width": 2400,
+  "height": 773,
+  "subject_box": [
+   1,
+   9,
+   2392,
+   773
+  ],
+  "quality_notes": "RGBA cut-out on transparent background, 2400 px wide"
  },
  {
   "file": "misc_steven_wilson_raven_moon_projection_2013.jpg",
