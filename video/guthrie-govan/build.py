@@ -34,6 +34,7 @@ import colorfx as cf  # noqa: E402
 
 W, H, FPS = 1920, 1080, 30
 SR = 44100
+NARR_DIR = os.environ.get("GG_NARR") or os.path.join(HERE, "narration")
 XF = 0.35                 # çekimler arası çapraz geçiş
 LEAD = 0.35               # bölüm başında anlatımdan önceki boşluk
 TAIL = 0.45               # anlatımdan sonra
@@ -777,14 +778,14 @@ def plan():
     with open(os.environ.get("GG_STORYBOARD") or mpath("storyboard.json"), encoding="utf-8") as f:
         sb = json.load(f)
     subs = {}
-    sp = mpath("narration/subs.json")
+    sp = os.path.join(NARR_DIR, "subs.json")
     if os.path.exists(sp):
         with open(sp, encoding="utf-8") as f:
             subs = json.load(f)
     t = 0.0
     segs = []
     for k, seg in enumerate(sb["segments"]):
-        np_ = mpath(f"narration/seg_{seg['id']}.wav")
+        np_ = os.path.join(NARR_DIR, f"seg_{seg['id']}.wav")
         nd = wav_duration(np_) if os.path.exists(np_) else seg.get("target_sec", 15) - 1.0
         dur = max(seg.get("min_sec", 0), LEAD + nd + TAIL)
         raw = [resolve_shot(x) for x in seg["shots"]]
