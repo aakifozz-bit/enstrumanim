@@ -1,0 +1,460 @@
+{
+ "engine": "chatterbox-multilingual",
+ "total_sec": 300.61,
+ "segments": {
+  "s01_hook": {
+   "file": "seg_s01_hook.wav",
+   "duration": 15.99,
+   "target_sec": 17,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s01_hook_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s01_hook_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s01_hook_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s01_hook_03__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s02_cocukluk": {
+   "file": "seg_s02_cocukluk.wav",
+   "duration": 24.54,
+   "target_sec": 24,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s02_cocukluk_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s02_cocukluk_01__s1.wav",
+     "cer": 0.028
+    },
+    {
+     "file": "s02_cocukluk_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s02_cocukluk_03__s0.wav",
+     "cer": 0.015
+    },
+    {
+     "file": "s02_cocukluk_04__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s02_cocukluk_05__s2.wav",
+     "cer": 0.044
+    }
+   ]
+  },
+  "s03_kulak": {
+   "file": "seg_s03_kulak.wav",
+   "duration": 19.75,
+   "target_sec": 20,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s03_kulak_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s03_kulak_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s03_kulak_02__s0.wav",
+     "cer": 0.058
+    },
+    {
+     "file": "s03_kulak_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s03_kulak_04__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s03_kulak_05__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s04_oxford": {
+   "file": "seg_s04_oxford.wav",
+   "duration": 22.99,
+   "target_sec": 22,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.17,
+   "takes": [
+    {
+     "file": "s04_oxford_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s04_oxford_01__s0.wav",
+     "cer": 0.024
+    },
+    {
+     "file": "s04_oxford_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s04_oxford_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s04_oxford_04__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s04_oxford_05__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s05_goty": {
+   "file": "seg_s05_goty.wav",
+   "duration": 15.41,
+   "target_sec": 15,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s05_goty_00__s0.wav",
+     "cer": 0.02
+    },
+    {
+     "file": "s05_goty_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s05_goty_02__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s06_ogretmen": {
+   "file": "seg_s06_ogretmen.wav",
+   "duration": 17.09,
+   "target_sec": 18,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.28,
+   "takes": [
+    {
+     "file": "s06_ogretmen_00__s0.wav",
+     "cer": 0.042
+    },
+    {
+     "file": "s06_ogretmen_01__s0.wav",
+     "cer": 0.06
+    },
+    {
+     "file": "s06_ogretmen_02__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s07_asia": {
+   "file": "seg_s07_asia.wav",
+   "duration": 18.02,
+   "target_sec": 17,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s07_asia_00__s0.wav",
+     "cer": 0.062
+    },
+    {
+     "file": "s07_asia_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s07_asia_02__s1.wav",
+     "cer": 0.133
+    },
+    {
+     "file": "s07_asia_03__s0.wav",
+     "cer": 0.086
+    }
+   ]
+  },
+  "s08_erotic": {
+   "file": "seg_s08_erotic.wav",
+   "duration": 18.94,
+   "target_sec": 20,
+   "tempo": 1.233,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s08_erotic_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s08_erotic_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s08_erotic_02__s0.wav",
+     "cer": 0.016
+    },
+    {
+     "file": "s08_erotic_03__s0.wav",
+     "cer": 0.052
+    }
+   ]
+  },
+  "s09_aristocrats": {
+   "file": "seg_s09_aristocrats.wav",
+   "duration": 28.22,
+   "target_sec": 28,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s09_aristocrats_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_01__s0.wav",
+     "cer": 0.073
+    },
+    {
+     "file": "s09_aristocrats_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_04__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_05__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_06__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s09_aristocrats_07__s0.wav",
+     "cer": 0.037
+    }
+   ]
+  },
+  "s10_wilson": {
+   "file": "seg_s10_wilson.wav",
+   "duration": 26.1,
+   "target_sec": 26,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s10_wilson_00__s0.wav",
+     "cer": 0.061
+    },
+    {
+     "file": "s10_wilson_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s10_wilson_02__s0.wav",
+     "cer": 0.017
+    },
+    {
+     "file": "s10_wilson_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s10_wilson_04__s0.wav",
+     "cer": 0.017
+    },
+    {
+     "file": "s10_wilson_05__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s10_wilson_06__s0.wav",
+     "cer": 0.036
+    },
+    {
+     "file": "s10_wilson_07__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s11_zimmer": {
+   "file": "seg_s11_zimmer.wav",
+   "duration": 26.66,
+   "target_sec": 25,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s11_zimmer_00__s1.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_04__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_05__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_06__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_07__s1.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s11_zimmer_08__s1.wav",
+     "cer": 0.023
+    }
+   ]
+  },
+  "s12_stil": {
+   "file": "seg_s12_stil.wav",
+   "duration": 25.95,
+   "target_sec": 27,
+   "tempo": 1.28,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s12_stil_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s12_stil_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s12_stil_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s12_stil_03__s0.wav",
+     "cer": 0.043
+    },
+    {
+     "file": "s12_stil_04__s0.wav",
+     "cer": 0.067
+    },
+    {
+     "file": "s12_stil_05__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  },
+  "s13_ekipman": {
+   "file": "seg_s13_ekipman.wav",
+   "duration": 11.96,
+   "target_sec": 12,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.12,
+   "takes": [
+    {
+     "file": "s13_ekipman_00__s0.wav",
+     "cer": 0.03
+    },
+    {
+     "file": "s13_ekipman_01__s0.wav",
+     "cer": 0.034
+    }
+   ]
+  },
+  "s14_miras": {
+   "file": "seg_s14_miras.wav",
+   "duration": 15.05,
+   "target_sec": 15,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s14_miras_00__s0.wav",
+     "cer": 0.047
+    },
+    {
+     "file": "s14_miras_01__s0.wav",
+     "cer": 0.037
+    }
+   ]
+  },
+  "s15_kapanis": {
+   "file": "seg_s15_kapanis.wav",
+   "duration": 13.97,
+   "target_sec": 14,
+   "tempo": 1.3,
+   "lufs": -16.0,
+   "peak_dbfs": -1.05,
+   "takes": [
+    {
+     "file": "s15_kapanis_00__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s15_kapanis_01__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s15_kapanis_02__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s15_kapanis_03__s0.wav",
+     "cer": 0.0
+    },
+    {
+     "file": "s15_kapanis_04__s0.wav",
+     "cer": 0.0
+    }
+   ]
+  }
+ }
+}
