@@ -145,9 +145,30 @@ def draw_text(cv, text, face, size, color, x, y, alpha=1.0, align="left", tracki
     return tw
 
 
+def tr_lower(s):
+    return s.replace("İ", "i").replace("I", "ı").lower()
+
+
+FOREIGN = {"zimmer", "wilson", "minnemann", "dizzee", "elvis", "hendrix", "guthrie", "slippery",
+           "thing", "drive", "live", "aristocrats", "simpsons", "interactive", "creative",
+           "techniques", "sing", "richie", "riley", "bimm", "mike", "rascal", "kotzen", "in",
+           "squarepusher", "british", "williams", "caballeros", "boing", "freeze", "primuz",
+           "window", "jazzmaster", "vienne", "fractal", "anaheim", "rockhal"}
+
+
 def tr_upper(s):
-    """Türkçe büyük harf: i→İ, ı→I."""
-    return s.replace("i", "İ").replace("ı", "I").upper()
+    """Türkçe büyük harf (i→İ, ı→I); yabancı adlar İngilizce kuralla (Zimmer → ZIMMER)."""
+    def up(w):
+        return w.replace("i", "İ").replace("ı", "I").upper()
+    out = []
+    for tok in s.split(" "):
+        base, apo, suf = tok.partition("'") if "'" in tok else tok.partition("’")
+        core = base.strip("“”\"!?.,:;()·–-")
+        if core.lower() in FOREIGN:
+            out.append(base.upper() + apo + up(suf))
+        else:
+            out.append(up(base) + apo + up(suf))
+    return " ".join(out)
 
 
 def wrap(text, face, size, max_w):
@@ -784,13 +805,41 @@ def plan():
             for x in free:
                 x["d"] = rest / len(free)
         scale = dur / sum(x["d"] for x in shots_in)
-        shots, st = [], t
+        seg_subs = subs.get(seg["id"], [])
+
+        def cue_time(c):
+            """Anlatımda geçen ifadenin (alt yazıda) başlangıç zamanı, bölüm içinde."""
+            if not c:
+                return None
+            c = tr_lower(c)
+            for e in seg_subs:
+                txt = tr_lower(e["text"])
+                if c in txt:
+                    # ifadenin satır içindeki konumuna göre orantılı kaydır
+                    frac = txt.index(c) / max(1, len(txt))
+                    return LEAD + e["start"] + frac * (e["end"] - e["start"])
+            return None
+
+        starts, st = [], 0.0
         for x in shots_in:
-            d = x["d"] * scale
-            shots.append(dict(x, t0=st, dur=d))
-            st += d
-        kin = [dict(kk, t0=t + kk.get("at", 1.0)) for kk in seg.get("kinetic", [])]
-        sub = [(t + LEAD + e["start"], t + LEAD + e["end"], e["text"]) for e in subs.get(seg["id"], [])]
+            starts.append(st)
+            st += x["d"] * scale
+        for i, x in enumerate(shots_in):
+            ct = cue_time(x.get("cue"))
+            if i > 0 and ct is not None:
+                starts[i] = ct - 0.15
+        for i in range(1, len(starts)):  # sıralı ve en az 1.2 sn
+            starts[i] = min(max(starts[i], starts[i - 1] + 1.2), dur - 1.2 * (len(starts) - i))
+        shots = []
+        for i, x in enumerate(shots_in):
+            end = starts[i + 1] if i + 1 < len(starts) else dur
+            shots.append(dict(x, t0=t + starts[i], dur=end - starts[i]))
+        kin = []
+        for kk in seg.get("kinetic", []):
+            ct = cue_time(kk.get("cue"))
+            at = (ct + kk.get("offset", 0.0)) if ct is not None else kk.get("at", 1.0)
+            kin.append(dict(kk, t0=t + at))
+        sub = [(t + LEAD + e["start"], t + LEAD + e["end"], e["text"]) for e in seg_subs]
         first = shots[0]["type"] if shots else "photo"
         chap_pos = None if seg.get("no_chapter") or k == 0 else \
             ("bottom" if first in ("photo", "title", "list") else "top")

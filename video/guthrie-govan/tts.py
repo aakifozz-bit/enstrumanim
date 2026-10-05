@@ -440,7 +440,8 @@ def synth(text, out_wav, rate=1.0, pitch=0, gap=GAP, para_gap=PARA_GAP, respell_
 
 
 # --- senaryo modu ---------------------------------------------------------------
-def synth_script(script_json, outdir, lufs=-16.0, pad_sec=1.0, min_rate=0.92, max_rate=1.12, workers=3):
+def synth_script(script_json, outdir, lufs=-16.0, pad_sec=1.0, min_rate=0.92, max_rate=1.12, workers=3,
+                 voice=VOICE, pitch=0, respell_names=True, base_rate=1.0):
     """script.json'daki her segmenti narration/seg_<id>.wav olarak üretir; süreyi target_sec - pad_sec'e
     yaklaştırmak için hızı segment başına hafifçe ayarlar. subs.json ve narration.json yazar."""
     segs = json.load(open(script_json, encoding="utf-8"))
@@ -450,15 +451,16 @@ def synth_script(script_json, outdir, lufs=-16.0, pad_sec=1.0, min_rate=0.92, ma
 
     def one(seg):
         target = float(seg["target_sec"]) - pad_sec
-        rate, tries = 1.0, []
+        rate, tries = base_rate, []
         for _ in range(3):
-            y, cues, info = render(seg["narration_tr"], rate=rate, lufs=lufs, conc=3)
+            y, cues, info = render(seg["narration_tr"], rate=rate, pitch=pitch, lufs=lufs, conc=3,
+                                   voice=voice, respell_names=respell_names)
             tries.append((abs(info["duration"] - target), rate, y, cues, info))
             err = info["duration"] - target
             if -0.6 <= err <= 0.3:
                 break
             new = rate * info["speech"] / max(1.0, target - info["gaps"])
-            new = min(max_rate, max(min_rate, new))
+            new = min(max_rate * base_rate, max(min_rate * base_rate, new))
             if abs(new - rate) < 0.005:
                 break
             rate = round(new, 3)
@@ -479,7 +481,7 @@ def synth_script(script_json, outdir, lufs=-16.0, pad_sec=1.0, min_rate=0.92, ma
     with open(os.path.join(outdir, "subs.json"), "w", encoding="utf-8") as f:
         json.dump(subs, f, ensure_ascii=False, indent=1)
     with open(os.path.join(outdir, "narration.json"), "w", encoding="utf-8") as f:
-        json.dump({"voice": VOICE, "total_sec": round(sum(m["duration"] for m in meta.values()), 2),
+        json.dump({"voice": voice, "pitch": pitch, "total_sec": round(sum(m["duration"] for m in meta.values()), 2),
                    "segments": meta}, f, ensure_ascii=False, indent=1)
     return meta
 
@@ -499,7 +501,8 @@ def main():
     ap.add_argument("--outdir", default="narration")
     a = ap.parse_args()
     if a.script:
-        meta = synth_script(a.script, a.outdir, lufs=-16.0 if a.lufs is None else a.lufs)
+        meta = synth_script(a.script, a.outdir, lufs=-16.0 if a.lufs is None else a.lufs,
+                            voice=a.voice, pitch=a.pitch, respell_names=not a.raw, base_rate=a.rate)
         print(f"toplam {sum(m['duration'] for m in meta.values()):.2f} s")
         return 0
     if not (a.text and a.out):

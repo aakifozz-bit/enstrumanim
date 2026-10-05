@@ -228,6 +228,25 @@
   "quality_notes": "good for \"technique\" segment; face partly hidden by hair"
  },
  {
+  "file": "gg_live_hans_zimmer_2017_vienne_closeup.jpg",
+  "category": "gg",
+  "description": "Govan playing with the Hans Zimmer Live band at the Theatre antique de Vienne, France (crop of the wide amphitheatre photo); backlit curly hair, stairs/stone walls behind",
+  "year_or_era": "2017-06-23 (Hans Zimmer Live)",
+  "source_page_url": "https://www.flickr.com/photos/farmatronic/36655899054/",
+  "image_url": "https://live.staticflickr.com/4389/36655899054_5dfe223aab_o.jpg",
+  "author_if_known": "Andy Page",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1452,
+  "height": 1800,
+  "subject_box": [
+   80,
+   350,
+   950,
+   1800
+  ],
+  "quality_notes": "crop from 7952 px original, 1452x1800, sharp"
+ },
+ {
   "file": "gg_live_pink_quilt_guitar.jpg",
   "category": "gg",
   "description": "Govan playing a pink/red quilted-top superstrat under green/blue light, face in shadow",
@@ -608,6 +627,25 @@
   "quality_notes": "1500x1001, sunny, sharp; Govan box approx [1000,180,1360,1001]"
  },
  {
+  "file": "people_asia_geoff_downes_2012.jpg",
+  "category": "people",
+  "description": "Geoff Downes (Asia keyboardist) at his keyboard rig, Asia concert in Quebec City",
+  "year_or_era": "2012-10-11",
+  "source_page_url": "https://www.flickr.com/photos/daniel_levesque/8101493576/",
+  "image_url": "https://live.staticflickr.com/8474/8101493576_825c572c66_o.jpg",
+  "author_if_known": "Daniel Lévesque",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1779,
+  "subject_box": [
+   1127,
+   0,
+   2600,
+   1779
+  ],
+  "quality_notes": "3462x2369 downscaled; sharp"
+ },
+ {
   "file": "people_asia_john_payne_2005_haarlem.jpg",
   "category": "people",
   "description": "John Payne (Asia singer/bassist) live with Asia at the Patronaat, Haarlem - same 2005 tour on which Govan played guitar with Asia",
@@ -667,7 +705,7 @@
  {
   "file": "people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
   "category": "people",
-  "description": "Hans Zimmer singing at the mic (left) with his band; Govan (centre-right, long hair, superstrat) and other musicians - Ericsson Globe Arena, Stockholm",
+  "description": "Hans Zimmer singing at the mic (left) with his band; Govan (centre-right, long curly hair) playing a headless multi-string (8-string, Strandberg-style) guitar - Ericsson Globe Arena, Stockholm",
   "year_or_era": "2017-05-18 (Hans Zimmer Live on Tour)",
   "source_page_url": "https://www.flickr.com/photos/ola_strandberg/33941671393/",
   "image_url": "https://live.staticflickr.com/4187/33941671393_db0bbda9a1_k.jpg",
@@ -681,7 +719,7 @@
    1600,
    1100
   ],
-  "quality_notes": "2048x1369; Govan box approx [1240,520,1580,1100]; identity of guitarist inferred from appearance + Flickr search hit (not captioned)"
+  "quality_notes": "2048x1369; Govan box approx [1240,520,1580,1100]; Govan identified visually (profile/hair) - not captioned by photographer"
  },
  {
   "file": "people_hans_zimmer_live_2017_vienne_govan.jpg",
@@ -1078,6 +1116,90 @@
   "quality_notes": "620x870, readable; Govan with Suhr-style sunburst guitar"
  },
  {
+  "file": "cover_magazine_guitar_techniques_208_2012.jpg",
+  "category": "cover",
+  "description": "Magazine cover: Guitar Techniques issue 208 (September 2012) - Stevie Ray Vaughan main cover, with a large \"Guthrie Govan\" CD-feature panel (photo of Govan with Suhr, \"30 great pick and finger ideas from the Master\")",
+  "year_or_era": "2012-09",
+  "source_page_url": "https://www.flickr.com/photos/caltron/7751851704/",
+  "image_url": "https://live.staticflickr.com/8290/7751851704_b2299679eb_o.jpg",
+  "author_if_known": "Carlton Hibbert",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1839,
+  "height": 2600,
+  "subject_box": null,
+  "quality_notes": "1861x2631 print-resolution cover (downscaled to 2600 tall); Govan panel at lower half ~[0,1500,1000,2631] in original px"
+ },
+ {
+  "file": "cover_magazine_guitar_techniques_211_ipad_2012.jpg",
+  "category": "cover",
+  "description": "Magazine cover: Guitar Techniques issue 211 iPad edition (late 2012) - \"Learn to Improvise\" with a \"Guthrie Govan\" cover line",
+  "year_or_era": "2012-11",
+  "source_page_url": "https://www.flickr.com/photos/caltron/8173017859/",
+  "image_url": "https://live.staticflickr.com/8066/8173017859_40d0d23476_h.jpg",
+  "author_if_known": "Carlton Hibbert",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1000,
+  "height": 1417,
+  "subject_box": null,
+  "quality_notes": "1000x1417; Govan only as cover text"
+ },
+ {
+  "file": "cover_sleeve_beatles_please_please_me.jpg",
+  "category": "cover",
+  "description": "Record sleeve: The Beatles - Please Please Me (for the \"family record collection\" collage)",
+  "year_or_era": "1963",
+  "source_page_url": "https://music.apple.com (iTunes Search API)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9c/ff/b5/9cffb5a6-a37f-c84a-7240-0333a071bc92/00602567725275.rgb.jpg/1400x1400bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 1400,
+  "height": 1400,
+  "subject_box": null,
+  "quality_notes": "clean digital cover ~1400px"
+ },
+ {
+  "file": "cover_sleeve_cream_disraeli_gears.jpg",
+  "category": "cover",
+  "description": "Record sleeve: Cream - Disraeli Gears",
+  "year_or_era": "1967",
+  "source_page_url": "https://music.apple.com (iTunes Search API)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/9f/3f/da/9f3fdaab-98af-bec1-633c-212a2705ccf3/00602537802913.rgb.jpg/1400x1400bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 1389,
+  "height": 1400,
+  "subject_box": null,
+  "quality_notes": "clean digital cover ~1400px"
+ },
+ {
+  "file": "cover_sleeve_hendrix_are_you_experienced.jpg",
+  "category": "cover",
+  "description": "Record sleeve: The Jimi Hendrix Experience - Are You Experienced (US cover)",
+  "year_or_era": "1967",
+  "source_page_url": "https://music.apple.com (iTunes Search API)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/00/67/45/006745f5-95d5-5a06-35ed-d515e9cfd7d8/dj.tbwlxwoh.jpg/1400x1400bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 1400,
+  "height": 1400,
+  "subject_box": null,
+  "quality_notes": "clean digital cover ~1400px"
+ },
+ {
+  "file": "cover_sleeve_joe_pass_virtuoso.jpg",
+  "category": "cover",
+  "description": "Record sleeve: Joe Pass - Virtuoso (Pablo; the jazz record Govan learned from)",
+  "year_or_era": "1973",
+  "source_page_url": "https://music.apple.com (iTunes Search API)",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a8/8e/24/a88e2462-6fa8-8a66-5120-839893c4afbe/24CRGIM45645.rgb.jpg/1400x1400bb.jpg",
+  "author_if_known": null,
+  "license_if_known": "copyrighted album artwork",
+  "width": 1400,
+  "height": 1400,
+  "subject_box": null,
+  "quality_notes": "clean digital cover ~1400px"
+ },
+ {
   "file": "cover_steven_wilson_drive_home.jpg",
   "category": "cover",
   "description": "Steven Wilson - Drive Home EP (title track features Govan solo)",
@@ -1381,6 +1503,39 @@
   "quality_notes": "1200x800 transparent PNG"
  },
  {
+  "file": "gear_vigier_excalibur_surfreter_fretless.jpg",
+  "category": "gear",
+  "description": "Vigier Excalibur Surfreter fretless guitar (sunburst, HSH, metal fretless fingerboard) - type of fretless Govan used for his Zimmer-impressing fretless jam (verify exact model in script)",
+  "year_or_era": "current model",
+  "source_page_url": "https://www.vigierguitars.com/",
+  "image_url": "https://www.vigierguitars.com/wp-content/uploads/2020/04/vigier_surfreter_at.jpg",
+  "author_if_known": "Vigier Guitars (promo image)",
+  "license_if_known": "manufacturer promo image",
+  "width": 1200,
+  "height": 600,
+  "subject_box": [
+   320,
+   0,
+   930,
+   600
+  ],
+  "quality_notes": "1200x600 banner, shallow depth of field, orange amps behind"
+ },
+ {
+  "file": "place_boulder_theatre_steven_wilson_2013_marquee.jpg",
+  "category": "place",
+  "description": "Boulder Theatre (Colorado) marquee reading \"Steven Wilson\" on the 2013 Raven tour, on which Govan played",
+  "year_or_era": "2013-05-06",
+  "source_page_url": "https://www.flickr.com/photos/39075416@N03/8717853574/",
+  "image_url": "https://live.staticflickr.com/7401/8717853574_fd43872e6f_b.jpg",
+  "author_if_known": "Jester Jay Goldman",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1024,
+  "height": 768,
+  "subject_box": null,
+  "quality_notes": "CC BY-SA 2.0 (Jester Jay Goldman); 1024x768 (also on Commons as Steven_Wilson_at_Boulder_Theatre_2013_1.jpg)"
+ },
+ {
   "file": "place_chelmsford_high_street_01.jpg",
   "category": "place",
   "description": "Chelmsford High Street, Essex (Govan's birthplace) - pedestrianised shopping street on a sunny day",
@@ -1421,6 +1576,34 @@
   "height": 1536,
   "subject_box": null,
   "quality_notes": "2048x1536"
+ },
+ {
+  "file": "place_chelmsford_king_edward_vi_school_postcard.jpg",
+  "category": "place",
+  "description": "Vintage postcard \"King Edward VI School, Chelmsford\" (Fred Spalding photo) - Govan's school",
+  "year_or_era": "early 20th century",
+  "source_page_url": "https://www.flickr.com/photos/147645911@N08/50606573328/",
+  "image_url": "https://live.staticflickr.com/65535/50606573328_59994db062_h.jpg",
+  "author_if_known": "Mark Crombie",
+  "license_if_known": "Public Domain Mark",
+  "width": 1551,
+  "height": 976,
+  "subject_box": null,
+  "quality_notes": "1551x976 B&W postcard scan; public domain (Flickr PDM, also on Commons)"
+ },
+ {
+  "file": "place_eastwest_studios_studio2_live_room.jpg",
+  "category": "place",
+  "description": "EastWest Studios, Hollywood - Studio 2 live room (wood panels, empty floor); where Steven Wilson recorded The Raven That Refused to Sing",
+  "year_or_era": "2013-01-24",
+  "source_page_url": "https://www.flickr.com/photos/brendan_dekora/8425972132/",
+  "image_url": "https://live.staticflickr.com/8219/8425972132_6313de8b26_b.jpg",
+  "author_if_known": "Brendan Dekora",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1024,
+  "height": 681,
+  "subject_box": null,
+  "quality_notes": "1024x681; photographer asks for licensing - private use only"
  },
  {
   "file": "place_hans_zimmer_live_arena_2023.jpg",
@@ -1521,6 +1704,44 @@
   "quality_notes": "1350x1800 poster"
  },
  {
+  "file": "misc_bagpiper_royal_mile_edinburgh.jpg",
+  "category": "misc",
+  "description": "Scottish bagpiper in full Highland dress playing on the Royal Mile, Edinburgh (for the bagpipe-to-guitar morph in the Zimmer segment)",
+  "year_or_era": "2018-09-08",
+  "source_page_url": "https://www.flickr.com/photos/piersmathias/43831774904/",
+  "image_url": "https://live.staticflickr.com/1867/43831774904_b1175af543_5k.jpg",
+  "author_if_known": "p.mathias",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1857,
+  "height": 2600,
+  "subject_box": [
+   609,
+   152,
+   1777,
+   2539
+  ],
+  "quality_notes": "3657x5120 downscaled to 2600 tall; very sharp, portrait orientation"
+ },
+ {
+  "file": "misc_steven_wilson_2013_boulder_raven_screen.jpg",
+  "category": "misc",
+  "description": "Steven Wilson concert, Boulder Theatre 2013: the Raven moon-face film on the screen over the band, audience silhouettes",
+  "year_or_era": "2013-05-06",
+  "source_page_url": "https://www.flickr.com/photos/39075416@N03/8716734177/",
+  "image_url": "https://live.staticflickr.com/7297/8716734177_8d290ff1e3_b.jpg",
+  "author_if_known": "Jester Jay Goldman",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1024,
+  "height": 768,
+  "subject_box": [
+   500,
+   250,
+   1000,
+   600
+  ],
+  "quality_notes": "CC BY-SA 2.0 (Jester Jay Goldman); 1024x768, dark/grainy"
+ },
+ {
   "file": "misc_steven_wilson_raven_moon_projection_2013.jpg",
   "category": "misc",
   "description": "Steven Wilson concert stage with the giant Raven moon-face projection (Teatro Bradesco, Sao Paulo)",
@@ -1538,5 +1759,24 @@
    900
   ],
   "quality_notes": "photographer watermark cropped off; 1600 px"
+ },
+ {
+  "file": "misc_superb_lyrebird.jpg",
+  "category": "misc",
+  "description": "Superb lyrebird (Menura novaehollandiae) foraging, showing its lyre-shaped tail - Royal National Park, Australia (for the \"mimic/learns by ear\" metaphor)",
+  "year_or_era": "2016-11-28",
+  "source_page_url": "https://www.flickr.com/photos/smorsebirds/30822621823/",
+  "image_url": "https://live.staticflickr.com/396/30822621823_abc4a51a7a_4k.jpg",
+  "author_if_known": "smorsebirds",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1377,
+  "subject_box": [
+   114,
+   286,
+   2349,
+   1206
+  ],
+  "quality_notes": "4095x2168 downscaled; sharp"
  }
 ]
