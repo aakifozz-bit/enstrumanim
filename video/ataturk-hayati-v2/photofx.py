@@ -720,7 +720,8 @@ def _grain_tiles(seed=11):
         coarse = _wrap_blur(rng.standard_normal((GRAIN_T, GRAIN_T)).astype(np.float32), 1.5)
         g = fine / fine.std() * 0.8 + coarse / coarse.std() * 0.45
         g = np.clip(g / g.std() * _I8, -127, 127).astype(np.int8)
-        out.append(np.tile(g, (2, 3))[:GRAIN_T + H, :GRAIN_T + W].copy())
+        reps = (-(-(GRAIN_T + H) // GRAIN_T), -(-(GRAIN_T + W) // GRAIN_T))
+        out.append(np.tile(g, reps)[:GRAIN_T + H, :GRAIN_T + W].copy())
     return out
 
 
