@@ -38,6 +38,25 @@
   "quality_notes": "candid, indoor office light, 960x1440; good \"human\" moment"
  },
  {
+  "file": "gg_clinic_2017_rockhal_talking.jpg",
+  "category": "gg",
+  "description": "Govan mid-explanation at his guitar clinic, gesturing with both hands, Charvel flame-maple signature, \"That would be an ecumenical matter\" T-shirt; Rockhal, Belval (Luxembourg)",
+  "year_or_era": "2017-11-28 (clinic)",
+  "source_page_url": "https://www.flickr.com/photos/pitschspics/37841357675/",
+  "image_url": "https://live.staticflickr.com/4515/37841357675_d339cfe48d_h.jpg",
+  "author_if_known": "Claude",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1500,
+  "height": 945,
+  "subject_box": [
+   130,
+   40,
+   1260,
+   945
+  ],
+  "quality_notes": "watermark cropped off; 1500x945; perfect for teacher segment"
+ },
+ {
   "file": "gg_clinic_victory_amps_stage.jpg",
   "category": "gg",
   "description": "Govan performing solo at a small venue/clinic with red Charvel and two Victory V30 heads on stage (image captioned \"Guthrie Govan V30 Jack\" on Victory's site)",
@@ -112,6 +131,25 @@
    1066
   ],
   "quality_notes": "800x1066, heavy purple cast; consider grading/desaturating"
+ },
+ {
+  "file": "gg_live_aristocrats_2012_suhr.jpg",
+  "category": "gg",
+  "description": "Govan playing a sunburst Suhr guitar on The Aristocrats U.S. tour, Freak Guitar Camp T-shirt, club stage (same photo as Commons \"Guthrie Govan.jpg\")",
+  "year_or_era": "2012-01-29 (Aristocrats first US tour)",
+  "source_page_url": "https://www.flickr.com/photos/art-sarah/6818370305/",
+  "image_url": "https://live.staticflickr.com/7144/6818370305_30c4a9ce76_o.jpg",
+  "author_if_known": "ArtBrom",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1950,
+  "height": 2600,
+  "subject_box": [
+   183,
+   143,
+   1950,
+   2600
+  ],
+  "quality_notes": "CC BY-SA, ArtBrom; phone-camera quality but 2448x3264; also on Commons as File:Guthrie_Govan.jpg"
  },
  {
   "file": "gg_live_aristocrats_mexicali_2015.jpg",
@@ -247,6 +285,25 @@
   "quality_notes": "very sharp 3262x3264, warm stage light; strong hero shot"
  },
  {
+  "file": "gg_live_smiling_suhr_2013_peel.jpg",
+  "category": "gg",
+  "description": "Govan smiling while playing a sunburst Suhr, Wild West T-shirt, bright cyan background; The Aristocrats at The Peel (Kingston, UK)",
+  "year_or_era": "2013-09",
+  "source_page_url": "https://www.flickr.com/photos/101383383@N05/9698093031/",
+  "image_url": "https://live.staticflickr.com/5541/9698093031_11ee1ea44d_k.jpg",
+  "author_if_known": "Jon King",
+  "license_if_known": "CC BY-NC 2.0",
+  "width": 1931,
+  "height": 1288,
+  "subject_box": [
+   150,
+   30,
+   1600,
+   1288
+  ],
+  "quality_notes": "sharp 1931x1288; CC BY-NC (Jon King); lovely happy shot"
+ },
+ {
   "file": "gg_live_steven_wilson_2013_duo.jpg",
   "category": "gg",
   "description": "Steven Wilson (left, PRS) and Guthrie Govan (right) playing side by side on the Raven tour; blue stage light",
@@ -264,6 +321,25 @@
    2018
   ],
   "quality_notes": "Govan box given; Wilson at x~550-1800. 3737x2985 downscaled"
+ },
+ {
+  "file": "gg_portrait_bw_microphone_2017.jpg",
+  "category": "gg",
+  "description": "Black-and-white head-on portrait of Govan behind a microphone, huge curly grey-blond hair; solo show at Teatro Stabile, Isola del Liri, Italy",
+  "year_or_era": "2017-12-06",
+  "source_page_url": "https://www.flickr.com/photos/abulafiafoto/38506088215/",
+  "image_url": "https://live.staticflickr.com/4634/38506088215_f972e5c554_k.jpg",
+  "author_if_known": "Federico Tomasello",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1520,
+  "height": 1638,
+  "subject_box": [
+   80,
+   0,
+   1440,
+   1600
+  ],
+  "quality_notes": "photographer logo cropped off; 1520x1638; mic partly covers mouth"
  },
  {
   "file": "gg_portrait_closeup_2012_vladivostok.jpg",
@@ -302,6 +378,44 @@
    500
   ],
   "quality_notes": "banner, cropped to remove grey vignette at left; 1020x500"
+ },
+ {
+  "file": "gg_young_magazine_photo_uncertain.jpg",
+  "category": "gg",
+  "description": "UNCERTAIN: phone photo of a printed magazine page showing a young long-haired guitarist sitting on a street kerb with a superstrat; Flickr title \"guthrie-govan\" (description: \"Guitarristas chatos\") - possibly 1990s Govan, NOT verified",
+  "year_or_era": "1990s? (unverified)",
+  "source_page_url": "https://www.flickr.com/photos/185729043@N07/49133570416/",
+  "image_url": "https://live.staticflickr.com/65535/49133570416_b43cf0fece_o.jpg",
+  "author_if_known": "Queso Verde",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1950,
+  "subject_box": [
+   325,
+   162,
+   1625,
+   1950
+  ],
+  "quality_notes": "4000x3000 photo of a page (paper curve, glare); identity not confirmed - use only if you can verify"
+ },
+ {
+  "file": "people_aristocrats_live_2012_govan_beller.jpg",
+  "category": "people",
+  "description": "The Aristocrats live in a club: Govan (left foreground, sunburst guitar) and Bryan Beller (right, bass) (same as Commons Aristocrats 2012 set)",
+  "year_or_era": "2012-01-29",
+  "source_page_url": "https://www.flickr.com/photos/art-sarah/6818370817/",
+  "image_url": "https://live.staticflickr.com/7001/6818370817_791e1c3b99_o.jpg",
+  "author_if_known": "ArtBrom",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1950,
+  "height": 2600,
+  "subject_box": [
+   119,
+   319,
+   1950,
+   2390
+  ],
+  "quality_notes": "CC BY-SA, ArtBrom; Govan seen from side/back, face hidden by hair"
  },
  {
   "file": "people_aristocrats_live_3panel.jpg",
@@ -378,6 +492,44 @@
    1181
   ],
   "quality_notes": "1795x1181 high-contrast B&W; Govan box approx [1180,330,1795,1181]"
+ },
+ {
+  "file": "people_aristocrats_trio_stage_2023.jpg",
+  "category": "people",
+  "description": "The Aristocrats on stage, wide shot with blue curtain: Govan (left, hair flying), Minnemann (DW drum kit, centre), Beller (right, red bass)",
+  "year_or_era": "2023-11-14 (You Know What/Duck era)",
+  "source_page_url": "https://www.flickr.com/photos/samarrakaton/53989488801/",
+  "image_url": "https://live.staticflickr.com/65535/53989488801_922a93b40d_k.jpg",
+  "author_if_known": "Samarrakaton",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2047,
+  "height": 1224,
+  "subject_box": [
+   100,
+   400,
+   1820,
+   980
+  ],
+  "quality_notes": "2047x1224, clean, no watermark"
+ },
+ {
+  "file": "people_aristocrats_trio_toast_2018.jpg",
+  "category": "people",
+  "description": "The Aristocrats raising beer bottles to the crowd at the end of a show: Govan (left), Marco Minnemann (centre), Bryan Beller (right); Isola del Liri, Italy",
+  "year_or_era": "2018-08-28",
+  "source_page_url": "https://www.flickr.com/photos/abulafiafoto/45242052341/",
+  "image_url": "https://live.staticflickr.com/1970/45242052341_5d832a7316_k.jpg",
+  "author_if_known": "Federico Tomasello",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2047,
+  "height": 1130,
+  "subject_box": [
+   520,
+   100,
+   1460,
+   1130
+  ],
+  "quality_notes": "logo watermark cropped off bottom; 2047x1130"
  },
  {
   "file": "people_aristocrats_trio_tres_caballeros_promo_2015.jpg",
@@ -982,6 +1134,25 @@
   "quality_notes": "1024x1024 on white"
  },
  {
+  "file": "gear_govan_aristocrats_pedalboard_2012.jpg",
+  "category": "gear",
+  "description": "Govan's Aristocrats pedalboard on the 2012 U.S. tour: Dunlop volume pedal, Cry Baby wah, Analogman chorus, TC Flashback delay, Hall of Fame reverb, Guyatone Wah Rocker, PolyTune, Suhr Koko Boost",
+  "year_or_era": "2012-01",
+  "source_page_url": "https://www.flickr.com/photos/art-sarah/6818366611/",
+  "image_url": "https://live.staticflickr.com/7011/6818366611_095c0434b9_o.jpg",
+  "author_if_known": "ArtBrom",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 2600,
+  "height": 1949,
+  "subject_box": [
+   0,
+   0,
+   2600,
+   1949
+  ],
+  "quality_notes": "CC BY-SA, ArtBrom; red stage cast; volume pedal at left for the \"volume swell\" beat (same as Commons file)"
+ },
+ {
   "file": "gear_victory_v212_cabinet.png",
   "category": "gear",
   "description": "Victory 2x12 vertical speaker cabinet (shown on Victory's Guthrie Govan artist page alongside the V30)",
@@ -1020,6 +1191,34 @@
   "quality_notes": "1200x800 transparent PNG"
  },
  {
+  "file": "place_chelmsford_high_street_01.jpg",
+  "category": "place",
+  "description": "Chelmsford High Street, Essex (Govan's birthplace) - pedestrianised shopping street on a sunny day",
+  "year_or_era": "2013-03-04",
+  "source_page_url": "https://www.geograph.org.uk/photo/3356603",
+  "image_url": "https://s3.geograph.org.uk/geophotos/03/35/66/3356603_25656c6c_1024x1024.jpg",
+  "author_if_known": "Paul Franks",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1024,
+  "height": 768,
+  "subject_box": null,
+  "quality_notes": "1024x768 from geograph (Commons has 4608x3456 original - pending, rate-limited)"
+ },
+ {
+  "file": "place_chelmsford_high_street_02_shire_hall.jpg",
+  "category": "place",
+  "description": "High Street, Chelmsford looking towards the Shire Hall, winter sun",
+  "year_or_era": "2018-01-19",
+  "source_page_url": "https://www.geograph.org.uk/photo/5672572",
+  "image_url": "https://s0.geograph.org.uk/geophotos/05/67/25/5672572_ab85c205_1024x1024.jpg",
+  "author_if_known": "Christopher Hilton",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 1024,
+  "height": 575,
+  "subject_box": null,
+  "quality_notes": "1024x575 (Commons has 1600x899)"
+ },
+ {
   "file": "place_hans_zimmer_live_arena_2023.jpg",
   "category": "place",
   "description": "Hans Zimmer Live 2023 arena concert - wide view over the crowd towards the lit stage",
@@ -1032,6 +1231,20 @@
   "height": 1067,
   "subject_box": null,
   "quality_notes": "1600x1067 atmosphere shot"
+ },
+ {
+  "file": "place_oxford_st_catherines_college_01.jpg",
+  "category": "place",
+  "description": "St Catherine's College, Oxford (Arne Jacobsen modernist buildings, lawn and sculpture) - the college Govan briefly attended",
+  "year_or_era": "2008-12-02",
+  "source_page_url": "https://www.geograph.org.uk/photo/1289366",
+  "image_url": "https://s0.geograph.org.uk/geophotos/01/28/93/1289366_149b62da.jpg",
+  "author_if_known": "Kenneth Yarham",
+  "license_if_known": "CC BY-SA 2.0",
+  "width": 640,
+  "height": 480,
+  "subject_box": null,
+  "quality_notes": "small 640x480; Commons \"Stcatz East Outside Quad.JPG\" (3888x2592) pending"
  },
  {
   "file": "misc_aristocrats_duck_tour_europe_2026_poster.jpg",

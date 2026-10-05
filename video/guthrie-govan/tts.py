@@ -18,7 +18,7 @@ Ayrıntılar
   (boş satırla ayrılmış paragraflar arasında ~0.6 s). Kenarlarda kısa fade: tık yok.
 - İngilizce özel adlar Türkçe ses için fonetik yazıma çevrilir (PRON tablosu);
   `--raw` / `respell_names=False` bunu kapatır. Kesme işaretli ekler korunur:
-  "Govan'ın" -> "Gavın'ın". Altyazılar (subs) her zaman ORİJİNAL yazımı kullanır;
+  "Chelmsford'da" -> "Çelmsfırd'da". Altyazılar (subs) her zaman ORİJİNAL yazımı kullanır;
   zamanlar edge-tts WordBoundary olaylarından gelir.
 - Ağ: edge-tts wss:// kullanır; aiohttp wss için WSS_PROXY arar, bulamayınca doğrudan
   bağlanır ve sandbox bunu 403 (x-deny-reason: host_not_allowed) ile reddeder. Bu yüzden
@@ -67,7 +67,7 @@ PROXY = (os.environ.get("WSS_PROXY") or os.environ.get("HTTPS_PROXY")
 # Eşleşme tam kelime/öbek, büyük-küçük harf duyarlı.
 PRON = {
     "Guthrie": "Gatri",                 # ham: "Gutiri"
-    "Govan": "Gavın",                   # /ˈɡʌvən/
+    # "Govan" ham bırakıldı: "Gavın" Whisper testinde "Gatrik alın" gibi duyuldu; "Gatri Govan" en net.
     "The Aristocrats": "Di Aristokrats",
     "Steven": "Stiven",
     "Wilson": "Vilson",
