@@ -863,7 +863,7 @@ def pin_drop(L, x, y, age, size=1.0):
 
 
 @lru_cache(maxsize=256)
-def label_sprite(name, sub, side, name_size=25, sub_size=29):
+def label_sprite(name, sub, side, name_size=25, sub_size=29, plate=0.5):
     """City label: caps name (Montserrat) + optional italic sub-label (Playfair).
     Returns (img, ax, ay): img position = pin position - (ax, ay)."""
     gap = 20
@@ -890,6 +890,14 @@ def label_sprite(name, sub, side, name_size=25, sub_size=29):
         y += lh
     bx0, by0 = P + 30, P + 30          # text block top-left inside canvas
     bw, bh = max_w, tot_h
+    if plate:
+        m = Image.new("L", cv.size, 0)
+        ImageDraw.Draw(m).rounded_rectangle(
+            [bx0 - 12, by0 - 9, bx0 + bw + 12, by0 + bh + 2], 7, fill=int(255 * plate))
+        m = m.filter(ImageFilter.GaussianBlur(2.5))
+        pl = Image.new("RGBA", cv.size, INK + (0,))
+        pl.putalpha(m)
+        cv = Image.alpha_composite(pl, cv)
     if side == "r":
         ax, ay = bx0 - gap, by0 + bh / 2
     elif side == "l":
@@ -959,17 +967,29 @@ def draw_card(cv, x, y, age, title, caption=None, title_size=58, face="serif-bol
         x -= cw
     p = ease_out(age / 0.55)
     wv = int(im.width * clamp(0.15 + 0.85 * p))
-    if wv < im.width:
+    dx = (1 - p) * 18
+    if align == "right":
+        dx = -dx + (im.width - wv)
+        if wv < im.width:
+            im = im.crop((im.width - wv, 0, im.width, im.height))
+    elif wv < im.width:
         im = im.crop((0, 0, wv, im.height))
-    comp_sub(cv, im, x - sp + (1 - p) * 18, y - ch / 2 - sp, smooth(age / 0.35))
+    comp_sub(cv, im, x - sp + dx, y - ch / 2 - sp, smooth(age / 0.35))
 
 
-def title_block(cv, t, t0, kicker, title):
+def title_block(cv, t, t0, kicker, title, pos="tl"):
+    """Scene title: red bar, letter-spaced kicker, big serif title. pos: 'tl' top-left or
+    'bl' bottom-left (kept above the subtitle band, bottom edge ~y=915)."""
     p = t - t0
     if p <= 0:
         return
-    comp(cv, with_alpha(corner_shade(), smooth(p / 0.6)), 0, 0)
-    x, y = 96, 66
+    if pos == "bl":
+        sh = corner_shade().transpose(Image.FLIP_TOP_BOTTOM)
+        comp(cv, with_alpha(sh, smooth(p / 0.6)), 0, H - sh.height)
+        x, y = 96, 772
+    else:
+        comp(cv, with_alpha(corner_shade(), smooth(p / 0.6)), 0, 0)
+        x, y = 96, 66
     bw = int(70 * ease_out(p / 0.7))
     if bw > 0:
         bar = Image.new("RGBA", (bw, 5), RED + (255,))
@@ -993,6 +1013,9 @@ def sea_label(cv, cam, lat, lon, text, alpha, size=34, angle=0.0, tracking=9, al
         d = G(*along[1]) - G(*along[0])
         angle = round(-math.degrees(math.atan2(d[1], d[0])), 1)
     x, y = cam.at(lat, lon)
+    alpha *= (1 - smooth((y - 860) / 45)) * smooth((y - 30) / 40)
+    if alpha <= 0.004:
+        return
     im = rotated_text(text, "serif-italic", size, (200, 222, 222), tracking, angle, 200)
     comp_sub(cv, im, x - im.width / 2, y - im.height / 2, alpha)
 
@@ -1001,6 +1024,9 @@ def land_label(cv, cam, lat, lon, text, alpha, size=26, tracking=12):
     if alpha <= 0.004:
         return
     x, y = cam.at(lat, lon)
+    alpha *= (1 - smooth((y - 860) / 45)) * smooth((y - 30) / 40)
+    if alpha <= 0.004:
+        return
     im = rotated_text(text, "sans-medium", size, (96, 70, 46), tracking, 0.0, 190)
     comp_sub(cv, im, x - im.width / 2, y - im.height / 2, alpha)
 
@@ -1041,10 +1067,6 @@ def big_arrow(L, cam, path, cl, prog, w0=10, w1=30, head_w=62, head_l=50, color=
         return
     L.poly(poly, fill=rgba(color, alpha), outline=rgba(outline, min(1, alpha + 0.05)),
            width=2.0, shadow=True)
-    # light inner stripe for a slightly embossed look
-    inner = arrow_poly(sp, w0 * 0.25, w1 * 0.22, head_w * 0.22, head_l * 0.5)
-    if inner is not None and cumlen(sp)[-1] > head_l:
-        L.poly(inner, fill=(255, 255, 255, int(40 * alpha)))
 
 
 def front_line(L, pts_screen, alpha, color=ALLY, teeth_side=1.0, width=5.0):
@@ -1296,7 +1318,7 @@ MM_DUR = 7.0
 MM_STOPS = [
     # name, lat, lon, arrival time, sub-label, label side, dx, dy
     ("İstanbul", 41.01, 28.98, 0.25, "16 Mayıs 1919", "l", 0, 0),
-    ("Samsun", 41.29, 36.33, 2.05, "19 Mayıs 1919", "rt", 0, 0),
+    ("Samsun", 41.29, 36.33, 2.05, "19 Mayıs 1919", "r", 0, -6),
     ("Havza", 40.97, 35.66, 2.45, None, "l", 0, -4),
     ("Amasya", 40.65, 35.83, 2.85, "Amasya Genelgesi", "lb", -4, 2),
     ("Erzurum", 39.90, 41.27, 4.0, "Erzurum Kongresi", "b", 0, 0),
@@ -1305,18 +1327,19 @@ MM_STOPS = [
 ]
 MM_SEA = GP([(41.01, 28.98), (41.09, 29.055), (41.215, 29.12), (41.33, 29.55), (41.47, 30.6),
              (41.70, 31.65), (42.08, 32.75), (42.24, 33.9), (42.27, 35.0), (42.02, 35.6),
-             (41.80, 36.14), (41.50, 36.42), (41.29, 36.33)])
-MM_CAM = [(0.0, 41.05, 31.2, 10.6), (1.2, 41.05, 32.9, 10.6), (2.3, 40.85, 34.7, 10.2),
-          (3.1, 40.55, 36.3, 10.6), (4.1, 40.15, 37.6, 11.8), (5.1, 40.15, 36.1, 13.6),
-          (6.1, 40.2, 34.75, 15.0), (7.0, 40.2, 34.7, 14.8)]
+             (41.82, 36.10), (41.53, 36.23), (41.29, 36.33)])
+MM_CAM = [(0.0, 41.05, 31.2, 10.6), (1.2, 41.0, 32.9, 10.6), (2.3, 40.8, 34.7, 10.4),
+          (3.1, 40.55, 36.3, 10.8), (4.1, 40.3, 37.7, 12.2), (5.1, 40.45, 36.2, 14.2),
+          (6.1, 40.62, 34.9, 16.0), (7.0, 40.62, 34.85, 15.8)]
 
 
 @lru_cache(maxsize=1)
 def mm_paths():
     sea = catmull(MM_SEA, 16)
     legs = [("sea", sea, MM_STOPS[0][3] + 0.2, MM_STOPS[1][3])]
+    bends = {"Havza": 0.12, "Amasya": 0.12, "Erzurum": -0.11, "Sivas": -0.12, "Ankara": -0.06}
     for a, b in zip(MM_STOPS[1:], MM_STOPS[2:]):
-        bend = 0.10 if b[0] != "Ankara" else -0.08
+        bend = bends[b[0]]
         p = arc_curve(G(a[1], a[2]), G(b[1], b[2]), bend, 48)
         legs.append((b[0], p, a[3], b[3]))
     return [(name, p, cumlen(p), t0, t1) for name, p, t0, t1 in legs]
@@ -1328,7 +1351,7 @@ def cam_milli(t):
 
 def draw_milli(cv, cam, t):
     sea_label(cv, cam, 42.85, 35.6, "KARADENİZ", 0.85, 34)
-    land_label(cv, cam, 38.75, 35.0, "ANADOLU", 0.75, 30, 18)
+    land_label(cv, cam, 38.75, 36.0, "ANADOLU", 0.75, 30, 18)
 
     L, top = Layer(), Layer()
     head = None
@@ -1353,7 +1376,7 @@ def draw_milli(cv, cam, t):
         q, ang = point_at(p, cl, cl[-1] * u)
         x, y = cam.xy(q)
         a = smooth((t - t0) / 0.3) * (1 - smooth((t - t1) / 0.4))
-        steamer(top, x, y - 4, 1.0, a, flip=math.cos(ang) < 0, bob=math.sin(t * 5.0) * 0.8)
+        steamer(top, x, y - 4, 1.35, a, flip=math.cos(ang) < 0, bob=math.sin(t * 5.0) * 0.8)
     for nm, la, lo, ta, *_ in MM_STOPS:
         x, y = cam.at(la, lo)
         pin_dot(top, x, y, t - ta, 0.95 if nm in ("Havza",) else 1.05)
@@ -1364,12 +1387,12 @@ def draw_milli(cv, cam, t):
                                           + 0.65 * ease_in_out((t - t0) / (t1 - t0))))
         x, y = cam.xy(q)
         a = smooth((t - t0 - 0.2) / 0.4) * (1 - smooth((t - t1 + 0.3) / 0.4))
-        draw_text(cv, "Bandırma Vapuru", "serif-italic", 24, CREAM, x, y - 64, a,
+        draw_text(cv, "Bandırma Vapuru", "serif-italic", 26, CREAM, x, y - 82, a,
                   align="center", sub=True)
     for nm, la, lo, ta, sub, side, dx, dy in MM_STOPS:
         x, y = cam.at(la, lo)
         city_label(cv, x, y, t - ta - 0.08, nm, sub, side, dx, dy)
-    title_block(cv, t, 0.15, "1919 – 1922", "Millî Mücadele")
+    title_block(cv, t, 0.15, "1919 – 1922", "Millî Mücadele", pos="bl")
 
 
 # ---------------------------------------------------------------------------
@@ -1381,17 +1404,17 @@ BT_CAM = [(0.0, 39.3, 31.55, 6.6), (1.7, 39.05, 30.85, 7.4), (3.2, 38.95, 29.8, 
           (6.0, 38.95, 29.45, 8.75)]
 BT_MAIN = catmull(GP([(38.70, 30.62), (38.86, 30.06), (38.70, 29.40), (38.52, 28.40),
                       (38.44, 27.36)]), 30)
-BT_NORTH = catmull(GP([(38.98, 30.42), (39.42, 30.02), (39.85, 29.55), (40.08, 29.22)]), 30)
+BT_NORTH = catmull(GP([(39.20, 30.75), (39.55, 30.25), (39.90, 29.62), (40.08, 29.24)]), 30)
 BT_SOUTH = catmull(GP([(38.55, 30.34), (38.28, 29.72), (38.00, 28.78), (37.88, 28.08)]), 30)
 BT_FRONTS = [
     (0.0, [(40.32, 29.80), (39.85, 30.33), (39.32, 30.40), (38.97, 30.30), (38.64, 30.25),
            (38.30, 29.95), (37.95, 29.58)]),
     (2.3, [(40.32, 29.80), (39.85, 30.33), (39.32, 30.40), (38.97, 30.30), (38.64, 30.25),
            (38.30, 29.95), (37.95, 29.58)]),
-    (3.6, [(40.33, 29.05), (39.86, 29.20), (39.32, 29.00), (38.92, 28.62), (38.58, 28.38),
-           (38.22, 28.22), (37.90, 28.02)]),
-    (4.8, [(40.36, 28.20), (39.88, 28.05), (39.35, 27.70), (38.88, 27.30), (38.52, 27.08),
-           (38.15, 27.12), (37.82, 27.22)]),
+    (3.4, [(40.33, 28.75), (39.86, 28.85), (39.32, 28.55), (38.92, 28.15), (38.58, 27.95),
+           (38.22, 27.85), (37.90, 27.70)]),
+    (4.4, [(40.36, 28.10), (39.88, 27.95), (39.35, 27.60), (38.88, 27.25), (38.52, 27.06),
+           (38.15, 27.10), (37.82, 27.20)]),
 ]
 BT_PLACES = [
     # name, lat, lon, time, sub, side, dx, dy
@@ -1420,12 +1443,10 @@ def front_at(t):
 
 
 def draw_taarruz(cv, cam, t):
-    sea_label(cv, cam, 38.35, 25.75, "EGE DENİZİ", 0.85, 30)
-    sea_label(cv, cam, 36.3, 30.0, "AKDENİZ", 0.85, 34)
-    land_label(cv, cam, 39.3, 33.2, "ANADOLU", 0.7, 28, 18)
+    land_label(cv, cam, 38.0, 31.6, "ANADOLU", 0.7, 28, 18)
 
     low, mid, top = Layer(), Layer(), Layer()
-    fa = smooth((t - 0.6) / 0.6) * (1 - smooth((t - 4.85) / 0.55))
+    fa = smooth((t - 0.6) / 0.6) * (1 - smooth((t - 4.4) / 0.5))
     fp = cam.xy(front_at(t))
     front_line(low, fp, fa, ALLY, teeth_side=-1.0, width=5.0)
     big_arrow(mid, cam, BT_NORTH, cumlen(BT_NORTH), ease_in_out((t - 2.55) / 2.0),
@@ -1444,24 +1465,24 @@ def draw_taarruz(cv, cam, t):
     top.render(cv)
 
     if fa > 0.01:
-        q = fp[1] + (fp[2] - fp[1]) * 0.35
-        draw_text(cv, "YUNAN CEPHESİ", "sans-semibold", 19, ALLY_LIGHT, q[0] - 16, q[1] - 8,
+        q = fp[len(fp) // 2]
+        draw_text(cv, "YUNAN CEPHESİ", "sans-semibold", 19, ALLY_LIGHT, q[0] - 18, q[1] - 10,
                   fa * smooth((t - 0.9) / 0.5) * (1 - smooth((t - 2.6) / 0.5)), align="right",
                   tracking=4, sub=True)
     age = t - 0.75
     if age > 0:
-        x0, y0 = sx + 20, sy - 34
+        x0, y0 = sx - 20, sy - 34
         ld = Layer()
-        ld.line([(x0, y0), (x0 + 46 * ease_out(age / 0.4), y0)], rgba(INK, 0.85), 2.2)
+        ld.line([(x0, y0), (x0 - 46 * ease_out(age / 0.4), y0)], rgba(INK, 0.85), 2.2)
         ld.circle(x0, y0, 3.2, fill=rgba(INK, 0.9))
         ld.render(cv)
-        draw_card(cv, x0 + 46, y0, age - 0.1, "Sakarya · 1921", None, 44)
+        draw_card(cv, x0 - 46, y0, age - 0.1, "Sakarya · 1921", None, 44, align="right")
     for nm, la, lo, t0, sub, side, dx, dy in BT_PLACES:
         x, y = cam.at(la, lo)
         city_label(cv, x, y, t - t0 - 0.08, nm, sub, side, dx, dy)
     title_block(cv, t, 0.15, "1921 – 1922", "Büyük Taarruz")
-    caption(cv, t, 4.15, "“Ordular! İlk hedefiniz Akdeniz’dir. İleri!”", 960, 820, size=46,
-            sub="MUSTAFA KEMAL PAŞA · 1 EYLÜL 1922", align="center")
+    caption(cv, t, 4.15, "“Ordular! İlk hedefiniz Akdeniz’dir. İleri!”", 1850, 150, size=44,
+            sub="MUSTAFA KEMAL PAŞA · 1 EYLÜL 1922", align="right")
 
 
 # ---------------------------------------------------------------------------
