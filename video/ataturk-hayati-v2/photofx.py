@@ -1366,7 +1366,6 @@ class PhotoShot:
             tw, th = wf * PW, 0.075 * PW * (0.9 if where == "corners" else 1.0)
             n = int(max(tw, th) * 1.6)
             im = Image.new("L", (n * ss, n * ss), 0)
-            pts_top, pts_bot = [], []
             c = n * ss / 2
             hw, hh = tw * ss / 2, th * ss / 2
             jag = 0.06 * th * ss

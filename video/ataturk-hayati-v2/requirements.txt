@@ -1,0 +1,4 @@
+numpy>=1.24
+Pillow>=10.0
+opencv-python-headless>=4.8   # cv2.grabCut/inpaint/dnn.readNetFromTFLite (person prior)
+scikit-image>=0.21            # only for `python3 photofx.py --demo` sample photos

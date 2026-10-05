@@ -39,6 +39,9 @@ DEFAULT_OUT = os.environ.get(
     "MAPS_OUT",
     "/tmp/claude-0/-home-user-enstrumanim/5c31ff89-7eb2-5303-97e5-43100aff2598/scratchpad/maps")
 
+SAFE_X = 60          # side margin for labels / cards
+SAFE_Y = 925         # nothing essential below this line (subtitle band)
+
 FONTS = {
     "serif": "PlayfairDisplay-Regular.ttf",
     "serif-bold": "PlayfairDisplay-Bold.ttf",
@@ -915,18 +918,22 @@ def label_sprite(name, sub, side, name_size=25, sub_size=29, plate=0.5, name_col
         ax, ay = bx0 - gap * 0.7, by0 - gap * 0.3
     else:  # "lb"
         ax, ay = bx0 + bw + gap * 0.7, by0 - gap * 0.3
-    return cv, ax, ay
+    return cv, ax, ay, (bx0, by0, bw, bh)
 
 
 def city_label(cv, x, y, age, name, sub=None, side="r", dx=0.0, dy=0.0, alpha=1.0, **kw):
     if age <= 0 or alpha <= 0:
         return
-    im, ax, ay = label_sprite(name, sub, side, **kw)
+    im, ax, ay, (bx0, by0, bw, bh) = label_sprite(name, sub, side, **kw)
     p = ease_out(age / 0.5)
     slide = (1 - p) * 14
     sx = {"r": -slide, "rt": -slide, "rb": -slide, "l": slide, "lt": slide, "lb": slide}.get(side, 0)
     sy = {"t": slide, "b": -slide}.get(side, 0)
-    comp_sub(cv, im, x - ax + dx + sx, y - ay + dy + sy, p * alpha)
+    px, py = x - ax + dx + sx, y - ay + dy + sy
+    # keep the text block inside the frame (60 px side margin, clear of the subtitle band)
+    px = min(max(px, SAFE_X - bx0), W - SAFE_X - bx0 - bw)
+    py = min(max(py, 40 - by0), SAFE_Y - by0 - bh)
+    comp_sub(cv, im, px, py, p * alpha)
 
 
 @lru_cache(maxsize=16)
@@ -957,7 +964,7 @@ def card_img(title, caption=None, title_size=58, face="serif-bold"):
 
 
 def draw_card(cv, x, y, age, title, caption=None, title_size=58, face="serif-bold",
-              align="left"):
+              align="left", wipe=True):
     """(x, y): left edge (or center / right edge) and vertical center of the card body."""
     if age <= 0:
         return
@@ -966,7 +973,13 @@ def draw_card(cv, x, y, age, title, caption=None, title_size=58, face="serif-bol
         x -= cw / 2
     elif align == "right":
         x -= cw
+    x = min(max(x, SAFE_X), W - SAFE_X - cw)
+    y = min(max(y, 40 + ch / 2), SAFE_Y - ch / 2)
     p = ease_out(age / 0.55)
+    if not wipe:
+        comp_sub(cv, im, x - sp, y - ch / 2 - sp + (1 - ease_out(age / 0.7)) * 24,
+                 smooth(age / 0.5))
+        return
     wv = int(im.width * clamp(0.15 + 0.85 * p))
     dx = (1 - p) * 18
     if align == "right":
@@ -1003,7 +1016,7 @@ def title_block(cv, t, t0, kicker, title, pos="tl"):
 
 def caption(cv, t, t0, text, x, y, size=54, sub=None, align="center"):
     """Quote / caption card. (x, y): anchor (center/left/right edge) and vertical center."""
-    draw_card(cv, x, y, t - t0, text, sub, size, "serif-italic", align)
+    draw_card(cv, x, y, t - t0, text, sub, size, "serif-italic", align, wipe=False)
 
 
 def sea_label(cv, cam, lat, lon, text, alpha, size=34, angle=0.0, tracking=9, along=None):
