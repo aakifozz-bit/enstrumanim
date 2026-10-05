@@ -234,7 +234,12 @@ def render_shot(idx, lt):
         mdur, fn = maps.MAP_SCENES[o["scene"]]
         return fn(min(lt, mdur - 1e-3))
     shot = photo_shot(idx)
-    img = shot.render(min(lt, shot.duration - 1e-3)) if shot else missing_card()
+    if shot is None and name == "veda":
+        # Dolmabahçe fotoğrafı yoksa v1'in 09.05'te duran saat sahnesini kullan
+        img = v1.render(48.0 + min(lt, 5.0))
+        o = dict(o, tag=None)
+    else:
+        img = shot.render(min(lt, shot.duration - 1e-3)) if shot else missing_card()
     if o.get("title"):
         img = overlay(img, lambda cv: title_card(cv, lt))
     if o.get("tag"):
