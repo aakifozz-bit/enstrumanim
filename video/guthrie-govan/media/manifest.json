@@ -266,6 +266,25 @@
   "quality_notes": "very sharp, lots of negative space on the left for titles"
  },
  {
+  "file": "gg_live_pub_gig_2007_black_stuff.jpg",
+  "category": "gg",
+  "description": "Govan playing an intimate pub gig at The Black Stuff Irish pub, Italy - Marshall/Cornford amps behind him, crowd in foreground",
+  "year_or_era": "2007-10-29 (Erotic Cakes era)",
+  "source_page_url": "https://www.flickr.com/photos/theblackstuff/4692477041/",
+  "image_url": "https://live.staticflickr.com/4019/4692477041_9429612a27_b.jpg",
+  "author_if_known": "The Black Stuff irish pub",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 820,
+  "height": 682,
+  "subject_box": [
+   380,
+   200,
+   600,
+   682
+  ],
+  "quality_notes": "pub logo watermark cropped; 820x682; atmospheric"
+ },
+ {
   "file": "gg_live_smiling_red_guitar.jpg",
   "category": "gg",
   "description": "Govan grinning on stage with a red flame-top offset guitar (Flickr title: \"Guthrie Govan * STEVEN WILSON\"; EXIF date 2015-04-07 may be wrong - Govan left Wilson band in 2014)",
@@ -321,6 +340,25 @@
    2018
   ],
   "quality_notes": "Govan box given; Wilson at x~550-1800. 3737x2985 downscaled"
+ },
+ {
+  "file": "gg_live_young_punx_2007.jpg",
+  "category": "gg",
+  "description": "Govan playing a teal Suhr in front of a giant \"THE YOUNG PUNX\" LED sign - live with The Young Punx",
+  "year_or_era": "2007 (Young Punx era)",
+  "source_page_url": "https://www.flickr.com/photos/28934923@N07/2700259769/",
+  "image_url": "https://live.staticflickr.com/3101/2700259769_9e410dace9_o.jpg",
+  "author_if_known": "The Young Punx",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 700,
+  "height": 467,
+  "subject_box": [
+   30,
+   60,
+   700,
+   467
+  ],
+  "quality_notes": "small 700x467; colourful; official Young Punx Flickr account"
  },
  {
   "file": "gg_portrait_bw_microphone_2017.jpg",
@@ -397,6 +435,25 @@
    1950
   ],
   "quality_notes": "4000x3000 photo of a page (paper curve, glare); identity not confirmed - use only if you can verify"
+ },
+ {
+  "file": "gg_young_punx_boat_2006.jpg",
+  "category": "gg",
+  "description": "Govan (hair flying) playing a green toy-like guitar on the roof of a fishing boat \"RX58\" at night - The Young Punx video/photo shoot (\"Guthrie rocks out on Stevie's boat\")",
+  "year_or_era": "2006-11",
+  "source_page_url": "https://www.flickr.com/photos/28934923@N07/2701131816/",
+  "image_url": "https://live.staticflickr.com/3038/2701131816_8d42c9b2ea_h.jpg",
+  "author_if_known": "The Young Punx",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1456,
+  "height": 1003,
+  "subject_box": [
+   420,
+   120,
+   820,
+   900
+  ],
+  "quality_notes": "fun, gritty video-still quality 1456x1003"
  },
  {
   "file": "people_aristocrats_live_2012_govan_beller.jpg",
@@ -551,6 +608,25 @@
   "quality_notes": "1500x1001, sunny, sharp; Govan box approx [1000,180,1360,1001]"
  },
  {
+  "file": "people_asia_john_payne_2005_haarlem.jpg",
+  "category": "people",
+  "description": "John Payne (Asia singer/bassist) live with Asia at the Patronaat, Haarlem - same 2005 tour on which Govan played guitar with Asia",
+  "year_or_era": "2005-02-10",
+  "source_page_url": "https://www.flickr.com/photos/rissan/2953467073/",
+  "image_url": "https://live.staticflickr.com/3221/2953467073_74630c25fb_h.jpg",
+  "author_if_known": "Rissan",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 1024,
+  "height": 1536,
+  "subject_box": [
+   60,
+   130,
+   1024,
+   1536
+  ],
+  "quality_notes": "scanned film photo 1024x1536, natural grain"
+ },
+ {
   "file": "people_bryan_beller_2012.jpg",
   "category": "people",
   "description": "Bryan Beller playing a red Mike Lull bass on The Aristocrats US tour (warm red stage light)",
@@ -587,6 +663,44 @@
    1367
   ],
   "quality_notes": "2048x1367 clean"
+ },
+ {
+  "file": "people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
+  "category": "people",
+  "description": "Hans Zimmer singing at the mic (left) with his band; Govan (centre-right, long hair, superstrat) and other musicians - Ericsson Globe Arena, Stockholm",
+  "year_or_era": "2017-05-18 (Hans Zimmer Live on Tour)",
+  "source_page_url": "https://www.flickr.com/photos/ola_strandberg/33941671393/",
+  "image_url": "https://live.staticflickr.com/4187/33941671393_db0bbda9a1_k.jpg",
+  "author_if_known": "Ola Strandberg",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2048,
+  "height": 1369,
+  "subject_box": [
+   300,
+   60,
+   1600,
+   1100
+  ],
+  "quality_notes": "2048x1369; Govan box approx [1240,520,1580,1100]; identity of guitarist inferred from appearance + Flickr search hit (not captioned)"
+ },
+ {
+  "file": "people_hans_zimmer_live_2017_vienne_govan.jpg",
+  "category": "people",
+  "description": "Govan (right, curly hair, guitar) on stage with the Hans Zimmer Live band, looking out at a packed Roman amphitheatre - Theatre antique de Vienne, France",
+  "year_or_era": "2017-06-23 (Hans Zimmer Live on Tour)",
+  "source_page_url": "https://www.flickr.com/photos/farmatronic/36655899054/",
+  "image_url": "https://live.staticflickr.com/4389/36655899054_5dfe223aab_o.jpg",
+  "author_if_known": "Andy Page",
+  "license_if_known": "All rights reserved (Flickr)",
+  "width": 2600,
+  "height": 1462,
+  "subject_box": [
+   2158,
+   638,
+   2600,
+   1462
+  ],
+  "quality_notes": "huge 7952x4473 original downscaled to 2600; Govan small at right edge - great establishing/scale shot"
  },
  {
   "file": "people_hans_zimmer_live_2023_guitars.jpg",
