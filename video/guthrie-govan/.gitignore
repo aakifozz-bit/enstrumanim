@@ -1,0 +1,4 @@
+__pycache__/
+stills/
+*.wav.tmp
+/guthrie-govan.wav
