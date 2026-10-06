@@ -1,0 +1,903 @@
+{
+ "segments": [
+  {
+   "id": "s01_hook",
+   "chapter": "Gitaristlerin Gitaristi",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_live_profile_blue.jpg",
+     "mode": "parallax",
+     "d": 3.9,
+     "start": [
+      0.5,
+      0.42,
+      1.02
+     ],
+     "end": [
+      0.53,
+      0.4,
+      1.14
+     ]
+    },
+    {
+     "type": "photo",
+     "file": "media/misc_steven_wilson_raven_moon_projection_2013.jpg",
+     "mode": "kenburns",
+     "d": 2.4,
+     "cue": "albümün kaderini"
+    },
+    {
+     "type": "chat",
+     "d": 3.9,
+     "cue": "Hans Zimmer",
+     "bg": "media/people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
+     "messages": [
+      [
+       "Hans Zimmer",
+       "Merhaba, ben Hans Zimmer.",
+       false,
+       0.2
+      ]
+     ]
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_hands_charvel_closeup_02_charvel_promo.jpg",
+     "mode": "kenburns",
+     "d": 4.1,
+     "cue": "Üstelik",
+     "start": [
+      0.5,
+      0.5,
+      1.0
+     ],
+     "end": [
+      0.45,
+      0.55,
+      1.15
+     ]
+    },
+    {
+     "type": "title",
+     "title": "GUTHRIE GOVAN",
+     "sub": "GİTARİSTLERİN GİTARİSTİ",
+     "cue": "Karşınızda",
+     "bg": "media/gg_live_smiling_red_guitar.jpg",
+     "start": [
+      0.45,
+      0.35,
+      1.05
+     ],
+     "end": [
+      0.45,
+      0.32,
+      1.15
+     ]
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "İlk deneme",
+     "cue": "ilk denemede",
+     "dur": 1.6
+    },
+    {
+     "text": "Hans Zimmer?",
+     "cue": "sahte sanıp",
+     "dur": 1.5
+    },
+    {
+     "text": "Sıfır gitar dersi",
+     "cue": "tek bir gitar dersi",
+     "dur": 2.0
+    }
+   ]
+  },
+  {
+   "id": "s02_cocukluk",
+   "chapter": "Chelmsford, 1971",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/place_chelmsford_high_street_01.jpg",
+     "mode": "kenburns",
+     "d": 5.4,
+     "caption": "Chelmsford, Essex"
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_candid_laughing_2016_guitar_shop.jpg",
+     "mode": "kenburns",
+     "d": 7.0,
+     "cue": "naylon telli",
+     "start": [
+      0.5,
+      0.35,
+      1.0
+     ],
+     "end": [
+      0.5,
+      0.3,
+      1.12
+     ]
+    },
+    {
+     "type": "timeline",
+     "heading": "ERKEN BAŞLANGIÇ",
+     "bg": "media/gg_live_charvel_2012_vladivostok.jpg",
+     "cue": "hatırlamıyor",
+     "items": [
+      [
+       "3 YAŞ",
+       "Babasından ilk akorlar"
+      ],
+      [
+       "5 YAŞ",
+       "İlk sahne: Elvis ve Chuck Berry"
+      ],
+      [
+       "9 YAŞ",
+       "Kardeşi Seth'le ulusal televizyonda"
+      ]
+     ]
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "27 Aralık 1971",
+     "cue": "27 Aralık",
+     "dur": 1.8
+    }
+   ]
+  },
+  {
+   "id": "s03_kulak",
+   "chapter": "Kulaktan Öğrenen Çocuk",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_live_pub_gig_2007_black_stuff.jpg",
+     "mode": "kenburns",
+     "d": 6.2
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_hands_charvel_closeup_charvel_promo.jpg",
+     "mode": "kenburns",
+     "d": 3.3,
+     "start": [
+      0.5,
+      0.5,
+      1.0
+     ],
+     "end": [
+      0.55,
+      0.5,
+      1.12
+     ],
+     "cue": "plak koleksiyonunu"
+    },
+    {
+     "type": "grid",
+     "cue": "Elvis",
+     "heading": "AİLENİN PLAK KOLEKSİYONU",
+     "cols": 4,
+     "files": [
+      [
+       "media/cover_sleeve_beatles_please_please_me.jpg",
+       "The Beatles"
+      ],
+      [
+       "media/cover_sleeve_hendrix_are_you_experienced.jpg",
+       "Jimi Hendrix"
+      ],
+      [
+       "media/cover_sleeve_cream_disraeli_gears.jpg",
+       "Cream"
+      ],
+      [
+       "media/cover_sleeve_joe_pass_virtuoso.jpg",
+       "Joe Pass"
+      ]
+     ]
+    },
+    {
+     "type": "photo",
+     "file": "media/misc_superb_lyrebird.jpg",
+     "mode": "kenburns",
+     "d": 3.8,
+     "cue": "lir kuşu",
+     "caption": "Lir kuşu"
+    },
+    {
+     "type": "quote",
+     "text": "Hissederek çal. Zamanlama, ne kadar bildiğinden daha önemli.",
+     "cue": "Hissederek",
+     "who": "BABASININ TAVSİYESİ",
+     "orig": "“Play like you mean it.”",
+     "bg": "media/gg_portrait_closeup_2012_vladivostok.jpg"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Kulaktan!",
+     "cue": "Kulaktan",
+     "dur": 1.4
+    }
+   ]
+  },
+  {
+   "id": "s04_oxford",
+   "chapter": "Oxford mu, Gitar mı?",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/place_chelmsford_king_edward_vi_school_postcard.jpg",
+     "mode": "kenburns",
+     "d": 7.4,
+     "caption": "King Edward VI School, Chelmsford"
+    },
+    {
+     "type": "photo",
+     "file": "media/place_oxford_st_catherines_college_02_water_garden.jpg",
+     "mode": "kenburns",
+     "d": 5.8,
+     "cue": "Oxford",
+     "caption": "St Catherine's College, Oxford"
+    },
+    {
+     "type": "stamp",
+     "kicker": "SHRAPNEL RECORDS · MIKE VARNEY",
+     "title": "Plak Anlaşması Teklifi",
+     "cue": "20 yaşlarında",
+     "stamp": "REDDEDİLDİ",
+     "stamp_at": 4.6,
+     "bg": "media/gg_live_profile_blue.jpg"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Okul arkadaşı: Squarepusher",
+     "cue": "Squarepusher",
+     "dur": 2.4,
+     "pos": "top"
+    },
+    {
+     "text": "Oxford → yarıda bırakıyor",
+     "cue": "yarıda",
+     "dur": 2.4,
+     "pos": "top"
+    }
+   ]
+  },
+  {
+   "id": "s05_goty",
+   "chapter": "Yılın Gitaristi: 1993",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_candid_smiling_2009_starcards.jpg",
+     "mode": "kenburns",
+     "d": 3.5,
+     "start": [
+      0.5,
+      0.3,
+      1.0
+     ],
+     "end": [
+      0.5,
+      0.26,
+      1.12
+     ]
+    },
+    {
+     "type": "stat",
+     "big": "1993",
+     "label": "Guitarist dergisi · Yılın Gitaristi",
+     "cue": "1993",
+     "bg": "media/gg_live_aristocrats_mexicali_2015.jpg",
+     "d": 6.2
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_smiling_red_guitar.jpg",
+     "mode": "parallax",
+     "cue": "Demosu"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "McDonald's",
+     "cue": "McDonald",
+     "dur": 1.8
+    },
+    {
+     "text": "“Wonderful Slippery Thing”",
+     "cue": "Wonderful",
+     "dur": 2.0,
+     "pos": "top"
+    },
+    {
+     "text": "Ve kazanıyor!",
+     "cue": "finali kazanıyor",
+     "dur": 1.8
+    }
+   ]
+  },
+  {
+   "id": "s06_ogretmen",
+   "chapter": "Bir Neslin Öğretmeni",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_clinic_2017_rockhal_talking.jpg",
+     "mode": "kenburns",
+     "d": 6.0
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_teaching_bimm_masterclass_banner.jpg",
+     "mode": "kenburns",
+     "cue": "ACM",
+     "caption": "BIMM ustalık sınıfı"
+    },
+    {
+     "type": "grid",
+     "d": 4.0,
+     "cue": "Creative Guitar",
+     "heading": "DERGİLER VE KİTAPLAR",
+     "files": [
+      [
+       "media/cover_magazine_guitar_techniques_208_2012.jpg",
+       "Guitar Techniques"
+      ],
+      [
+       "media/cover_magazine_guitar_techniques_211_ipad_2012.jpg",
+       "Guitar Techniques"
+      ],
+      [
+       "media/cover_book_creative_guitar_1.jpg",
+       "Creative Guitar 1"
+      ],
+      [
+       "media/cover_book_creative_guitar_2.jpg",
+       "Creative Guitar 2"
+      ]
+     ],
+     "cols": 4
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_charvel_2014_premier_guitar.jpg",
+     "mode": "parallax",
+     "cue": "dergiden"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Guitar Techniques · 1994",
+     "cue": "1994",
+     "dur": 2.2,
+     "pos": "top"
+    },
+    {
+     "text": "ACM · BIMM",
+     "cue": "ACM",
+     "dur": 1.8,
+     "pos": "top"
+    }
+   ]
+  },
+  {
+   "id": "s07_asia",
+   "chapter": "Asia, GPS ve Sahne",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/people_asia_john_payne_2005_haarlem.jpg",
+     "mode": "kenburns",
+     "d": 4.0,
+     "caption": "Asia · Haarlem, 2005"
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_asia_aura.jpg",
+     "kicker": "ASIA · 2001",
+     "title": "Aura",
+     "cue": "Aura",
+     "sub": "Önce albümde, sonra grupta",
+     "d": 4.4
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_gps_window_to_the_soul.jpg",
+     "kicker": "GPS · 2006",
+     "cue": "boş durmuyor",
+     "title": "Window to the Soul",
+     "sub": "John Payne · Jay Schellen",
+     "d": 4.0
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_young_punx_boat_2006.jpg",
+     "mode": "kenburns",
+     "cue": "Young Punx",
+     "caption": "The Young Punx · 2006"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "The Young Punx · Dizzee Rascal",
+     "cue": "Young Punx",
+     "offset": 0.3,
+     "dur": 2.4,
+     "pos": "top"
+    }
+   ]
+  },
+  {
+   "id": "s08_erotic",
+   "chapter": "Erotic Cakes",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_live_pink_quilt_guitar.jpg",
+     "mode": "kenburns",
+     "d": 3.9
+    },
+    {
+     "type": "stat",
+     "big": "Cornford",
+     "size": 280,
+     "label": "Bir amfi üreticisi, sırf bu albüm için plak şirketi kuruyor",
+     "bg": "media/cover_erotic_cakes.jpg",
+     "d": 7.6,
+     "cue": "Cornford"
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_erotic_cakes.jpg",
+     "kicker": "İLK SOLO ALBÜM · 2006",
+     "title": "Erotic Cakes",
+     "cue": "2006",
+     "sub": "Bas: Seth Govan · Davul: Pete Riley",
+     "notes": [
+      "Kayıt: Richie Kotzen'in stüdyosu, Los Angeles",
+      "Adı: The Simpsons'taki bir dükkân"
+     ]
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Solo albüm?",
+     "cue": "solo albüm",
+     "dur": 1.6,
+     "pos": "top"
+    }
+   ]
+  },
+  {
+   "id": "s09_aristocrats",
+   "chapter": "The Aristocrats",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/place_namm_2011_guitar_wall.jpg",
+     "mode": "kenburns",
+     "d": 2.4,
+     "caption": "NAMM 2011 · Anaheim"
+    },
+    {
+     "type": "photo",
+     "file": "media/people_aristocrats_portraits_named_2022.jpg",
+     "mode": "kenburns",
+     "d": 5.2,
+     "cue": "Bryan Beller",
+     "start": [
+      0.5,
+      0.55,
+      1.0
+     ],
+     "end": [
+      0.5,
+      0.6,
+      1.08
+     ]
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_aristocrats_2012_suhr.jpg",
+     "mode": "parallax",
+     "d": 4.3,
+     "cue": "Greg Howe"
+    },
+    {
+     "type": "photo",
+     "file": "media/people_aristocrats_trio_toast_2018.jpg",
+     "mode": "kenburns",
+     "d": 6.4,
+     "cue": "Prova"
+    },
+    {
+     "type": "grid",
+     "d": 4.8,
+     "cue": "5 stüdyo",
+     "files": [
+      [
+       "media/cover_aristocrats_2011.jpg",
+       "2011"
+      ],
+      [
+       "media/cover_aristocrats_culture_clash.jpg",
+       "2013"
+      ],
+      [
+       "media/cover_aristocrats_tres_caballeros.jpg",
+       "2015"
+      ],
+      [
+       "media/cover_aristocrats_you_know_what.jpg",
+       "2019"
+      ],
+      [
+       "media/cover_aristocrats_duck.jpg",
+       "2024"
+      ]
+     ]
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_aristocrats_duck.jpg",
+     "kicker": "THE ARISTOCRATS · 2024",
+     "title": "Duck",
+     "cue": "Duck",
+     "sub": "Penguen polisinden kaçan bir ördeğin hikâyesi"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Son dakika yedek!",
+     "cue": "Şimdi ne olacak",
+     "dur": 1.8
+    },
+    {
+     "text": "“Bunu kaydetmeliyiz!”",
+     "cue": "Bu iş oluyor",
+     "dur": 2.2
+    },
+    {
+     "text": "İstanbul dahil · 2012 · 2015",
+     "cue": "İstanbul",
+     "dur": 2.4,
+     "pos": "top"
+    }
+   ]
+  },
+  {
+   "id": "s10_wilson",
+   "chapter": "Steven Wilson ve Drive Home",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/people_steven_wilson_band_2013_pistoia.jpg",
+     "mode": "kenburns",
+     "d": 4.8,
+     "caption": "Steven Wilson grubu · 2013"
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_steven_wilson_raven.jpg",
+     "kicker": "STEVEN WILSON · 2013",
+     "cue": "Eylül 2012",
+     "title": "The Raven That Refused to Sing",
+     "sub": "Los Angeles · neredeyse tamamen canlı kayıt",
+     "d": 6.2
+    },
+    {
+     "type": "photo",
+     "file": "media/place_eastwest_studios_studio2_live_room.jpg",
+     "mode": "kenburns",
+     "d": 3.0,
+     "cue": "Stüdyoda",
+     "caption": "EastWest Studios, Los Angeles"
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_steven_wilson_2013_duo.jpg",
+     "mode": "parallax",
+     "d": 5.2,
+     "cue": "Gitarı eline",
+     "caption": "Wilson ve Govan · 2013"
+    },
+    {
+     "type": "quote",
+     "text": "Delilik değil mi?",
+     "who": "STEVEN WILSON",
+     "orig": "“Isn't that insane?”",
+     "cue": "Wilson'ın yorumu",
+     "bg": "media/misc_steven_wilson_raven_moon_projection_2013.jpg",
+     "d": 3.0
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_steven_wilson_hand_cannot_erase.jpg",
+     "kicker": "STEVEN WILSON · 2015",
+     "cue": "Ardından",
+     "title": "Hand. Cannot. Erase."
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Hiç çalmadığı bir gitar",
+     "cue": "Jazzmaster",
+     "dur": 2.2,
+     "pos": "top"
+    },
+    {
+     "text": "“Drive Home”",
+     "cue": "Drive Home",
+     "dur": 1.6
+    },
+    {
+     "text": "İlk sefer, ilk kayıt!",
+     "cue": "ilk sefer",
+     "dur": 1.8
+    }
+   ]
+  },
+  {
+   "id": "s11_zimmer",
+   "chapter": "Hans Zimmer'dan Gelen Mesaj",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
+     "mode": "kenburns",
+     "d": 4.4
+    },
+    {
+     "type": "chat",
+     "d": 11.6,
+     "cue": "cevabına",
+     "bg": "media/people_hans_zimmer_live_2017_stockholm_with_govan.jpg",
+     "messages": [
+      [
+       "Hans Zimmer",
+       "Merhaba, ben Hans Zimmer. Seninle çalışmak istiyorum.",
+       false,
+       0.1
+      ],
+      [
+       "Guthrie Govan",
+       "Muhtemelen e-posta adresimi arayan 14 yaşında bir çocuksun. Vaktimi harcama.",
+       true,
+       1.3
+      ],
+      [
+       "Hans Zimmer",
+       "Gerçekten benim: şu şüpheli Alman film bestecisi.",
+       false,
+       5.3
+      ],
+      [
+       "Hans Zimmer",
+       "Seni YouTube'da perdesiz gitar çalarken buldum.",
+       false,
+       8.3
+      ]
+     ]
+    },
+    {
+     "type": "photo",
+     "file": "media/people_hans_zimmer_live_2017_vienne_govan.jpg",
+     "mode": "kenburns",
+     "d": 3.6,
+     "cue": "2016",
+     "caption": "Hans Zimmer Live · Vienne, 2017"
+    },
+    {
+     "type": "photo",
+     "file": "media/misc_bagpiper_royal_mile_edinburgh.jpg",
+     "mode": "kenburns",
+     "d": 3.0,
+     "cue": "Dune"
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_hans_zimmer_2017_vienne_closeup.jpg",
+     "mode": "kenburns",
+     "cue": "Yönetmen"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Hans Zimmer Live · 2016–",
+     "cue": "2016",
+     "offset": 0.3,
+     "dur": 2.2,
+     "pos": "top"
+    },
+    {
+     "text": "Dune: gayda = gitar",
+     "cue": "aslında Govan",
+     "dur": 2.4
+    }
+   ]
+  },
+  {
+   "id": "s12_stil",
+   "chapter": "Onu Farklı Kılan Ne?",
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_portrait_closeup_2012_vladivostok.jpg",
+     "mode": "parallax",
+     "d": 3.0
+    },
+    {
+     "type": "quote",
+     "text": "Müzik ya ana diliniz gibi hissettirir ya da okulda öğrendiğiniz bir yabancı dil gibi. Ben hep ana dilim gibi hissettirsin istedim.",
+     "who": "GUTHRIE GOVAN",
+     "bg": "media/gg_portrait_closeup_2012_vladivostok.jpg",
+     "d": 6.6,
+     "cue": "Müzik ya"
+    },
+    {
+     "type": "list",
+     "kicker": "TEKNİK CEPHANELİK",
+     "title": "Akışkan ve Özgür",
+     "cue": "Teknik cephaneliği",
+     "items": [
+      "Akışkan legato",
+      "Birkaç parmakla tapping",
+      "Country usulü hybrid picking",
+      "Perdesiz gitar",
+      "Volume pedalı"
+     ],
+     "bg": "media/gg_hands_charvel_closeup_charvel_promo.jpg",
+     "d": 8.0
+    },
+    {
+     "type": "photo",
+     "file": "media/gear_govan_aristocrats_pedalboard_2012.jpg",
+     "mode": "kenburns",
+     "d": 2.4,
+     "cue": "volume pedalı",
+     "caption": "Pedal panosu · 2012"
+    },
+    {
+     "type": "photo",
+     "file": "media/gg_live_aristocrats_mexicali_2015.jpg",
+     "mode": "parallax",
+     "cue": "çirkin"
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "“Shred ne çirkin bir kelime!”",
+     "cue": "çirkin",
+     "dur": 2.4
+    }
+   ]
+  },
+  {
+   "id": "s13_ekipman",
+   "chapter": "Ekipman",
+   "no_chapter": true,
+   "shots": [
+    {
+     "type": "gear",
+     "file": "media/gear_charvel_signature_01_caramelized_ash_front.png",
+     "kicker": "EKİPMAN · İMZA MODELİ",
+     "title": "Charvel Guthrie Govan",
+     "notes": [
+      "2014'ten beri ana gitarı"
+     ],
+     "d": 4.0
+    },
+    {
+     "type": "gear",
+     "file": "media/gear_victory_v30_the_jack_mkii.png",
+     "kicker": "AMFİ",
+     "title": "Victory V30",
+     "height": 620,
+     "rot": -4,
+     "notes": [
+      "Yıllarca lambalı Victory amfiler"
+     ],
+     "d": 2.4,
+     "cue": "Victory"
+    },
+    {
+     "type": "gear",
+     "file": "media/gear_fractal_fm9_mk2_turbo.png",
+     "kicker": "BUGÜN",
+     "title": "Fractal FM9",
+     "height": 560,
+     "rot": -3,
+     "notes": [
+      "Sahnede %100 dijital",
+      "Hans Zimmer turneleri yöneltti"
+     ],
+     "cue": "dijitale"
+    }
+   ],
+   "kinetic": []
+  },
+  {
+   "id": "s14_miras",
+   "chapter": "Miras",
+   "shots": [
+    {
+     "type": "quote",
+     "text": "Dünyanın en iyi gitaristinin, Chelmsford'daki bir mekânda her hafta sonu çaldığından dünyanın geri kalanının haberi yoktu.",
+     "who": "BRYAN BELLER",
+     "bg": "media/people_bryan_beller_2023_bw.jpg",
+     "d": 8.3
+    },
+    {
+     "type": "cover",
+     "file": "media/cover_karnivool_in_verses.jpg",
+     "kicker": "KONUK SOLO · 2026",
+     "title": "Karnivool – In Verses",
+     "cue": "Karnivool",
+     "d": 3.0
+    },
+    {
+     "type": "photo",
+     "file": "media/misc_aristocrats_duck_tour_europe_2026_poster.jpg",
+     "mode": "contain",
+     "cue": "Duck turnesi",
+     "start": [
+      0.5,
+      0.5,
+      1.0
+     ],
+     "end": [
+      0.5,
+      0.5,
+      1.0
+     ]
+    }
+   ],
+   "kinetic": [
+    {
+     "text": "Ama artık var!",
+     "cue": "artık var",
+     "dur": 1.4
+    }
+   ]
+  },
+  {
+   "id": "s15_kapanis",
+   "chapter": "Final",
+   "no_chapter": true,
+   "shots": [
+    {
+     "type": "photo",
+     "file": "media/gg_portrait_bw_microphone_2017.jpg",
+     "mode": "kenburns",
+     "d": 2.6
+    },
+    {
+     "type": "quote",
+     "text": "Değilim, olmaya da çalışmıyorum. Sadece olabileceğim en iyi ben olmaya çalışıyorum.",
+     "cue": "Değilim",
+     "who": "GUTHRIE GOVAN",
+     "bg": "media/gg_portrait_closeup_2012_vladivostok.jpg",
+     "d": 6.2
+    },
+    {
+     "type": "endcard",
+     "file": "media/cover_steven_wilson_raven.jpg",
+     "kicker": "ŞİMDİ DİNLE",
+     "title": "Drive Home",
+     "cue": "Şimdi Drive Home",
+     "sub": "Unutmayın: ilk denemeydi."
+    }
+   ],
+   "kinetic": []
+  }
+ ]
+}

@@ -1,0 +1,617 @@
+{
+ "s01_hook": [
+  {
+   "start": 0.033,
+   "end": 3.922,
+   "text": "Düşünsenize: hiç çalmadığı bir gitarı eline alıyor ve ilk denemede,"
+  },
+  {
+   "start": 4.026,
+   "end": 6.488,
+   "text": "albümün kaderini belirleyen bir solo çalıyor."
+  },
+  {
+   "start": 7.045,
+   "end": 11.213,
+   "text": "Hans Zimmer ona yazınca, mesajı sahte sanıp az kalsın geri çeviriyor."
+  },
+  {
+   "start": 11.689,
+   "end": 15.66,
+   "text": "Üstelik kendi deyişiyle, hayatında tek bir gitar dersi bile almamış."
+  },
+  {
+   "start": 15.88,
+   "end": 16.403,
+   "text": "Kim mi?"
+  },
+  {
+   "start": 16.623,
+   "end": 17.494,
+   "text": "Karşınızda..."
+  },
+  {
+   "start": 17.633,
+   "end": 18.527,
+   "text": "Guthrie Govan!"
+  }
+ ],
+ "s02_cocukluk": [
+  {
+   "start": 0.017,
+   "end": 4.487,
+   "text": "Her şey 27 Aralık 1971'de, İngiltere'nin Essex bölgesindeki"
+  },
+  {
+   "start": 4.545,
+   "end": 5.915,
+   "text": "Chelmsford'da başlıyor."
+  },
+  {
+   "start": 6.321,
+   "end": 9.107,
+   "text": "Babasının ucuz, naylon telli bir gitarı var."
+  },
+  {
+   "start": 9.583,
+   "end": 13.809,
+   "text": "Glasgow'lu babası birkaç akor biliyor, ama hepsini oğluna öğretiyor."
+  },
+  {
+   "start": 14.285,
+   "end": 18.012,
+   "text": "Guthrie kaç yaşında başladığını hatırlamıyor; anlatılanlara göre 3"
+  },
+  {
+   "start": 18.059,
+   "end": 18.837,
+   "text": "yaşındaymış."
+  },
+  {
+   "start": 19.243,
+   "end": 23.539,
+   "text": "5 yaşında ilk kez sahnede: babasının iş arkadaşlarının grubuyla Elvis"
+  },
+  {
+   "start": 23.608,
+   "end": 24.816,
+   "text": "ve Chuck Berry çalıyor."
+  },
+  {
+   "start": 25.292,
+   "end": 26.441,
+   "text": "Ya 9 yaşında?"
+  },
+  {
+   "start": 26.917,
+   "end": 29.111,
+   "text": "Kardeşi Seth'le ulusal televizyonda!"
+  }
+ ],
+ "s03_kulak": [
+  {
+   "start": 0.023,
+   "end": 2.775,
+   "text": "İnternet yok, tablatür yok, öğretmen yok."
+  },
+  {
+   "start": 3.03,
+   "end": 4.226,
+   "text": "Peki nasıl öğreniyor?"
+  },
+  {
+   "start": 4.331,
+   "end": 5.039,
+   "text": "Kulaktan!"
+  },
+  {
+   "start": 5.399,
+   "end": 9.973,
+   "text": "Ailesinin plak koleksiyonunu tek tek çözüyor: Elvis, Beatles, Hendrix,"
+  },
+  {
+   "start": 10.077,
+   "end": 12.701,
+   "text": "Cream, hatta bir Joe Pass caz plağı."
+  },
+  {
+   "start": 13.003,
+   "end": 16.358,
+   "text": "Kendini, duyduğu her sesi taklit eden lir kuşuna benzetiyor."
+  },
+  {
+   "start": 16.764,
+   "end": 19.597,
+   "text": "Babasının tavsiyesi ise şu: 'Hissederek çal."
+  },
+  {
+   "start": 19.899,
+   "end": 22.453,
+   "text": "Zamanlama, ne kadar bildiğinden daha önemli.'"
+  }
+ ],
+ "s04_oxford": [
+  {
+   "start": 0.0,
+   "end": 2.254,
+   "text": "Okulda shred gitaristlerini keşfediyor."
+  },
+  {
+   "start": 2.475,
+   "end": 6.387,
+   "text": "Bir okul arkadaşı da Tom Jenkinson; yani ileride elektronik müziğin"
+  },
+  {
+   "start": 6.445,
+   "end": 8.233,
+   "text": "kült ismi olacak Squarepusher."
+  },
+  {
+   "start": 8.791,
+   "end": 12.796,
+   "text": "Sonra Oxford'da İngiliz dili ve edebiyatı okumaya başlıyor, ama yarıda"
+  },
+  {
+   "start": 12.842,
+   "end": 14.177,
+   "text": "bırakıp müziği seçiyor."
+  },
+  {
+   "start": 14.932,
+   "end": 19.193,
+   "text": "20 yaşlarında, shred dünyasının efsanevi plak şirketi Shrapnel'den"
+  },
+  {
+   "start": 19.251,
+   "end": 20.574,
+   "text": "anlaşma teklifi geliyor."
+  },
+  {
+   "start": 20.737,
+   "end": 21.41,
+   "text": "Ve Govan..."
+  },
+  {
+   "start": 21.526,
+   "end": 22.281,
+   "text": "reddediyor!"
+  },
+  {
+   "start": 22.641,
+   "end": 25.892,
+   "text": "Tek bilmek istediği, yeterince iyi olup olmadığıymış."
+  }
+ ],
+ "s05_goty": [
+  {
+   "start": 0.0,
+   "end": 3.385,
+   "text": "Ama faturalar beklemiyor; bir süre McDonald's'ta çalışıyor."
+  },
+  {
+   "start": 4.14,
+   "end": 8.679,
+   "text": "1993'te Guitarist dergisinin 'Yılın Gitaristi' yarışmasına Wonderful"
+  },
+  {
+   "start": 8.737,
+   "end": 10.989,
+   "text": "Slippery Thing adlı bestesiyle katılıyor."
+  },
+  {
+   "start": 11.547,
+   "end": 15.216,
+   "text": "Demosu onu canlı finale taşıyor ve hamburger çeviren bu genç..."
+  },
+  {
+   "start": 15.518,
+   "end": 16.505,
+   "text": "finali kazanıyor!"
+  },
+  {
+   "start": 16.911,
+   "end": 17.956,
+   "text": "Fitil ateşlendi."
+  }
+ ],
+ "s06_ogretmen": [
+  {
+   "start": 0.012,
+   "end": 1.219,
+   "text": "Ödül kapıları açıyor."
+  },
+  {
+   "start": 1.44,
+   "end": 6.153,
+   "text": "1994'ten itibaren Guitar Techniques dergisi için Hank Marvin'den Shawn"
+  },
+  {
+   "start": 6.223,
+   "end": 9.276,
+   "text": "Lane'e kadar herkesi notaya döküyor, dersler hazırlıyor."
+  },
+  {
+   "start": 9.683,
+   "end": 13.596,
+   "text": "ACM ve BIMM gibi okullarda binlerce öğrenciye ilham veriyor, Creative"
+  },
+  {
+   "start": 13.619,
+   "end": 14.942,
+   "text": "Guitar kitaplarını yazıyor."
+  },
+  {
+   "start": 15.244,
+   "end": 18.913,
+   "text": "Yani birçok gitarist onu önce sahneden değil, dergiden tanıyor!"
+  }
+ ],
+ "s07_asia": [
+  {
+   "start": 0.012,
+   "end": 2.554,
+   "text": "Derken sürpriz bir kapı açılıyor: Asia!"
+  },
+  {
+   "start": 3.111,
+   "end": 7.628,
+   "text": "ACM'deki bir meslektaşının tavsiyesiyle 2001 albümü Aura'da çalıyor ve"
+  },
+  {
+   "start": 7.686,
+   "end": 8.661,
+   "text": "gruba katılıyor."
+  },
+  {
+   "start": 9.067,
+   "end": 13.758,
+   "text": "Asia'nın orijinal kadrosu yeniden birleşince Govan boş durmuyor: John"
+  },
+  {
+   "start": 13.828,
+   "end": 16.196,
+   "text": "Payne ve Jay Schellen'le GPS'i kuruyor."
+  },
+  {
+   "start": 16.498,
+   "end": 19.842,
+   "text": "Bir yandan da The Young Punx'la ve Dizzee Rascal'ın sahnesinde"
+  },
+  {
+   "start": 19.9,
+   "end": 20.399,
+   "text": "çalıyor."
+  }
+ ],
+ "s08_erotic": [
+  {
+   "start": 0.0,
+   "end": 1.049,
+   "text": "Peki solo albüm?"
+  },
+  {
+   "start": 1.211,
+   "end": 3.324,
+   "text": "Govan'a kalırsa, kimse ilgilenmez."
+  },
+  {
+   "start": 3.626,
+   "end": 7.562,
+   "text": "Ama amfi üreticisi Paul Cornford, sırf bu albüm için bir plak şirketi"
+  },
+  {
+   "start": 7.608,
+   "end": 11.44,
+   "text": "kuruyor ve gitarları Richie Kotzen'in Los Angeles'taki stüdyosunda"
+  },
+  {
+   "start": 11.498,
+   "end": 12.357,
+   "text": "kaydettiriyor."
+  },
+  {
+   "start": 13.007,
+   "end": 18.313,
+   "text": "2006'da Erotic Cakes çıkıyor; basta kardeşi Seth, davulda Pete Riley."
+  },
+  {
+   "start": 19.068,
+   "end": 20.252,
+   "text": "İsim garip mi geldi?"
+  },
+  {
+   "start": 20.391,
+   "end": 23.27,
+   "text": "The Simpsons'ta Homer'ın rastladığı bir dükkândan!"
+  }
+ ],
+ "s09_aristocrats": [
+  {
+   "start": 0.012,
+   "end": 2.229,
+   "text": "Ocak 2011, NAMM fuarı."
+  },
+  {
+   "start": 2.45,
+   "end": 6.908,
+   "text": "Basçı Bryan Beller ve davulcu Marco Minnemann, Bass Bash gecesinde 30"
+  },
+  {
+   "start": 6.955,
+   "end": 8.417,
+   "text": "dakikalık bir set çalacak."
+  },
+  {
+   "start": 8.777,
+   "end": 11.134,
+   "text": "Ama gitarist Greg Howe son anda çekiliyor."
+  },
+  {
+   "start": 11.61,
+   "end": 12.562,
+   "text": "Şimdi ne olacak?"
+  },
+  {
+   "start": 12.702,
+   "end": 14.954,
+   "text": "Fuarda zaten bulunan Govan çağrılıyor."
+  },
+  {
+   "start": 15.117,
+   "end": 18.971,
+   "text": "Prova neredeyse yok, ama sahneden inerken üçü de aynı şeyi söylüyor:"
+  },
+  {
+   "start": 19.111,
+   "end": 23.337,
+   "text": "'Bu iş oluyor, bunu kaydetmeliyiz!' The Aristocrats böyle doğuyor."
+  },
+  {
+   "start": 23.639,
+   "end": 26.889,
+   "text": "5 stüdyo albümü, yüzlerce konser, İstanbul dahil."
+  },
+  {
+   "start": 27.296,
+   "end": 30.965,
+   "text": "Son albüm Duck ise penguen polisinden kaçan bir ördeğin hikâyesi!"
+  }
+ ],
+ "s10_wilson": [
+  {
+   "start": 0.0,
+   "end": 4.048,
+   "text": "Porcupine Tree'nin kurucusu Steven Wilson, onu yeni solo albümü için"
+  },
+  {
+   "start": 4.095,
+   "end": 4.745,
+   "text": "çağırıyor."
+  },
+  {
+   "start": 5.395,
+   "end": 7.415,
+   "text": "Eylül 2012, Los Angeles."
+  },
+  {
+   "start": 7.717,
+   "end": 11.537,
+   "text": "The Raven That Refused to Sing neredeyse tamamen canlı kaydediliyor."
+  },
+  {
+   "start": 12.013,
+   "end": 15.775,
+   "text": "Stüdyoda, Govan'ın daha önce hiç çalmadığı Jazzmaster tarzı bir gitar"
+  },
+  {
+   "start": 15.821,
+   "end": 16.193,
+   "text": "var."
+  },
+  {
+   "start": 16.495,
+   "end": 20.21,
+   "text": "Gitarı eline alıyor ve ilk çaldığı şey, Drive Home'un final solosu"
+  },
+  {
+   "start": 20.245,
+   "end": 20.837,
+   "text": "oluyor."
+  },
+  {
+   "start": 21.313,
+   "end": 24.424,
+   "text": "Evet, yanlış duymadınız: ilk sefer, ilk kayıt!"
+  },
+  {
+   "start": 24.784,
+   "end": 28.36,
+   "text": "Wilson'ın yorumu: 'Delilik değil mi?' Ardından Hand."
+  },
+  {
+   "start": 28.465,
+   "end": 28.987,
+   "text": "Cannot."
+  },
+  {
+   "start": 29.394,
+   "end": 30.021,
+   "text": "Erase."
+  },
+  {
+   "start": 30.322,
+   "end": 30.833,
+   "text": "geliyor."
+  }
+ ],
+ "s11_zimmer": [
+  {
+   "start": 0.035,
+   "end": 1.881,
+   "text": "Bir gün Facebook'tan mesaj geliyor."
+  },
+  {
+   "start": 2.043,
+   "end": 4.226,
+   "text": "Gönderen, Hans Zimmer olduğunu söylüyor."
+  },
+  {
+   "start": 4.632,
+   "end": 8.835,
+   "text": "Govan'ın cevabına bakın: 'Muhtemelen e-posta adresimi arayan 14"
+  },
+  {
+   "start": 8.893,
+   "end": 13.665,
+   "text": "yaşında bir çocuksun, vaktimi harcama.' Yanıt: 'Gerçekten benim, şu"
+  },
+  {
+   "start": 13.711,
+   "end": 15.383,
+   "text": "şüpheli Alman film bestecisi."
+  },
+  {
+   "start": 15.581,
+   "end": 19.969,
+   "text": "Seni YouTube'da perdesiz gitar çalarken buldum.' 2016'dan beri Hans"
+  },
+  {
+   "start": 20.027,
+   "end": 20.979,
+   "text": "Zimmer Live'da!"
+  },
+  {
+   "start": 21.2,
+   "end": 22.57,
+   "text": "Ya Dune'daki gaydalar?"
+  },
+  {
+   "start": 23.046,
+   "end": 24.973,
+   "text": "Zimmer'a göre aslında Govan'ın gitarı."
+  },
+  {
+   "start": 25.112,
+   "end": 27.701,
+   "text": "Yönetmen Denis Villeneuve'e söylemeyi bile unutmuş!"
+  }
+ ],
+ "s12_stil": [
+  {
+   "start": 0.023,
+   "end": 3.657,
+   "text": "Govan müziği bir dil gibi görüyor: 'Müzik ya ana diliniz gibi"
+  },
+  {
+   "start": 3.68,
+   "end": 6.943,
+   "text": "hissettirir ya da okulda öğrendiğiniz bir yabancı dil gibi."
+  },
+  {
+   "start": 7.349,
+   "end": 11.041,
+   "text": "Ben hep ana dilim gibi hissettirsin istedim.' Teknik cephaneliği mi?"
+  },
+  {
+   "start": 11.297,
+   "end": 16.138,
+   "text": "Devasa: akışkan legato, birkaç parmakla tapping, country usulü hybrid"
+  },
+  {
+   "start": 16.173,
+   "end": 20.109,
+   "text": "picking, perdesiz gitar ve neredeyse hiç bırakmadığı volume pedalı."
+  },
+  {
+   "start": 20.515,
+   "end": 24.613,
+   "text": "Ama ona sorarsanız: 'Shred ne çirkin bir kelime, değil mi?' Çok nota"
+  },
+  {
+   "start": 24.659,
+   "end": 28.177,
+   "text": "çalıyorsa, kafasındaki müzik gerçekten o kadar nota içerdiği için."
+  }
+ ],
+ "s13_ekipman": [
+  {
+   "start": 0.015,
+   "end": 4.81,
+   "text": "Gelelim ekipmana: elinde genelde 2014'te çıkan Charvel imza modeli"
+  },
+  {
+   "start": 4.845,
+   "end": 5.216,
+   "text": "var."
+  },
+  {
+   "start": 5.773,
+   "end": 9.872,
+   "text": "Yıllarca Victory lambalı amfilerle çaldı; Hans Zimmer turneleri onu"
+  },
+  {
+   "start": 9.918,
+   "end": 14.237,
+   "text": "dijitale yöneltti: bugün sahnede tamamen Fractal işlemci kullanıyor!"
+  }
+ ],
+ "s14_miras": [
+  {
+   "start": 0.012,
+   "end": 3.611,
+   "text": "Bryan Beller şöyle özetliyor: 'Dünyanın en iyi gitaristinin,"
+  },
+  {
+   "start": 3.715,
+   "end": 8.046,
+   "text": "Chelmsford'daki bir mekânda her hafta sonu çaldığından dünyanın geri"
+  },
+  {
+   "start": 8.081,
+   "end": 10.89,
+   "text": "kalanının haberi yoktu.' Ama artık var!"
+  },
+  {
+   "start": 11.25,
+   "end": 16.323,
+   "text": "2026'da Karnivool'un yeni albümünde solo çaldı; The Aristocrats ise"
+  },
+  {
+   "start": 16.428,
+   "end": 18.413,
+   "text": "Duck turnesini Avrupa'da tamamladı."
+  }
+ ],
+ "s15_kapanis": [
+  {
+   "start": 0.0,
+   "end": 2.355,
+   "text": "Peki o, dünyanın en iyi gitaristi mi?"
+  },
+  {
+   "start": 2.552,
+   "end": 6.105,
+   "text": "Kendisine sorarsanız: 'Değilim, olmaya da çalışmıyorum."
+  },
+  {
+   "start": 6.302,
+   "end": 9.983,
+   "text": "Sadece olabileceğim en iyi ben olmaya çalışıyorum.' Şimdi Drive Home'u"
+  },
+  {
+   "start": 10.052,
+   "end": 11.991,
+   "text": "açın ve o son soloyu dinleyin."
+  },
+  {
+   "start": 12.212,
+   "end": 13.082,
+   "text": "Ve unutmayın..."
+  },
+  {
+   "start": 13.384,
+   "end": 14.302,
+   "text": "ilk denemeydi!"
+  }
+ ]
+}

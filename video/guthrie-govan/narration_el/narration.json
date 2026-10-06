@@ -1,0 +1,68 @@
+{
+ "engine": "elevenlabs",
+ "model": "eleven_multilingual_v2",
+ "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+ "total_sec": 341.74,
+ "segments": {
+  "s01_hook": {
+   "duration": 18.5,
+   "target_sec": 17
+  },
+  "s02_cocukluk": {
+   "duration": 29.05,
+   "target_sec": 24
+  },
+  "s03_kulak": {
+   "duration": 22.39,
+   "target_sec": 20
+  },
+  "s04_oxford": {
+   "duration": 25.84,
+   "target_sec": 22
+  },
+  "s05_goty": {
+   "duration": 17.96,
+   "target_sec": 15
+  },
+  "s06_ogretmen": {
+   "duration": 18.89,
+   "target_sec": 18
+  },
+  "s07_asia": {
+   "duration": 20.35,
+   "target_sec": 17
+  },
+  "s08_erotic": {
+   "duration": 23.71,
+   "target_sec": 20
+  },
+  "s09_aristocrats": {
+   "duration": 31.32,
+   "target_sec": 28
+  },
+  "s10_wilson": {
+   "duration": 30.84,
+   "target_sec": 26
+  },
+  "s11_zimmer": {
+   "duration": 27.91,
+   "target_sec": 25
+  },
+  "s12_stil": {
+   "duration": 28.15,
+   "target_sec": 27
+  },
+  "s13_ekipman": {
+   "duration": 14.19,
+   "target_sec": 12
+  },
+  "s14_miras": {
+   "duration": 18.39,
+   "target_sec": 15
+  },
+  "s15_kapanis": {
+   "duration": 14.25,
+   "target_sec": 14
+  }
+ }
+}

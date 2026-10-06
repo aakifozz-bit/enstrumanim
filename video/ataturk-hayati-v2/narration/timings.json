@@ -1,0 +1,79 @@
+[
+  {
+    "line": 1,
+    "text_displayed": "Bir milletin kaderini değiştiren adam: Mustafa Kemal Atatürk.",
+    "text_spoken": "Bir milletin kaderini değiştiren adam: Mustafa Kemal Atatürk.",
+    "start": 0.25,
+    "end": 3.722
+  },
+  {
+    "line": 2,
+    "text_displayed": "1881’de Selanik’te doğdu. “Kemal” adını matematik öğretmeni verdi.",
+    "text_spoken": "Bin sekiz yüz seksen birde Selanikte doğdu. Kemal adını matematik öğretmeni verdi.",
+    "start": 5.25,
+    "end": 9.651
+  },
+  {
+    "line": 3,
+    "text_displayed": "1905’te Harp Akademisi’ni kurmay yüzbaşı olarak bitirdi.",
+    "text_spoken": "Bin dokuz yüz beşte Harp Akademisini kurmay yüzbaşı olarak bitirdi.",
+    "start": 10.25,
+    "end": 13.882
+  },
+  {
+    "line": 4,
+    "text_displayed": "1915’te Çanakkale’de, Anafartalar’da cepheyi tuttu ve tarihe geçti.",
+    "text_spoken": "Bin dokuz yüz on beşte Çanakkalede, Anafartalarda cepheyi tuttu ve tarihe geçti.",
+    "start": 15.25,
+    "end": 19.64
+  },
+  {
+    "line": 5,
+    "text_displayed": "19 Mayıs 1919’da Samsun’a çıktı. Amasya, Erzurum ve Sivas’ta milleti tek yürek yaptı.",
+    "text_spoken": "On dokuz Mayıs bin dokuz yüz on dokuzda Samsuna çıktı. Amasya, Erzurum ve Sivasta milleti tek yürek yaptı.",
+    "start": 21.25,
+    "end": 27.507
+  },
+  {
+    "line": 6,
+    "text_displayed": "23 Nisan 1920’de Büyük Millet Meclisi açıldı.",
+    "text_spoken": "Yirmi üç Nisan bin dokuz yüz yirmide Büyük Millet Meclisi açıldı.",
+    "start": 28.25,
+    "end": 31.613
+  },
+  {
+    "line": 7,
+    "text_displayed": "Sakarya’dan Büyük Taarruz’a uzanan zaferlerle, 9 Eylül 1922’de İzmir kurtuldu.",
+    "text_spoken": "Sakaryadan Büyük Taarruza uzanan zaferlerle, dokuz Eylül bin dokuz yüz yirmi ikide İzmir kurtuldu.",
+    "start": 32.25,
+    "end": 37.628
+  },
+  {
+    "line": 8,
+    "text_displayed": "29 Ekim 1923’te Cumhuriyet’i kurup ilk Cumhurbaşkanı oldu.",
+    "text_spoken": "Yirmi dokuz Ekim bin dokuz yüz yirmi üçte Cumhuriyeti kurup ilk Cumhurbaşkanı oldu.",
+    "start": 38.25,
+    "end": 42.66
+  },
+  {
+    "line": 9,
+    "text_displayed": "Yeni Türk harflerinden kadınlara seçme hakkına kadar ülkeyi baştan sona yeniledi.",
+    "text_spoken": "Yeni Türk harflerinden kadınlara seçme hakkına kadar ülkeyi baştan sona yeniledi.",
+    "start": 43.25,
+    "end": 47.491
+  },
+  {
+    "line": 10,
+    "text_displayed": "1934’te Meclis ona “Atatürk” soyadını verdi.",
+    "text_spoken": "Bin dokuz yüz otuz dörtte Meclis ona Atatürk soyadını verdi.",
+    "start": 49.25,
+    "end": 52.373
+  },
+  {
+    "line": 11,
+    "text_displayed": "10 Kasım 1938’de aramızdan ayrıldı; ama kurduğu Cumhuriyet sonsuza dek yaşıyor.",
+    "text_spoken": "On Kasım bin dokuz yüz otuz sekizde aramızdan ayrıldı; ama kurduğu Cumhuriyet sonsuza dek yaşıyor.",
+    "start": 54.25,
+    "end": 59.648
+  }
+]

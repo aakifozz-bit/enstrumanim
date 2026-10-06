@@ -1,0 +1,282 @@
+[
+  {
+    "id": "s01_hook",
+    "chapter": "Gitaristlerin Gitaristi",
+    "target_sec": 17,
+    "narration_tr": "Düşünsenize: hiç çalmadığı bir gitarı eline alıyor ve ilk denemede, albümün kaderini belirleyen bir solo çalıyor. Hans Zimmer ona yazınca, mesajı sahte sanıp az kalsın geri çeviriyor. Üstelik kendi deyişiyle, hayatında tek bir gitar dersi bile almamış. Kim mi? Karşınızda... Guthrie Govan!",
+    "onscreen": [
+      "İLK DENEME",
+      "Hans Zimmer?",
+      "0 gitar dersi",
+      "GUTHRIE GOVAN"
+    ],
+    "visuals": [
+      "fast cut montage: Govan live close-ups (Commons: Guthrie Govan2013.jpg, Guthrie Govan Oasis 2018 (cropped).jpg)",
+      "album cover flash: The Raven That Refused to Sing (Steven Wilson, 2013)",
+      "generic chat-bubble graphic 'Ben Hans Zimmer' (no real Facebook UI/logo)",
+      "title card: GUTHRIE GOVAN over guitar-neck macro"
+    ],
+    "music_mood": "epic"
+  },
+  {
+    "id": "s02_cocukluk",
+    "chapter": "Chelmsford, 1971",
+    "target_sec": 24,
+    "narration_tr": "Her şey 27 Aralık 1971'de, İngiltere'nin Essex bölgesindeki Chelmsford'da başlıyor. Babasının ucuz, naylon telli bir gitarı var. Glasgow'lu babası birkaç akor biliyor, ama hepsini oğluna öğretiyor. Guthrie kaç yaşında başladığını hatırlamıyor; anlatılanlara göre 3 yaşındaymış. 5 yaşında ilk kez sahnede: babasının iş arkadaşlarının grubuyla Elvis ve Chuck Berry çalıyor. Ya 9 yaşında? Kardeşi Seth'le ulusal televizyonda!",
+    "onscreen": [
+      "27 Aralık 1971",
+      "Chelmsford, Essex",
+      "3 yaşında: ilk akorlar",
+      "9 yaşında: ulusal TV"
+    ],
+    "visuals": [
+      "photo: Chelmsford High Street (Commons/geograph)",
+      "map card: Chelmsford, Essex, UK",
+      "stock/archival: cheap 1970s nylon-string guitar",
+      "timeline card: 3 → 5 → 9 yaş",
+      "archival-style photo: 1950s rock'n'roll record sleeves (Elvis/Chuck Berry era, generic)"
+    ],
+    "music_mood": "calm/emotional"
+  },
+  {
+    "id": "s03_kulak",
+    "chapter": "Kulaktan Öğrenen Çocuk",
+    "target_sec": 20,
+    "narration_tr": "İnternet yok, tablatür yok, öğretmen yok. Peki nasıl öğreniyor? Kulaktan! Ailesinin plak koleksiyonunu tek tek çözüyor: Elvis, Beatles, Hendrix, Cream, hatta bir Joe Pass caz plağı. Kendini, duyduğu her sesi taklit eden lir kuşuna benzetiyor. Babasının tavsiyesi ise şu: 'Hissederek çal. Zamanlama, ne kadar bildiğinden daha önemli.'",
+    "onscreen": [
+      "İnternet yok",
+      "Kulaktan",
+      "Lir kuşu: her sesi taklit",
+      "\"Hissederek çal.\""
+    ],
+    "visuals": [
+      "stock: vinyl record spinning on a turntable, 1970s living room",
+      "photo: superb lyrebird (Commons: Superb lyrbird in scrub.jpg)",
+      "quote card: babanın tavsiyesi (TR + EN small)"
+    ],
+    "music_mood": "calm/emotional"
+  },
+  {
+    "id": "s04_oxford",
+    "chapter": "Oxford mu, Gitar mı?",
+    "target_sec": 22,
+    "narration_tr": "Okulda shred gitaristlerini keşfediyor. Bir okul arkadaşı da Tom Jenkinson; yani ileride elektronik müziğin kült ismi olacak Squarepusher. Sonra Oxford'da İngiliz dili ve edebiyatı okumaya başlıyor, ama yarıda bırakıp müziği seçiyor. 20 yaşlarında, shred dünyasının efsanevi plak şirketi Shrapnel'den anlaşma teklifi geliyor. Ve Govan... reddediyor! Tek bilmek istediği, yeterince iyi olup olmadığıymış.",
+    "onscreen": [
+      "Okul arkadaşı: Squarepusher",
+      "Oxford → yarıda bırakıyor",
+      "Shrapnel teklifi: HAYIR"
+    ],
+    "visuals": [
+      "archival postcard: King Edward VI School, Chelmsford (Commons)",
+      "photo: St Catherine's College, Oxford (Commons/geograph)",
+      "text card: Shrapnel Records / Mike Varney — 'Teklif reddedildi' stamp animation",
+      "optional small photo: Squarepusher (Commons, if licensed)"
+    ],
+    "music_mood": "groovy fusion"
+  },
+  {
+    "id": "s05_goty",
+    "chapter": "Yılın Gitaristi: 1993",
+    "target_sec": 15,
+    "narration_tr": "Ama faturalar beklemiyor; bir süre McDonald's'ta çalışıyor. 1993'te Guitarist dergisinin 'Yılın Gitaristi' yarışmasına Wonderful Slippery Thing adlı bestesiyle katılıyor. Demosu onu canlı finale taşıyor ve hamburger çeviren bu genç... finali kazanıyor! Fitil ateşlendi.",
+    "onscreen": [
+      "McDonald's",
+      "Guitarist of the Year 1993",
+      "\"Wonderful Slippery Thing\""
+    ],
+    "visuals": [
+      "generic stock: fast-food kitchen / burger grill (no logos)",
+      "magazine cover: Guitarist (UK) 1993 issue if obtainable; else generic magazine-cover mock with text 'Guitarist of the Year 1993'",
+      "trophy/award animation over live photo"
+    ],
+    "music_mood": "energetic rock"
+  },
+  {
+    "id": "s06_ogretmen",
+    "chapter": "Bir Neslin Öğretmeni",
+    "target_sec": 18,
+    "narration_tr": "Ödül kapıları açıyor. 1994'ten itibaren Guitar Techniques dergisi için Hank Marvin'den Shawn Lane'e kadar herkesi notaya döküyor, dersler hazırlıyor. ACM ve BIMM gibi okullarda binlerce öğrenciye ilham veriyor, Creative Guitar kitaplarını yazıyor. Yani birçok gitarist onu önce sahneden değil, dergiden tanıyor!",
+    "onscreen": [
+      "Guitar Techniques (1994–)",
+      "ACM · BIMM",
+      "Creative Guitar 1 & 2"
+    ],
+    "visuals": [
+      "magazine covers: Guitar Techniques (late-1990s/2000s issues)",
+      "book covers: Creative Guitar 1: Cutting-Edge Techniques; Creative Guitar 2: Advanced Techniques",
+      "animated tab/notation scrolling over Govan photo",
+      "logo-free photo: guitar classroom / masterclass (BIMM masterclass photo if licensed)"
+    ],
+    "music_mood": "groovy fusion"
+  },
+  {
+    "id": "s07_asia",
+    "chapter": "Asia, GPS ve Sahne",
+    "target_sec": 17,
+    "narration_tr": "Derken sürpriz bir kapı açılıyor: Asia! ACM'deki bir meslektaşının tavsiyesiyle 2001 albümü Aura'da çalıyor ve gruba katılıyor. Asia'nın orijinal kadrosu yeniden birleşince Govan boş durmuyor: John Payne ve Jay Schellen'le GPS'i kuruyor. Bir yandan da The Young Punx'la ve Dizzee Rascal'ın sahnesinde çalıyor.",
+    "onscreen": [
+      "Asia — Aura (2001)",
+      "GPS (2006)",
+      "The Young Punx · Dizzee Rascal"
+    ],
+    "visuals": [
+      "photo: Govan live with Asia, Haarlem 2005 (Commons: Guthrie govan.jpg)",
+      "album covers: Asia – Aura; GPS – Window to the Soul",
+      "photo: GPS 2006 band (Commons: GPS 2006.jpg)",
+      "photo: Dizzee Rascal live (Commons)"
+    ],
+    "music_mood": "energetic rock"
+  },
+  {
+    "id": "s08_erotic",
+    "chapter": "Erotic Cakes",
+    "target_sec": 20,
+    "narration_tr": "Peki solo albüm? Govan'a kalırsa, kimse ilgilenmez. Ama amfi üreticisi Paul Cornford, sırf bu albüm için bir plak şirketi kuruyor ve gitarları Richie Kotzen'in Los Angeles'taki stüdyosunda kaydettiriyor. 2006'da Erotic Cakes çıkıyor; basta kardeşi Seth, davulda Pete Riley. İsim garip mi geldi? The Simpsons'ta Homer'ın rastladığı bir dükkândan!",
+    "onscreen": [
+      "Erotic Cakes (2006)",
+      "Bas: Seth Govan · Davul: Pete Riley",
+      "İsim: The Simpsons"
+    ],
+    "visuals": [
+      "album cover: Erotic Cakes (Cornford Records, 2006)",
+      "photo: Cornford amp head (product shot)",
+      "text card: track list highlights — Waves, Wonderful Slippery Thing, Fives, Sevens",
+      "text-only gag card: 'Treehouse of Horror VI – Homer³' (no Simpsons artwork)"
+    ],
+    "music_mood": "groovy fusion"
+  },
+  {
+    "id": "s09_aristocrats",
+    "chapter": "The Aristocrats",
+    "target_sec": 28,
+    "narration_tr": "Ocak 2011, NAMM fuarı. Basçı Bryan Beller ve davulcu Marco Minnemann, Bass Bash gecesinde 30 dakikalık bir set çalacak. Ama gitarist Greg Howe son anda çekiliyor. Şimdi ne olacak? Fuarda zaten bulunan Govan çağrılıyor. Prova neredeyse yok, ama sahneden inerken üçü de aynı şeyi söylüyor: 'Bu iş oluyor, bunu kaydetmeliyiz!' The Aristocrats böyle doğuyor. 5 stüdyo albümü, yüzlerce konser, İstanbul dahil. Son albüm Duck ise penguen polisinden kaçan bir ördeğin hikâyesi!",
+    "onscreen": [
+      "NAMM 2011 · Anaheim",
+      "Son dakika yedek",
+      "5 stüdyo albümü",
+      "Duck (2024)"
+    ],
+    "visuals": [
+      "photo: NAMM Show 2011 at Anaheim Convention Center (Commons)",
+      "photos: The Aristocrats live 2012 (Commons: Guthrie Govan The Aristrocrats.jpg, Guthrie Govan.jpg)",
+      "portraits: Bryan Beller (Commons: Bryan Beller Summer 2015.jpg), Marco Minnemann (Commons: Marco-Minnemann.jpg)",
+      "album cover grid: The Aristocrats, Culture Clash, Tres Caballeros, You Know What...?, Duck",
+      "album cover: Freeze! Live in Europe 2020 (Lego band + penguin cop)",
+      "text card: İstanbul 2012 · 2015"
+    ],
+    "music_mood": "groovy fusion"
+  },
+  {
+    "id": "s10_wilson",
+    "chapter": "Steven Wilson ve Drive Home",
+    "target_sec": 26,
+    "narration_tr": "Porcupine Tree'nin kurucusu Steven Wilson, onu yeni solo albümü için çağırıyor. Eylül 2012, Los Angeles. The Raven That Refused to Sing neredeyse tamamen canlı kaydediliyor. Stüdyoda, Govan'ın daha önce hiç çalmadığı Jazzmaster tarzı bir gitar var. Gitarı eline alıyor ve ilk çaldığı şey, Drive Home'un final solosu oluyor. Evet, yanlış duymadınız: ilk sefer, ilk kayıt! Wilson'ın yorumu: 'Delilik değil mi?' Ardından Hand. Cannot. Erase. geliyor.",
+    "onscreen": [
+      "Los Angeles · Eylül 2012",
+      "\"Drive Home\"",
+      "İLK SEFER, İLK KAYIT",
+      "Hand. Cannot. Erase. (2015)"
+    ],
+    "visuals": [
+      "photo: Steven Wilson live 2013 (Commons: Steven Wilson at Boulder Theatre 2013 1.jpg)",
+      "photo: Govan on tour with Steven Wilson 2013 (Commons: Guthrie Govan2013.jpg)",
+      "album covers: The Raven That Refused to Sing; Hand. Cannot. Erase.",
+      "photo: EastWest Studios exterior, Sunset Blvd (Commons: East West Studios.jpg)",
+      "generic photo: Jazzmaster-style offset guitar",
+      "quote card: 'Isn't that insane?' — Steven Wilson"
+    ],
+    "music_mood": "calm/emotional"
+  },
+  {
+    "id": "s11_zimmer",
+    "chapter": "Hans Zimmer'dan Gelen Mesaj",
+    "target_sec": 25,
+    "narration_tr": "Bir gün Facebook'tan mesaj geliyor. Gönderen, Hans Zimmer olduğunu söylüyor. Govan'ın cevabına bakın: 'Muhtemelen e-posta adresimi arayan 14 yaşında bir çocuksun, vaktimi harcama.' Yanıt: 'Gerçekten benim, şu şüpheli Alman film bestecisi. Seni YouTube'da perdesiz gitar çalarken buldum.' 2016'dan beri Hans Zimmer Live'da! Ya Dune'daki gaydalar? Zimmer'a göre aslında Govan'ın gitarı. Yönetmen Denis Villeneuve'e söylemeyi bile unutmuş!",
+    "onscreen": [
+      "\"14 yaşında bir çocuksun\"",
+      "Perdesiz gitar",
+      "Hans Zimmer Live (2016–)",
+      "Dune: gayda = gitar"
+    ],
+    "visuals": [
+      "two generic chat bubbles animating the exchange (no real Facebook UI)",
+      "photo: Hans Zimmer live 2022 (Commons: Hans Zimmer live 2022.jpg)",
+      "photo: Vigier fretless guitar (manufacturer press image / Commons if available)",
+      "photo: bagpiper (Commons: The Bagpiper.jpg) dissolving into guitar close-up",
+      "desert/dunes stock photo (no Dune film stills)"
+    ],
+    "music_mood": "epic"
+  },
+  {
+    "id": "s12_stil",
+    "chapter": "Onu Farklı Kılan Ne?",
+    "target_sec": 27,
+    "narration_tr": "Govan müziği bir dil gibi görüyor: 'Müzik ya ana diliniz gibi hissettirir ya da okulda öğrendiğiniz bir yabancı dil gibi. Ben hep ana dilim gibi hissettirsin istedim.' Teknik cephaneliği mi? Devasa: akışkan legato, birkaç parmakla tapping, country usulü hybrid picking, perdesiz gitar ve neredeyse hiç bırakmadığı volume pedalı. Ama ona sorarsanız: 'Shred ne çirkin bir kelime, değil mi?' Çok nota çalıyorsa, kafasındaki müzik gerçekten o kadar nota içerdiği için.",
+    "onscreen": [
+      "Müzik = ana dil",
+      "legato · tapping · hybrid picking",
+      "volume pedalı",
+      "\"Shred çirkin bir kelime\""
+    ],
+    "visuals": [
+      "quote card: mother-tongue quote (TR big, EN small)",
+      "macro photos: fretting hand legato / picking-hand tapping (stock or Govan live crops)",
+      "photo: Govan's Aristocrats pedalboard with volume pedal (Commons: Guthrie Govan's Aristocrats pedalboard (U.S. tour).jpg)",
+      "kinetic list of techniques appearing one by one"
+    ],
+    "music_mood": "groovy fusion"
+  },
+  {
+    "id": "s13_ekipman",
+    "chapter": "Ekipman",
+    "target_sec": 12,
+    "narration_tr": "Gelelim ekipmana: elinde genelde 2014'te çıkan Charvel imza modeli var. Yıllarca Victory lambalı amfilerle çaldı; Hans Zimmer turneleri onu dijitale yöneltti: bugün sahnede tamamen Fractal işlemci kullanıyor!",
+    "onscreen": [
+      "Charvel GG Signature (2014)",
+      "Victory V30",
+      "Fractal FM9 · %100 dijital"
+    ],
+    "visuals": [
+      "product photo: Charvel USA Guthrie Govan Signature (flame maple / caramelized ash)",
+      "product photo: Victory V30 MkII head",
+      "product photo: Fractal Audio FM9 (Commons: Mx5 fm9l.jpg or manufacturer press image)",
+      "gear card layout: guitar → amp → processor"
+    ],
+    "music_mood": "energetic rock"
+  },
+  {
+    "id": "s14_miras",
+    "chapter": "Miras",
+    "target_sec": 15,
+    "narration_tr": "Bryan Beller şöyle özetliyor: 'Dünyanın en iyi gitaristinin, Chelmsford'daki bir mekânda her hafta sonu çaldığından dünyanın geri kalanının haberi yoktu.' Ama artık var! 2026'da Karnivool'un yeni albümünde solo çaldı; The Aristocrats ise Duck turnesini Avrupa'da tamamladı.",
+    "onscreen": [
+      "\"Dünyanın en iyi gitaristi\" — Bryan Beller",
+      "Karnivool – In Verses (2026)",
+      "Duck World Tour 2025–2026"
+    ],
+    "visuals": [
+      "quote card: Beller quote over Bryan Beller photo",
+      "album cover: Karnivool – In Verses (2026)",
+      "world map with Duck tour stops lighting up (Australia, Asia, N. America, S. America, Europe)",
+      "photo: Govan 2018 (Commons: Guthrie Govan Oasis 2018 (cropped).jpg)"
+    ],
+    "music_mood": "epic"
+  },
+  {
+    "id": "s15_kapanis",
+    "chapter": "Final",
+    "target_sec": 14,
+    "narration_tr": "Peki o, dünyanın en iyi gitaristi mi? Kendisine sorarsanız: 'Değilim, olmaya da çalışmıyorum. Sadece olabileceğim en iyi ben olmaya çalışıyorum.' Şimdi Drive Home'u açın ve o son soloyu dinleyin. Ve unutmayın... ilk denemeydi!",
+    "onscreen": [
+      "\"Olabileceğim en iyi ben\"",
+      "Şimdi dinle: Drive Home",
+      "İLK DENEME"
+    ],
+    "visuals": [
+      "slow push-in on Govan portrait, warm grade",
+      "quote card: humility quote (TR + EN small)",
+      "end card: 'Drive Home' play-button graphic + album art The Raven That Refused to Sing"
+    ],
+    "music_mood": "calm/emotional"
+  }
+]
