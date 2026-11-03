@@ -84,6 +84,19 @@ function paintHall(ctx, cam, r, o = {}) {
   const shaftAt = o.shaftAt || (() => 0);
   // backdrop
   ctx.fillStyle = css(dark); ctx.fillRect(0, 0, W, H);
+  // floor: stone flags in perspective
+  const fl0 = cam.pr(0, FY, ZB)[1];
+  ctx.fillStyle = css([12, 13, 28]); ctx.fillRect(0, fl0, W, H - fl0);
+  for (let Z = 2.5; Z < ZB; Z += 0.9) {
+    for (let X = -WX + ((Z * 7) % 1.3); X < WX; X += 0.9 + r() * 0.8) {
+      const z2 = Z + 0.9, x2 = X + 0.9 + r() * 0.5;
+      const p = [cam.pr(X + 0.03, FY, Z + 0.03), cam.pr(x2 - 0.03, FY, Z + 0.03), cam.pr(x2 - 0.03, FY, z2 - 0.03), cam.pr(X + 0.03, FY, z2 - 0.03)];
+      const k = (1 - fog(Z)) * (0.22 + r() * 0.14) + shaftAt(X + 0.6, FY, Z + 0.5) * 0.9;
+      ctx.beginPath(); ctx.moveTo(p[0][0], p[0][1]); for (const q of p) ctx.lineTo(q[0], q[1]); ctx.closePath();
+      ctx.fillStyle = css(mixc([14, 15, 32], mulc([110, 112, 150], [255 * amb[0] * 2, 255 * amb[1] * 2, 255 * amb[2] * 2].map((v) => Math.min(255, v))), clamp(k, 0, 1.5))); ctx.fill();
+      if (r() < 0.25) { ctx.fillStyle = css([60, 80, 50], 0.4 * (1 - fog(Z))); ctx.fillRect(p[0][0], p[0][1] - 1, p[1][0] - p[0][0], 1.2); }
+    }
+  }
   // back wall shelves
   const bw0 = cam.pr(-WX, 0, ZB)[0], bw1 = cam.pr(WX, 0, ZB)[0];
   const sc = cam.f / ZB;
@@ -136,19 +149,6 @@ function paintHall(ctx, cam, r, o = {}) {
       const a = cam.pr(X, FY, Z), b = cam.pr(X, FY, Z + 0.18), c2 = cam.pr(X, TOP, Z + 0.18), d = cam.pr(X, TOP, Z);
       const k = 1 - fog(Z);
       ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.lineTo(c2[0], c2[1]); ctx.lineTo(d[0], d[1]); ctx.fillStyle = css(mixc(dark, [70, 72, 110], k)); ctx.fill();
-    }
-  }
-  // floor: stone flags in perspective
-  const fl0 = cam.pr(0, FY, ZB)[1];
-  ctx.fillStyle = css([30, 32, 58]); ctx.fillRect(0, fl0, W, H - fl0);
-  for (let Z = 2.5; Z < ZB; Z += 1.1) {
-    for (let X = -WX + ((Z * 7) % 1.3); X < WX; X += 1.3 + r() * 0.5) {
-      const z2 = Z + 1.1, x2 = X + 1.3;
-      const p = [cam.pr(X + 0.03, FY, Z + 0.03), cam.pr(x2 - 0.03, FY, Z + 0.03), cam.pr(x2 - 0.03, FY, z2 - 0.03), cam.pr(X + 0.03, FY, z2 - 0.03)];
-      const k = (1 - fog(Z)) * (0.55 + r() * 0.3) + shaftAt(X + 0.6, FY, Z + 0.5) * 1.2;
-      ctx.beginPath(); ctx.moveTo(p[0][0], p[0][1]); for (const q of p) ctx.lineTo(q[0], q[1]); ctx.closePath();
-      ctx.fillStyle = css(mixc([14, 15, 32], mulc([110, 112, 150], [255 * amb[0] * 2, 255 * amb[1] * 2, 255 * amb[2] * 2].map((v) => Math.min(255, v))), clamp(k, 0, 1.5))); ctx.fill();
-      if (r() < 0.25) { ctx.fillStyle = css([60, 80, 50], 0.4 * (1 - fog(Z))); ctx.fillRect(p[0][0], p[0][1] - 1, p[1][0] - p[0][0], 1.2); }
     }
   }
   // fog toward the back + darkness climbing up

@@ -1,6 +1,6 @@
 // ===== SHOT 2: The Reading Hall (0:07-0:14) =====
-const S2CAM = hallCam({ f: 700, cx: 640, cy: 285 });
-const S2SHAFT = { top: [5.8, -14, 13.5], bot: [-0.9, 1.6, 8.6], w: 1.3 };
+const S2CAM = hallCam({ f: 700, cx: 640, cy: 350 });
+const S2SHAFT = { top: [5.8, -14, 13.5], bot: [-0.9, 1.0, 8.6], w: 1.3 };
 function shaftPoly(cam, sh) {
   const t = sh.top, b = sh.bot, w = sh.w;
   const pts = [cam.pr(t[0], t[1], t[2] - w), cam.pr(t[0], t[1], t[2] + w), cam.pr(b[0] + w * 0.8, b[1], b[2] + w), cam.pr(b[0] - w * 0.8, b[1], b[2] + w), cam.pr(b[0] - w * 0.8, b[1], b[2] - w), cam.pr(b[0] + w * 0.8, b[1], b[2] - w)];
@@ -13,10 +13,10 @@ function shaftAt3(sh) {
 function s2BG() {
   return layer('s2bg', (ctx) => {
     const r = RNG(201);
-    paintHall(ctx, S2CAM, r, { shaftAt: shaftAt3(S2SHAFT), amb: [0.3, 0.33, 0.52] });
+    paintHall(ctx, S2CAM, r, { shaftAt: shaftAt3(S2SHAFT), amb: [0.3, 0.33, 0.52], floorY: 1.0 });
     // moon patch on floor
     const b = S2SHAFT.bot, w = S2SHAFT.w;
-    const fp = [S2CAM.pr(b[0] - w * 1.0, 1.6, b[2] - w * 1.1), S2CAM.pr(b[0] + w * 1.0, 1.6, b[2] - w * 1.1), S2CAM.pr(b[0] + w * 0.9, 1.6, b[2] + w * 1.2), S2CAM.pr(b[0] - w * 0.9, 1.6, b[2] + w * 1.2)];
+    const fp = [S2CAM.pr(b[0] - w * 1.0, 1.0, b[2] - w * 1.1), S2CAM.pr(b[0] + w * 1.0, 1.0, b[2] - w * 1.1), S2CAM.pr(b[0] + w * 0.9, 1.0, b[2] + w * 1.2), S2CAM.pr(b[0] - w * 0.9, 1.0, b[2] + w * 1.2)];
     ctx.save(); ctx.filter = 'blur(3px)'; ctx.globalCompositeOperation = 'lighter';
     ctx.beginPath(); ctx.moveTo(fp[0][0], fp[0][1]); for (const p of fp) ctx.lineTo(p[0], p[1]); ctx.closePath(); ctx.fillStyle = 'rgba(120,135,190,0.45)'; ctx.fill();
     // window mullion shadow cross in the patch
@@ -25,11 +25,11 @@ function s2BG() {
     ctx.beginPath(); ctx.moveTo(m1[0], m1[1]); ctx.lineTo(m2[0], m2[1]); ctx.stroke();
     ctx.restore();
     // props: stacks of fallen books on the floor, a rolling ladder on the right wall
-    const prop = (X, Z, n) => { for (let i = 0; i < n; i++) { const p = S2CAM.pr(X + (r() - 0.5) * 0.1, 1.6 - i * 0.09, Z); const sc = 700 / Z; ctx.save(); ctx.translate(p[0], p[1]); ctx.rotate((r() - 0.5) * 0.12); const col = bookColor(r); ctx.fillStyle = css(mulc(col, [90, 100, 150])); ctx.fillRect(-0.35 * sc, -0.09 * sc, 0.7 * sc, 0.09 * sc); ctx.fillStyle = css(mulc([220, 210, 180], [80, 90, 140]), 0.9); ctx.fillRect(-0.33 * sc, -0.08 * sc, 0.03 * sc, 0.07 * sc); ctx.restore(); } };
+    const prop = (X, Z, n) => { for (let i = 0; i < n; i++) { const p = S2CAM.pr(X + (r() - 0.5) * 0.1, 1.0 - i * 0.09, Z); const sc = 700 / Z; ctx.save(); ctx.translate(p[0], p[1]); ctx.rotate((r() - 0.5) * 0.12); const col = bookColor(r); ctx.fillStyle = css(mulc(col, [90, 100, 150])); ctx.fillRect(-0.35 * sc, -0.09 * sc, 0.7 * sc, 0.09 * sc); ctx.fillStyle = css(mulc([220, 210, 180], [80, 90, 140]), 0.9); ctx.fillRect(-0.33 * sc, -0.08 * sc, 0.03 * sc, 0.07 * sc); ctx.restore(); } };
     prop(2.6, 7.5, 6); prop(3.4, 9.5, 4); prop(-3.6, 11, 5); prop(1.8, 14, 3);
     // ladder
     ctx.strokeStyle = 'rgba(60,48,60,0.95)'; ctx.lineWidth = 5;
-    const l1 = S2CAM.pr(5.3, 1.6, 10.5), l2 = S2CAM.pr(5.9, -12, 11.5), l3 = S2CAM.pr(5.3, 1.6, 11.3), l4 = S2CAM.pr(5.9, -12, 12.3);
+    const l1 = S2CAM.pr(5.3, 1.0, 10.5), l2 = S2CAM.pr(5.9, -12, 11.5), l3 = S2CAM.pr(5.3, 1.0, 11.3), l4 = S2CAM.pr(5.9, -12, 12.3);
     ctx.beginPath(); ctx.moveTo(l1[0], l1[1]); ctx.lineTo(l2[0], l2[1]); ctx.moveTo(l3[0], l3[1]); ctx.lineTo(l4[0], l4[1]); ctx.stroke();
     ctx.lineWidth = 3; for (let k = 0; k < 14; k++) { const u = k / 14; ctx.beginPath(); ctx.moveTo(lerp(l1[0], l2[0], u), lerp(l1[1], l2[1], u)); ctx.lineTo(lerp(l3[0], l4[0], u), lerp(l3[1], l4[1], u)); ctx.stroke(); }
     paperize(ctx, 0.07);
