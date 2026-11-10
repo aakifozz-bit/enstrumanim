@@ -108,19 +108,20 @@ addEventListener('keydown', (e) => {
   if (e.code === 'Space') e.preventDefault();
 });
 addEventListener('keyup', (e) => { keys[e.code] = false; });
-addEventListener('mousemove', (e) => { if (locked) look(e.movementX, e.movementY, 0.0022); });
+addEventListener('mousemove', (e) => { if (locked || (started && e.buttons)) look(e.movementX, e.movementY, 0.0022); });
 function look(dx, dy, k) {
   if (P.mode === 'scooter') { S.look = Math.max(-2.3, Math.min(2.3, S.look - dx * k)); S.lookIdle = 0; }
   else P.yaw -= dx * k;
   P.pitch = Math.max(-1.45, Math.min(1.45, P.pitch - dy * k));
 }
 const overlay = document.getElementById('overlay');
+function lock() { try { const r = canvas.requestPointerLock?.(); if (r && r.catch) r.catch(() => {}); } catch (e) { /* kilit yoksa fareyi basılı tutarak bak */ } }
 function begin() {
   started = true; overlay.classList.add('hide'); game.audio.start();
-  if (!mobile) canvas.requestPointerLock?.();
+  if (!mobile) lock();
 }
 document.getElementById('start').addEventListener('click', begin);
-canvas.addEventListener('click', () => { if (started && !mobile && !locked) canvas.requestPointerLock?.(); });
+canvas.addEventListener('click', () => { if (started && !mobile && !locked) lock(); });
 document.addEventListener('pointerlockchange', () => {
   locked = document.pointerLockElement === canvas;
   if (!locked && started && !mobile && !params.has('auto')) { overlay.classList.remove('hide'); overlay.classList.add('paused'); }
