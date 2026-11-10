@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Lara Kurye — Antalya</title>
+<style>
+  :root { --card: rgba(14,18,24,.72); --line: rgba(255,255,255,.12); --or: #ff9a2a; --gr: #21c063; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0f14; color: #fff;
+    font: 14px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; user-select: none; -webkit-user-select: none; touch-action: none; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  #top { position: fixed; left: 14px; top: 14px; display: flex; gap: 8px; align-items: stretch; }
+  #top .card { padding: 8px 14px; min-width: 74px; }
+  #top small { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; opacity: .65; }
+  #top b { font-size: 19px; font-variant-numeric: tabular-nums; }
+  #where { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); padding: 6px 14px; font-weight: 700; font-size: 13px;
+    background: #0b4ea2; border: 2px solid #fff; border-radius: 6px; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  #minimap { position: fixed; right: 14px; top: 14px; width: 172px; height: 172px; border-radius: 50%; border: 3px solid rgba(255,255,255,.85); box-shadow: 0 6px 22px rgba(0,0,0,.45); }
+  #order { position: fixed; left: 14px; bottom: 14px; width: min(330px, calc(100vw - 28px)); padding: 12px 14px 12px; }
+  #order.idle { opacity: .75; }
+  #o-title { font-weight: 800; font-size: 15px; margin-bottom: 8px; display: flex; justify-content: space-between; }
+  #o-time { font-variant-numeric: tabular-nums; }
+  #o-time.warn { color: #ffd23f; } #o-time.late { color: #ff5a4d; }
+  .step { display: flex; gap: 9px; align-items: center; padding: 3px 0; font-size: 13px; opacity: .6; }
+  .step i { flex: none; width: 20px; height: 20px; border-radius: 50%; font-style: normal; font-weight: 800; font-size: 11px; display: grid; place-items: center; background: rgba(255,255,255,.16); }
+  .step:has(.cur) { opacity: 1; } .step:has(.cur) i { background: var(--or); color: #1a1205; }
+  .step:has(.ok) i { background: var(--gr); }
+  #row-b:has(.cur) i { background: var(--gr); color: #04180c; }
+  #o-pay { margin-top: 8px; font-weight: 800; color: #9df0bd; font-size: 15px; }
+  #order.idle .step, #order.idle #o-pay { display: none; }
+  #speedo { position: fixed; right: 18px; bottom: 16px; display: none; align-items: baseline; gap: 6px; padding: 8px 16px; }
+  #kmh { font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; }
+  #hint { position: fixed; left: 50%; bottom: 17%; transform: translateX(-50%); padding: 9px 16px; font-weight: 700; display: none; white-space: nowrap; }
+  #toast { position: fixed; left: 50%; top: 18%; transform: translate(-50%, -12px); padding: 10px 18px; font-weight: 700; opacity: 0; transition: .25s; pointer-events: none; text-align: center; max-width: 90vw; }
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+  #toast.big { font-size: 20px; background: rgba(18,110,58,.85); }
+  #wp { position: fixed; display: none; transform: translate(-50%, -50%); pointer-events: none; text-align: center; font-weight: 800; font-size: 12px; text-shadow: 0 1px 4px #000; }
+  #wp::before { content: ""; display: block; width: 16px; height: 16px; margin: 0 auto 3px; background: var(--or); border: 2px solid #fff; transform: rotate(45deg); border-radius: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.5); }
+  #wp.drop::before { background: var(--gr); }
+  #cross { position: fixed; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: rgba(255,255,255,.7); box-shadow: 0 0 3px #000; }
+  #overlay { position: fixed; inset: 0; display: grid; place-items: center; background: linear-gradient(180deg, rgba(6,20,36,.35), rgba(6,14,24,.82)); transition: opacity .4s; padding: 20px; }
+  #overlay.hide { opacity: 0; pointer-events: none; }
+  #panel { max-width: 520px; text-align: center; }
+  #panel h1 { font-size: clamp(38px, 9vw, 68px); margin: 0; letter-spacing: -.02em; line-height: .95; text-shadow: 0 4px 24px rgba(0,0,0,.5); }
+  #panel h1 span { color: var(--or); }
+  #panel p { opacity: .88; margin: 14px 0 20px; font-size: 15px; }
+  #start { font: inherit; font-weight: 800; font-size: 18px; color: #1a1205; background: var(--or); border: 0; border-radius: 12px; padding: 14px 34px; cursor: pointer; box-shadow: 0 8px 26px rgba(255,154,42,.4); }
+  #keys { margin-top: 20px; font-size: 13px; opacity: .8; display: grid; grid-template-columns: auto auto; gap: 4px 16px; justify-content: center; text-align: left; }
+  #keys b { font-family: ui-monospace, monospace; background: rgba(255,255,255,.14); border-radius: 5px; padding: 1px 6px; }
+  .paused #start::after { content: " (devam)"; }
+  .tc { display: none; }
+  body.touch .tc { display: block; } body.touch #cross, body.touch #keys { display: none; }
+  #stick { position: fixed; width: 120px; height: 120px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); display: none; pointer-events: none; }
+  #knob { position: absolute; left: 35px; top: 35px; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.55); }
+  .tb { position: fixed; right: 18px; width: 66px; height: 66px; border-radius: 50%; border: 2px solid rgba(255,255,255,.5); background: rgba(14,18,24,.55); color: #fff; font: 800 13px system-ui; }
+  #btnE { bottom: 170px; background: rgba(255,154,42,.75); color: #1a1205; } #btnJ { bottom: 92px; }
+  @media (max-width: 640px) { #minimap { width: 118px; height: 118px; } #where { top: 64px; font-size: 11px; } #top .card { padding: 6px 10px; min-width: 0; } #top b { font-size: 15px; } #order { bottom: 10px; left: 10px; width: min(250px, 62vw); padding: 9px 11px; } .step { font-size: 11.5px; } #speedo { bottom: 250px; } }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="cross"></div>
+<div id="top">
+  <div class="card"><small>Kazanç</small><b id="money">₺0</b></div>
+  <div class="card"><small>Teslimat</small><b id="done">0</b></div>
+  <div class="card"><small>Puan</small><b>★ <span id="stars">5,0</span></b></div>
+</div>
+<div id="where">2147. Sokak</div>
+<canvas id="minimap" width="344" height="344"></canvas>
+<div id="order" class="card idle">
+  <div id="o-title">Yeni sipariş bekleniyor…</div>
+  <div class="step"><i>1</i><span id="o-a"></span></div>
+  <div class="step" id="row-b"><i>2</i><span id="o-b"></span></div>
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><span id="o-pay"></span><b id="o-time"></b></div>
+</div>
+<div id="speedo" class="card"><span id="kmh">0</span><small>km/s</small></div>
+<div id="hint" class="card"></div>
+<div id="toast" class="card"></div>
+<div id="wp"><span id="wp-d"></span></div>
+<div id="stick" class="tc"><div id="knob"></div></div>
+<button id="btnE" class="tb tc">BİN / İN</button>
+<button id="btnJ" class="tb tc">FREN</button>
+<div id="overlay">
+  <div id="panel">
+    <h1>LARA <span>KURYE</span></h1>
+    <p>Antalya, Lara. Vardiyan 2147. Sokak’ta başlıyor: motoruna bin, siparişi restorandan al, soğumadan kapıya yetiştir.</p>
+    <button id="start">Vardiyaya başla</button>
+    <div id="keys">
+      <span><b>W A S D</b> yürü / sür</span><span><b>Fare</b> etrafa bak</span>
+      <span><b>E</b> motora bin / in</span><span><b>Shift</b> koş</span>
+      <span><b>Boşluk</b> zıpla / fren</span><span><b>Esc</b> duraklat</span>
+    </div>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
