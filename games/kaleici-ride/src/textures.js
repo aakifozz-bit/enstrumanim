@@ -283,7 +283,7 @@ export function makeTextures(q) {
   // --- foliage cards -----------------------------------------------------------------
   T.leaves = leafCard(512, 201, { leaf: [[0.1, 0.2, 0.06], [0.3, 0.44, 0.13]], n: 1300, len: 13, wid: 5.5 });
   T.bougain = leafCard(512, 211, { leaf: [[0.05, 0.12, 0.03], [0.16, 0.26, 0.07]], n: 900, len: 12, wid: 6,
-    flower: [[0.55, 0.02, 0.16], [0.92, 0.1, 0.34]], nf: 1500 });
+    flower: [[0.7, 0.03, 0.22], [1.0, 0.16, 0.42]], nf: 1700 });
   T.frond = frondCard(512, 221);
   T.kilim = kilim(256, 231);
   T.clock = clockFace(256);
@@ -299,7 +299,7 @@ function leafCard(size, seed, { leaf, n, len, wid, flower, nf = 0 }) {
   const css = (a, b, t, k = 1) => `rgb(${mix3(a, b, t).map((x) => Math.round(Math.pow(clamp(x * k, 0, 1), 1 / 2.2) * 255)).join(',')})`;
   // several overlapping clumps give a ragged silhouette that still reads as foliage in the mips
   const clumps = [];
-  for (let i = 0; i < 7; i++) { const a = r() * 6.283, d = r() * size * 0.24; clumps.push([size / 2 + Math.cos(a) * d, size / 2 + Math.sin(a) * d, size * (0.1 + r() * 0.11)]); }
+  for (let i = 0; i < 11; i++) { const a = r() * 6.283, d = Math.sqrt(r()) * size * 0.31; clumps.push([size / 2 + Math.cos(a) * d, size / 2 + Math.sin(a) * d, size * (0.07 + r() * 0.09)]); }
   for (let i = 0; i < n + nf; i++) {
     const isF = i >= n;
     const cl = clumps[(r() * clumps.length) | 0];

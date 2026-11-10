@@ -40,8 +40,10 @@
   .credit { position: absolute; top: clamp(16px, 3vw, 30px); right: clamp(16px, 3vw, 34px); font-size: 11px; letter-spacing: .14em; color: rgba(244,234,216,.45); text-align: right; line-height: 1.6; }
 
   /* ---------- hud ---------- */
-  #hud { position: fixed; inset: 0; z-index: 10; pointer-events: none; opacity: 0; transition: opacity .6s ease; text-shadow: 0 1px 14px rgba(0,0,0,.55); }
+  #hud { position: fixed; inset: 0; z-index: 10; pointer-events: none; opacity: 0; transition: opacity .6s ease; text-shadow: 0 1px 3px rgba(0,0,0,.6), 0 2px 18px rgba(0,0,0,.6); }
   #hud.on { opacity: 1; }
+  #hud::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,6,4,.5) 0%, rgba(8,6,4,0) 22%, rgba(8,6,4,0) 72%, rgba(8,6,4,.45) 100%); }
+  #hud > * { z-index: 1; }
   #place { position: absolute; left: clamp(14px, 2.6vw, 34px); top: clamp(12px, 2.4vw, 28px); }
   #place .d { font-size: 12px; letter-spacing: .44em; color: var(--gold); text-transform: uppercase; }
   #street { font: 500 clamp(26px, 3.6vw, 44px)/1.05 var(--serif); margin-top: 2px; transition: opacity .4s; }

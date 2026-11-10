@@ -118,13 +118,13 @@ export class Geo {
    * Oriented box. o = origin (centre of the base), ax = unit "right" vector in xz [x,z],
    * w along ax, h up, d along the perpendicular (centred). uvScale = metres per uv unit.
    */
-  box(ox, oy, oz, ax, w, h, d, col, uvScale = 1, skip = '') {
+  box(ox, oy, oz, ax, w, h, d, col, uvScale = 1, skip = '', u0 = 0) {
     const rx = ax[0], rz = ax[1], fx = -rz, fz = rx; // forward = right rotated 90deg
     const hw = w / 2, hd = d / 2;
     const P = (sx, y, sz) => [ox + rx * sx * hw + fx * sz * hd, oy + y, oz + rz * sx * hw + fz * sz * hd];
     const s = uvScale;
-    if (!skip.includes('f')) this.quad(P(-1, 0, 1), P(1, 0, 1), P(1, h, 1), P(-1, h, 1), [0, 0, w / s, h / s], col);
-    if (!skip.includes('b')) this.quad(P(1, 0, -1), P(-1, 0, -1), P(-1, h, -1), P(1, h, -1), [0, 0, w / s, h / s], col);
+    if (!skip.includes('f')) this.quad(P(-1, 0, 1), P(1, 0, 1), P(1, h, 1), P(-1, h, 1), [u0, oy / s, u0 + w / s, (oy + h) / s], col);
+    if (!skip.includes('b')) this.quad(P(1, 0, -1), P(-1, 0, -1), P(-1, h, -1), P(1, h, -1), [u0 + w / s, oy / s, u0, (oy + h) / s], col);
     if (!skip.includes('r')) this.quad(P(1, 0, 1), P(1, 0, -1), P(1, h, -1), P(1, h, 1), [0, 0, d / s, h / s], col);
     if (!skip.includes('l')) this.quad(P(-1, 0, -1), P(-1, 0, 1), P(-1, h, 1), P(-1, h, -1), [0, 0, d / s, h / s], col);
     if (!skip.includes('t')) this.quad(P(-1, h, 1), P(1, h, 1), P(1, h, -1), P(-1, h, -1), [0, 0, w / s, d / s], col);

@@ -321,12 +321,12 @@ export function buildCity(data, T, terrain, q) {
           if (cur && prev) {
             const dx = cur[0] - prev[0], dz = cur[1] - prev[1], sl = Math.hypot(dx, dz);
             if (sl > 0.3 && sl < STEP * 2.2) {
-              if (!style) style = { h: 2.0 + r() * 0.9, stone: r() < 0.6, tint: PLASTER[(r() * 4) | 0], bloom: r() < 0.5 * q.foliage, bt: BOUG[(r() * BOUG.length) | 0] };
+              if (!style) style = { h: 2.0 + r() * 0.9, stone: r() < 0.6, tint: PLASTER[(r() * 4) | 0], u: r() * 9, bloom: r() < 0.5 * q.foliage, bt: BOUG[(r() * BOUG.length) | 0] };
               const mx = (cur[0] + prev[0]) / 2, mz = (cur[1] + prev[1]) / 2;
               const y0 = Math.min(groundY(cur[0], cur[1]), groundY(prev[0], prev[1])) - 0.4;
               const yT = Math.max(groundY(cur[0], cur[1]), groundY(prev[0], prev[1])) + style.h;
               const ax = [dx / sl, dz / sl];
-              tiles.get(style.stone ? 'rubble' : 'plaster', mx, mz).box(mx, y0, mz, ax, sl + 0.02, yT - y0, 0.42, style.stone ? STONEW : style.tint, style.stone ? S_RB : S_PL, 'u');
+              tiles.get(style.stone ? 'rubble' : 'plaster', mx, mz).box(mx, y0, mz, ax, sl + 0.02, yT - y0, 0.42, style.stone ? STONEW : style.tint, style.stone ? S_RB : S_PL, 'u', (style.u += sl / (style.stone ? S_RB : S_PL)) );
               tiles.get('ashlar', mx, mz).box(mx, yT, mz, ax, sl + 0.02, 0.1, 0.56, HONEY, S_AS, 'u');
               solid(prev[0] - nx * 0.21, prev[1] - nz * 0.21, cur[0] - nx * 0.21, cur[1] - nz * 0.21, 'garden');
               k++;

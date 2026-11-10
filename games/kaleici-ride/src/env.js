@@ -7,7 +7,7 @@ export const TIMES = [
     lamp: 1.6, glass: 0.5, head: 0, mount: 0x8d86a0, clouds: 0.55, tint: [1.035, 1.0, 0.95], bloom: 0.1 },
   { name: 'Öğleden Sonra', sky: 0.4, gnd: 0.35, el: 46, az: 222, sun: 0xfff1dc, sunI: 5.6, exposure: 0.5, turb: 3.5, ray: 1.1, mie: 0.004, env: 1.0, fog: 0xc3d3e0, fogD: 0.0007,
     lamp: 0.3, glass: 0, head: 0, mount: 0x8fa4bd, clouds: 0.3, tint: [1.0, 1.0, 1.0], bloom: 0.08 },
-  { name: 'Mavi Saat', sky: 0.16, gnd: 0.012, skyEl: 1.2, el: -4.5, az: 281, sun: 0x7f93c8, sunI: 0.5, exposure: 1.0, turb: 5, ray: 2.5, mie: 0.004, env: 1.0, fog: 0x39466a, fogD: 0.0012,
+  { name: 'Mavi Saat', sky: 0.16, gnd: 0.012, skyEl: 1.2, el: -4.5, az: 281, sun: 0x7f93c8, sunI: 0.5, exposure: 1.3, turb: 5, ray: 2.5, mie: 0.004, env: 1.0, fog: 0x39466a, fogD: 0.0012,
     lamp: 5, glass: 1.4, head: 70, mount: 0x2c3352, clouds: 0.35, tint: [0.97, 1.0, 1.06], bloom: 0.38, lights: 1 },
 ];
 
@@ -155,7 +155,7 @@ export class Atmosphere {
       }
       best.sort((a, b) => a[0] - b[0]);
       this.lights.forEach((l, k) => {
-        if (best[k]) { const i = best[k][1]; l.position.set(lamps[i], lamps[i + 1], lamps[i + 2]); l.intensity = 12; } else l.intensity = 0;
+        if (best[k]) { const i = best[k][1]; l.position.set(lamps[i], lamps[i + 1], lamps[i + 2]); l.intensity = 22; } else l.intensity = 0;
       });
     }
   }
